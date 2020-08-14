@@ -1,8 +1,6 @@
 env:
   TERM: screen-256color
 
-tabspaces: 4
-
 font:
   normal:
     family: Hack
