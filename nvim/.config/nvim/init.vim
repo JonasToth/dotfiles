@@ -34,7 +34,7 @@ endif
 let g:deoplete#enable_at_startup = 1
 
 " Show Function Signatures
-Plug 'Shougo/echodoc.vim'
+" Plug 'Shougo/echodoc.vim'
 
 " Color schemes {{{
 " Plug 'NLKNguyen/papercolor-theme'
@@ -93,6 +93,7 @@ Plug 'bling/vim-bufferline'       " show list of all buffers
 
 " LaTeX Plugin {{{
 Plug 'lervag/vimtex'
+let g:tex_flavor = "latex"
 " }}}
 
 " All of your Plugins must be added before the following line
