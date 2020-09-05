@@ -67,6 +67,10 @@ Plug 'rust-lang/rust.vim'
 Plug 'vmchale/ion-vim'
 " }}}
 
+" Gentoo Ebuild Plugin {{{
+Plug 'gentoo/gentoo-syntax'
+" }}}
+
 " syntax checking {{{
 Plug 'scrooloose/syntastic'
 " }}}
