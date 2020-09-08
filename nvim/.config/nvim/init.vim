@@ -93,12 +93,15 @@ Plug 'bling/vim-bufferline'       " show list of all buffers
 
 " LaTeX Plugin {{{
 Plug 'lervag/vimtex'
-let g:tex_flavor = "latex"
 " }}}
 
 " All of your Plugins must be added before the following line
 call plug#end()            " required
 filetype plugin indent on  " required
+
+" LaTeX Settings {{{
+let g:tex_flavor = "latex"
+" }}}
 
 " AutoCompletion Engine {{{
 call deoplete#custom#option({
