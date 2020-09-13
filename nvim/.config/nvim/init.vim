@@ -13,7 +13,7 @@ Plug 'autozimu/LanguageClient-neovim', {
 let g:LanguageClient_serverCommands = {
     \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
     \ 'python': ['/usr/local/bin/pyls'],
-    \ 'cpp': ['clangd-10'],
+    \ 'cpp': ['clangd'],
     \ }
 
 " Fuzzy Matching
