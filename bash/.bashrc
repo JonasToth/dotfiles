@@ -75,14 +75,6 @@ xterm*|rxvt*)
     ;;
 esac
 
-#function _update_ps1() {
-    #PS1="$(powerline-shell $?)"
-#}
-#
-#if [ "$TERM" != "linux" ]; then
-    #PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
-#fi
-
 # }}}
 
 # LS AND GREP {{{
@@ -136,7 +128,7 @@ fi
 # EDITOR, PATH, TERM {{{
 export EDITOR='nvim'
 export TERM=screen-256color
-export PATH="$HOME/.cargo/bin:$HOME/opt/llvm-project/llvm/utils/git-svn:/opt/cmake/bin:$PATH"
+export PATH="$HOME/.cargo/bin:/opt/cmake/bin:$PATH"
 # source modules, to set compiler version easily
 
 # }}}
@@ -175,7 +167,7 @@ export IRC_CLIENT='irssi'
 # export TODO="todo -G"
 
 # Set this to false to turn off version control status checking within the prompt for all themes
-export SCM_CHECK=true
+export SCM_CHECK=false
 
 # Set Xterm/screen/Tmux title with only a short hostname.
 # Uncomment this (or set SHORT_HOSTNAME to something else),
