@@ -14,6 +14,7 @@ let g:LanguageClient_serverCommands = {
     \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
     \ 'python': ['/usr/local/bin/pyls'],
     \ 'cpp': ['clangd'],
+    \ 'sh': ['bash-language-server', 'start'],
     \ }
 
 " Fuzzy Matching
@@ -206,7 +207,7 @@ let g:syntastic_aggregate_errors = 1
 " `:SyntasticCheck`
 let g:syntastic_mode_map = {
             \ "mode": "active",
-            \ "active_filetypes": ["rust"],
+            \ "active_filetypes": ["rust", "sh"],
             \ "passive_filetypes": ["python", "cpp", "c"] }
 
 " C++
