@@ -68,7 +68,7 @@ HIST_STAMPS="dd.mm.yyyy"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(arcanist cargo colored-man-pages common-aliases docker git gitfast git-extras git-prompt themes)
+plugins=(arcanist cargo colored-man-pages common-aliases docker git gitfast git-flow-completion git-extras git-prompt themes)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -86,12 +86,6 @@ if [[ -n $SSH_CONNECTION ]]; then
 else
     export EDITOR='nvim'
 fi
-
-alias cdllvmbuild='cd ~/opt/llvm-build/'
-alias cdclang='cd ~/opt/llvm-project/clang'
-alias cdclangtoolsextra='cd ~/opt/llvm-project/clang-tools-extra'
-alias cdtidy='cd ~/opt/llvm-project/clang-tools-extra/clang-tidy'
-alias cdvis='cd ~/software/visoloco'
 
 alias vi="nvim"
 alias vim="nvim"
@@ -114,3 +108,32 @@ setopt nosharehistory
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+
+# Start SSH-Agent.
+# See https://stackoverflow.com/questions/18880024/start-ssh-agent-on-login
+
+SSH_ENV="$HOME/.ssh/agent-environment"
+
+function start_agent {
+    echo "Initialising new SSH agent..."
+    /usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
+    echo succeeded
+    chmod 600 "${SSH_ENV}"
+    . "${SSH_ENV}" > /dev/null
+    /usr/bin/ssh-add;
+}
+
+# Source SSH settings, if applicable
+
+if [ -f "${SSH_ENV}" ]; then
+    . "${SSH_ENV}" > /dev/null
+    #ps ${SSH_AGENT_PID} doesn't work under cywgin
+    ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
+        start_agent;
+    }
+else
+    start_agent;
+fi
+
+source ~/.personal_token
