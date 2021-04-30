@@ -1,0 +1,11 @@
+markup_highlight = 'foreground="#ff6e69" underline="low" weight="bold"'
+
+icon_size = 64
+anchor_left = false
+anchor_right = true
+anchor_top = true
+anchor_bottom = true
+margin_top = 0
+margin_bottom = 0
+margin_left = 0
+margin_right = 0
