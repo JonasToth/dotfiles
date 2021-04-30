@@ -1,0 +1,17 @@
+# waylock.toml
+
+# Note: all fields are optional. If omitted a default value will be used.
+
+# If set to true, never revert the color after input or failure.
+one_way = true
+
+# Command to run on authentication failure. Executed with `sh -c <COMMAND>`.
+fail_command = "echo Failed unlock attempt!"
+
+[colors]
+# Specify the initial color of the lock screen.
+init_color = 0x333333
+# Specify the color of the lock screen after input is received.
+input_color = 0x0d3300
+# Specify the color of the lock screen on authentication failure.
+fail_color = 0x990000
