@@ -76,6 +76,10 @@ Plug 'gentoo/gentoo-syntax'
 Plug 'scrooloose/syntastic'
 " }}}
 
+" PlantUML Syntax {{{
+Plug 'aklt/plantuml-syntax'
+" }}}
+
 " snippets, better then snipmate {{{
 " Track the engine.
 " Snippets are separated from the engine. Add this if you want them:
@@ -94,6 +98,10 @@ Plug 'bling/vim-bufferline'       " show list of all buffers
 
 " LaTeX Plugin {{{
 Plug 'lervag/vimtex'
+" }}}
+
+" Kubernetes integration {{{
+Plug 'rottencandy/vimkubectl'
 " }}}
 
 " All of your Plugins must be added before the following line
@@ -136,7 +144,7 @@ endfunction()
 
 augroup LSP
   autocmd!
-  autocmd FileType cpp,c,py call SetLSPShortcuts()
+  autocmd FileType cpp,c,py,rust call SetLSPShortcuts()
 augroup END
 " }}}
 
@@ -294,7 +302,7 @@ set number relativenumber
 set wrap
 set linebreak
 set nolist
-set colorcolumn=80
+set colorcolumn=101
 " }}}
 
 " vim:foldmethod=marker:foldlevel=0
