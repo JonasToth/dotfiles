@@ -89,7 +89,13 @@ input * xkb_layout "de,us"
     bindsym $mod+Shift+c reload
 
     # Exit sway (logs you out of your Wayland session)
-    bindsym $mod+Shift+e exec wlogout -p layer-shell
+    bindsym $mod+Shift+e exec \
+        wlogout --protocol layer-shell \
+                --buttons-per-row 2 \
+                --column-spacing 50 \
+                --row-spacing 50 \
+                --margin-left 400 \
+                --margin-right 400
 #
 # Moving around:
 #
