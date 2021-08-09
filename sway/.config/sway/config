@@ -191,6 +191,8 @@ input * xkb_layout "de,us"
 # Style:
 # 
     default_border none
+    gaps inner 5px
+    smart_gaps on
 
 #
 # Resizing containers:
