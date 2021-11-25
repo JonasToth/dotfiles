@@ -12,8 +12,8 @@ Plug 'autozimu/LanguageClient-neovim', {
 " Automatically start language servers.
 let g:LanguageClient_serverCommands = {
     \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
-    \ 'python': ['/usr/local/bin/pyls'],
-    \ 'cpp': ['clangd'],
+    \ 'python': ['~/.local/bin/pyls'],
+    \ 'cpp': ['clangd-13'],
     \ 'sh': ['bash-language-server', 'start'],
     \ }
 
@@ -144,7 +144,7 @@ endfunction()
 
 augroup LSP
   autocmd!
-  autocmd FileType cpp,c,py,rust call SetLSPShortcuts()
+  autocmd FileType cpp,c,python,rust call SetLSPShortcuts()
 augroup END
 " }}}
 
