@@ -38,10 +38,10 @@ let g:deoplete#enable_at_startup = 1
 " Plug 'Shougo/echodoc.vim'
 
 " Color schemes {{{
-" Plug 'NLKNguyen/papercolor-theme'
+Plug 'NLKNguyen/papercolor-theme'
 " Plug 'dikiaap/minimalist'
-Plug 'morhetz/gruvbox'
-let g:gruvbox_contrast_dark = 'medium'
+" Plug 'morhetz/gruvbox'
+" let g:gruvbox_contrast_dark = 'medium'
 " }}}
 
 " Multiple Languages for Highlighting {{{
@@ -154,9 +154,9 @@ let g:UltiSnipsEditSplit="vertical"
 
 " Color Scheme Configuration {{{
 syntax enable
-" colorscheme PaperColor
+colorscheme PaperColor
 " colorscheme minimalist
-colorscheme gruvbox
+" colorscheme gruvbox
 set background=dark
 " colorscheme vombatidae
 set t_Co=256
@@ -274,6 +274,15 @@ nnoremap m :nohlsearch<CR>
 " move cursor by visual lines
 nnoremap j gj
 nnoremap k gk
+
+" move lines with <Alt-j> and <Alt-k>, even if visually selected
+" https://vim.fandom.com/wiki/Moving_lines_up_or_down#Mappings_to_move_lines
+nnoremap <C-j> :m .+1<CR>==
+nnoremap <C-k> :m .-2<CR>==
+inoremap <C-j> <Esc>:m .+1<CR>==gi
+inoremap <C-k> <Esc>:m .-2<CR>==gi
+vnoremap <C-j> :m '>+1<CR>gv=gv
+vnoremap <C-k> :m '<-2<CR>gv=gv
 
 " leader = , for frequently used macros
 let mapleader=","
