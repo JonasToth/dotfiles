@@ -13,6 +13,7 @@
 [delta]
     features = side-by-side line-numbers decorations
     whitespace-error-style = 22 reverse
+    wrap-max-lines = unlimited
 
 [delta "decorations"]
     commit-decoration-style = bold yellow box ul
