@@ -68,7 +68,7 @@ HIST_STAMPS="dd.mm.yyyy"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(arcanist cargo colored-man-pages common-aliases docker git gitfast git-extras git-prompt kubectl themes)
+plugins=(arcanist colored-man-pages common-aliases docker git gitfast git-extras git-prompt kubectl rust themes)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -108,3 +108,5 @@ setopt nosharehistory
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+. ~/.personal_token
