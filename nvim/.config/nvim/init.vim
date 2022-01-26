@@ -17,14 +17,22 @@ let g:LanguageClient_serverCommands = {
     \ 'sh': ['bash-language-server', 'start'],
     \ }
 
+" Create a floating window for interface documentation instead of a
+" preview-window.
+let g:LanguageClient_hoverPreview = "Auto"
+let g:LanguageClient_useFloatingHover = 1
+let g:LanguageClient_diagnosticsList = "Location"
+let g:LanguageClient_hasSnippetSupport = 0
+
 " Fuzzy Matching
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
 " Shellcheck plugin
 Plug 'koalaman/shellcheck'
+" }}}
 
-" Code Completion engine
+" Code Completion engine and snippets {{{
 if has('nvim')
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 else
@@ -34,8 +42,9 @@ else
 endif
 let g:deoplete#enable_at_startup = 1
 
-" Show Function Signatures
-" Plug 'Shougo/echodoc.vim'
+Plug 'Shougo/neosnippet.vim'
+Plug 'Shougo/neosnippet-snippets'
+" }}}
 
 " Color schemes {{{
 Plug 'NLKNguyen/papercolor-theme'
@@ -46,10 +55,6 @@ Plug 'NLKNguyen/papercolor-theme'
 
 " Multiple Languages for Highlighting {{{
 Plug 'sheerun/vim-polyglot'
-" }}}
-
-" Using Tab for everything {{{
-Plug 'ervandew/supertab'
 " }}}
 
 " better folding, cause vim reks sometimes {{{
@@ -64,6 +69,10 @@ Plug 'ekalinin/Dockerfile.vim'
 Plug 'rust-lang/rust.vim'
 " }}}
 
+" CMake plugin {{{
+Plug 'pboettch/vim-cmake-syntax'
+" }}}
+
 " ION Shell support {{{
 Plug 'vmchale/ion-vim'
 " }}}
@@ -72,18 +81,8 @@ Plug 'vmchale/ion-vim'
 Plug 'gentoo/gentoo-syntax'
 " }}}
 
-" syntax checking {{{
-Plug 'scrooloose/syntastic'
-" }}}
-
 " PlantUML Syntax {{{
 Plug 'aklt/plantuml-syntax'
-" }}}
-
-" snippets, better then snipmate {{{
-" Track the engine.
-" Snippets are separated from the engine. Add this if you want them:
-Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 " }}}
 
 " git integration {{{
@@ -117,11 +116,30 @@ call deoplete#custom#option({
             \ 'auto_complete_delay': 1,
             \ 'smart_case': v:true,
             \ 'camel_case': v:true, 
+            \ 'candidate_marks': ['A', 'S', 'D', 'F', 'G'],
             \ })
 
-set cmdheight=2
-let g:echodoc#enable_at_startup = 1
-let g:echodoc#type = 'signature'
+" Autocompletion from LSP can provide snippets for all the arguments.
+" It does not work as desired, so just make it usable for now without the
+" snippets.
+let g:neosnippet#enable_complete_done = 0
+let g:neosnippet#enable_completed_snippet = 0
+" autocmd CompleteDone * call neosnippet#complete_done()
+
+" Make the first 5 possible completions selectable with the left hand.
+inoremap <expr>A   pumvisible() ? deoplete#insert_candidate(0) : 'A'
+inoremap <expr>S   pumvisible() ? deoplete#insert_candidate(1) : 'S'
+inoremap <expr>D   pumvisible() ? deoplete#insert_candidate(2) : 'D'
+inoremap <expr>F   pumvisible() ? deoplete#insert_candidate(3) : 'F'
+inoremap <expr>G   pumvisible() ? deoplete#insert_candidate(4) : 'G'
+
+" Dont show the preview window during auto completions.
+set completeopt-=preview
+
+" Snippet mappings
+imap <C-h> <Plug>(neosnippet_expand_or_jump)
+smap <C-h> <Plug>(neosnippet_expand_or_jump)
+xmap <C-h> <Plug>(neosnippet_expand_target)
 
 " Always draw the signcolumn. Warnings from clangd
 set signcolumn=yes
@@ -148,10 +166,6 @@ augroup LSP
 augroup END
 " }}}
 
-" }}}
-"
-let g:UltiSnipsEditSplit="vertical"
-
 " Color Scheme Configuration {{{
 syntax enable
 colorscheme PaperColor
@@ -164,16 +178,25 @@ set t_Co=256
 " fix screen background color issue
 set t_ut=
 
-set laststatus=2
+" Write the status line only if there at least 2 windows
+set laststatus=1
+set noshowmode
+set noshowcmd
+set noruler
+
+" Put the list of buffers in the status-line (airline)
+let g:bufferline_echo = 1
+" Show the number of the buffer for each buffer
 let g:airline_theme='minimalist'
 let g:airline_powerline_fonts = 1
-let g:airline_section_c = ''
+" let g:airline_section_c = ''
 let g:airline_section_x = ''
 let g:airline_section_y = ''
-let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#enabled = 0
 let g:airline#extensions#branch#enabled = 1 " enable branch writeout
 let g:airline#extensions#branch#displayed_head_limit = 15
 let g:airline#extensions#whitespace#enabled = 0 " we dont want to see whitesace information
+let g:airline#extensions#searchcount#enabled = 1
 " }}}
 
 " Python {{{
@@ -195,43 +218,6 @@ au BufNewFile,BufFilePre,BufRead *.md set textwidth=79
 
 " Folding for CMakeLists {{{
 au BufNewFile,BufFilePre,BufRead CMakeLists.txt set foldmethod=marker
-" }}}
-
-" syntastic recommended settings {{{
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-map <C-D> :SyntasticCheck<CR>
-imap <C-D> :SyntasticCheck<CR>
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
-" Multiple checkers in one report
-let g:syntastic_aggregate_errors = 1
-
-" Make python checker passive, so it must be called directly with
-" `:SyntasticCheck`
-let g:syntastic_mode_map = {
-            \ "mode": "active",
-            \ "active_filetypes": ["rust", "sh"],
-            \ "passive_filetypes": ["python", "cpp", "c"] }
-
-" C++
-let g:syntastic_cpp_compiler = 'clang++'
-let g:syntastic_cpp_compiler_options = '--std=c++17'
-
-" TODO Experimental
-let g:syntastic_cpp_checkers = ['cpplint', 'gcc', 'clang-tidy-10.0']
-let g:syntastic_cpp_check_header = 1
-let g:syntastic_cpp_clang_tidy_args = '-checks=*,-google-*'
-
-" Python
-let g:syntastic_python_checkers = ["flake8", "pylint", "pycodestyle"]
-let g:syntastic_python_pylint_args = "--extension-pkg-whitelist=cv2"
 " }}}
 
 " Fortran Settings {{{
@@ -277,12 +263,12 @@ nnoremap k gk
 
 " move lines with <Alt-j> and <Alt-k>, even if visually selected
 " https://vim.fandom.com/wiki/Moving_lines_up_or_down#Mappings_to_move_lines
-nnoremap <C-j> :m .+1<CR>==
-nnoremap <C-k> :m .-2<CR>==
-inoremap <C-j> <Esc>:m .+1<CR>==gi
-inoremap <C-k> <Esc>:m .-2<CR>==gi
-vnoremap <C-j> :m '>+1<CR>gv=gv
-vnoremap <C-k> :m '<-2<CR>gv=gv
+nnoremap <C-A-j> :m .+1<CR>==
+nnoremap <C-A-k> :m .-2<CR>==
+inoremap <C-A-j> <Esc>:m .+1<CR>==gi
+inoremap <C-A-k> <Esc>:m .-2<CR>==gi
+vnoremap <C-A-j> :m '>+1<CR>gv=gv
+vnoremap <C-A-k> :m '<-2<CR>gv=gv
 
 " leader = , for frequently used macros
 let mapleader=","
