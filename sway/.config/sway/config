@@ -30,7 +30,8 @@ set $menu sirula
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 output * bg ${HOME}/.config/sway/wallpaper_green_cube.png fill
 output DP-3 resolution 1920x1080@144Hz position 1920,0
-output HDMI-A-1 disable
+# output HDMI-A-1 disable
+output HDMI-A-1 resolution 1920x1080@60Hz position 0,0
 #
 # Example configuration:
 #
@@ -190,7 +191,12 @@ input * xkb_layout "de,us"
 #
 # Style:
 # 
-    default_border none
+    default_border pixel 2
+    smart_borders on
+
+    client.focused #98971a #285577 #ffffff #2e9ef4 #98971a
+    client.unfocused #83a598 #222222 #888888 #292d2e #83a598
+
     gaps inner 5px
     smart_gaps on
 
@@ -202,10 +208,10 @@ mode "resize" {
     # right will grow the containers width
     # up will shrink the containers height
     # down will grow the containers height
-    bindsym $left resize shrink width 10px
-    bindsym $down resize grow height 10px
-    bindsym $up resize shrink height 10px
-    bindsym $right resize grow width 10px
+    bindsym $left resize shrink width 50px
+    bindsym $down resize grow height 50px
+    bindsym $up resize shrink height 50px
+    bindsym $right resize grow width 50px
 
     # Ditto, with arrow keys
     bindsym Left resize shrink width 10px
