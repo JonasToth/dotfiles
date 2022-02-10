@@ -6,6 +6,37 @@ alias txcr="docker run --rm --entrypoint="/toxiproxy-cli" -it --net=host ghcr.io
 alias txde="docker run --rm --entrypoint="/toxiproxy-cli" -it --net=host ghcr.io/shopify/toxiproxy delete"
 
 
+# invls: inventory list
+# 
+# Show all devices tracked in the inventory.
+# @pre Current working directory must be '<inventory>'
+# @example 'invls'
+function invls() {
+    inv --devices "${1}" --repo . list
+}
+
+# invctl: inventory is controlling
+# 
+# Show all devices that are currently performing any control operation.
+# @pre Current working directory must be '<inventory>'
+# @example 'invctl'
+function invctl() {
+    remove_existing dead.list \
+    | parallel --jobs 50 \
+      ssh_command devices/{} "if ! PandoraQuery is-controlling --timeout 2000 \; then echo {} \; fi"
+}
+
+# invctlafrrstandby: inventory is exclusive aFRR standby
+# 
+# Show all devices that are currently exclusively in aFRR standby.
+# @pre Current working directory must be '<inventory>'
+# @example 'invctlafrrstandby'
+function invctlafrrstandby() {
+    remove_existing dead.list \
+    | parallel --jobs 50 \
+      ssh_command devices/{} "if PandoraQuery is-controlling --only-afrr-standby --timeout 2000 \; then echo {} \; fi"
+}
+
 # invvs: inventory verify single
 # 
 # Verify a single devices and only print its name if it was successfull.
@@ -35,4 +66,32 @@ function invupg() {
 function invdc() {
     local device="${1}"
     download_command "${device}" /e2m/config.ini "${device}/config.ini"
+}
+
+# invuc: inventory upload command
+#
+# Upload a file to a device.
+# @pre Current working directory must be '<inventory>/devices'
+# @example 'invuc U-MRXBGBIELE002'
+function invuc() {
+    local device="${1}"
+    local local_path="${2}"
+    local remote_path="${3}"
+    upload_command "${device}" "${local_path}" "${remote_path}"
+}
+
+# invpingdead: inventory ping dead
+#
+# Create a list file of currently dead connections.
+# @pre Current working directory must be '<inventory>'
+# @example 'invpingdead'
+function invpingdead() {
+    inv --repo . ping 2>dead.list >/dev/null
+}
+
+# invnotify: inventory notify
+#
+# Sends a notification that an operation is finished.
+function invnotify() {
+    notify-send -u normal -t 5000 -a "inventory" "Inventory Command Done"
 }
