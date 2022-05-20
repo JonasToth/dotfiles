@@ -22,7 +22,7 @@ let g:LanguageClient_serverCommands = {
 let g:LanguageClient_hoverPreview = "Auto"
 let g:LanguageClient_useFloatingHover = 1
 let g:LanguageClient_diagnosticsList = "Location"
-let g:LanguageClient_hasSnippetSupport = 0
+let g:LanguageClient_hasSnippetSupport = 1
 
 " Fuzzy Matching
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -59,6 +59,10 @@ Plug 'sheerun/vim-polyglot'
 
 " better folding, cause vim reks sometimes {{{
 Plug 'tmhedberg/SimpylFold'
+" }}}
+
+" Tabularize Text {{{
+Plug 'godlygeek/tabular'
 " }}}
 
 " Dockerfiles {{{
@@ -116,22 +120,25 @@ call deoplete#custom#option({
             \ 'auto_complete_delay': 1,
             \ 'smart_case': v:true,
             \ 'camel_case': v:true, 
-            \ 'candidate_marks': ['A', 'S', 'D', 'F', 'G'],
             \ })
+" Completions through those markers do not work well with LSP snippets for
+" completions.
+" \ 'candidate_marks': ['A', 'S', 'D', 'F', 'G'],
 
 " Autocompletion from LSP can provide snippets for all the arguments.
 " It does not work as desired, so just make it usable for now without the
 " snippets.
-let g:neosnippet#enable_complete_done = 0
+let g:neosnippet#enable_complete_done = 1
 let g:neosnippet#enable_completed_snippet = 0
 " autocmd CompleteDone * call neosnippet#complete_done()
 
 " Make the first 5 possible completions selectable with the left hand.
-inoremap <expr>A   pumvisible() ? deoplete#insert_candidate(0) : 'A'
-inoremap <expr>S   pumvisible() ? deoplete#insert_candidate(1) : 'S'
-inoremap <expr>D   pumvisible() ? deoplete#insert_candidate(2) : 'D'
-inoremap <expr>F   pumvisible() ? deoplete#insert_candidate(3) : 'F'
-inoremap <expr>G   pumvisible() ? deoplete#insert_candidate(4) : 'G'
+" Conflicts with snippets from the language server for completions.
+" inoremap <expr>A   pumvisible() ? deoplete#insert_candidate(0) : 'A'
+" inoremap <expr>S   pumvisible() ? deoplete#insert_candidate(1) : 'S'
+" inoremap <expr>D   pumvisible() ? deoplete#insert_candidate(2) : 'D'
+" inoremap <expr>F   pumvisible() ? deoplete#insert_candidate(3) : 'F'
+" inoremap <expr>G   pumvisible() ? deoplete#insert_candidate(4) : 'G'
 
 " Dont show the preview window during auto completions.
 set completeopt-=preview
@@ -260,6 +267,15 @@ nnoremap m :nohlsearch<CR>
 " move cursor by visual lines
 nnoremap j gj
 nnoremap k gk
+
+" move cursor right in insert mode
+" inoremap <C-k> <up>
+" inoremap <C-j> <down>
+" inoremap <C-h> <left>
+" Keep this mapping because snippet-completion does not work smooth enough to
+" jump after a completed function. This mapping allows fast moving to the
+" right to add the semicolon.
+inoremap <C-l> <right>
 
 " move lines with <Alt-j> and <Alt-k>, even if visually selected
 " https://vim.fandom.com/wiki/Moving_lines_up_or_down#Mappings_to_move_lines
