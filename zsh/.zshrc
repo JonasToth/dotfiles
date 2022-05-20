@@ -42,7 +42,7 @@ export UPDATE_ZSH_DAYS=7
 DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-ENABLE_CORRECTION="true"
+# ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="false"
@@ -68,7 +68,7 @@ HIST_STAMPS="dd.mm.yyyy"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(arcanist colored-man-pages common-aliases docker git gitfast git-extras git-prompt kubectl rust themes)
+plugins=(arcanist colored-man-pages common-aliases docker git gitfast git-extras git-prompt kubectl rust themes tmux)
 
 source $ZSH/oh-my-zsh.sh
 

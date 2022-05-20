@@ -37,6 +37,40 @@ function invctlafrrstandby() {
       ssh_command devices/{} "if PandoraQuery is-controlling --only-afrr-standby --timeout 2000 \; then echo {} \; fi"
 }
 
+# invctlfcr: inventory is exclusive FCR
+# 
+# Show all devices that are currently exclusively in FCR.
+# @pre Current working directory must be '<inventory>'
+# @example 'invctlfcr'
+function invctlfcr() {
+    remove_existing dead.list \
+    | parallel --jobs 50 \
+      ssh_command devices/{} "if PandoraQuery is-controlling --only-fcr --timeout 2000 \; then echo {} \; fi"
+}
+
+# invctlsched: inventory is exclusive schedules
+# 
+# Show all devices that are currently exclusively in schedules.
+# @pre Current working directory must be '<inventory>'
+# @example 'invctlsched'
+function invctlsched() {
+    remove_existing dead.list \
+    | parallel --jobs 50 \
+      ssh_command devices/{} "if PandoraQuery is-controlling --only-schedules --timeout 2000 \; then echo {} \; fi"
+}
+
+# invctlcsv: inventory control show csv
+# 
+# Show all control bits for the list of devices.
+# @pre Current working directory must be '<inventory>'
+# @example 'invctlcsv'
+function invctlcsv() {
+    remove_existing dead.list \
+    | parallel --jobs 50 \
+      ssh_command devices/{} "echo -n {}\, \; PandoraQuery is-controlling --csv --timeout 2000" \
+    | column -t -s,
+}
+
 # invvs: inventory verify single
 # 
 # Verify a single devices and only print its name if it was successfull.
