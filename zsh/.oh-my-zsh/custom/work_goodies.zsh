@@ -6,6 +6,38 @@ alias txcr="docker run --rm --entrypoint="/toxiproxy-cli" -it --net=host ghcr.io
 alias txde="docker run --rm --entrypoint="/toxiproxy-cli" -it --net=host ghcr.io/shopify/toxiproxy delete"
 
 
+# Create a new 'failed_devices' directory in the according structures.
+# The directory path is printed and exported as '$WORKDIR'.
+function new_failed() {
+    local vpp="$1"
+    local today="$(date '+%Y%m%d')"
+    local dirname="failed_devices_${today}"
+    if [ "${vpp}" = "ger" ] ; then
+        local instance_dir="Deutschland"
+    elif [ "${vpp}" = "agregio" ] ; then
+        local instance_dir="Agregio"
+    else
+        echo "Unknown VPP instance!"
+        return 1
+    fi
+    export WORKDIR="${HOME}/Dokumente/Inventar/${instance_dir}/${dirname}"
+    mkdir -p "${WORKDIR}" || echo "Failed to create new directory!"
+    echo "New workdir: ${WORKDIR}"
+}
+
+function open_ssh_jumpserver() {
+    local vpp="$1"
+
+    if [ "${vpp}" = "agregio" ] ; then
+        echo "[*] Login into cluster via tkgi as 'jonas.toth' ..."
+        tkgi get-kubeconfig vpp-agregio -a api-pks-prod.energy2market.de -u jonas.toth -k
+        echo "[*] Switching to new k8s context ..."
+        kubectl config use-context vpp-agregio
+        echo "[*] Activating correct port-forward for SSH Jumpserver ..."
+        kubectl -n vpp-agregio port-forward deployment/ssh-jumpserver 20023:22 2>&1 > /dev/null &
+    fi
+}
+
 # invls: inventory list
 # 
 # Show all devices tracked in the inventory.

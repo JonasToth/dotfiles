@@ -2,10 +2,12 @@
 
 export PANDORA_DIR="${HOME}/software/e2m.hydra.pandora.core"
 alias cdpandora='cd "${PANDORA_DIR}"'
+alias cdagregio='cd "${HOME}/software/inventory.vpplem.agregio"'
+alias cdger='cd "${HOME}/software/inventory.vppger"'
 
 reformat() {
     pushd ~/software/Embedded/PandoraCore/ > /dev/null
-    CLANG_FORMAT="clang-format-12" ./Scripts/reformat_everything.bash
+    CLANG_FORMAT="clang-format-13" ./Scripts/reformat_everything.bash
     popd > /dev/null
 }
 
