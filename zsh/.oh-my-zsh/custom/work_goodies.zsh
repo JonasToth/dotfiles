@@ -8,6 +8,8 @@ alias txde="docker run --rm --entrypoint="/toxiproxy-cli" -it --net=host ghcr.io
 
 # Create a new 'failed_devices' directory in the according structures.
 # The directory path is printed and exported as '$WORKDIR'.
+#
+# param: VPP deployments: {ger, agregio}
 function new_failed() {
     local vpp="$1"
     local today="$(date '+%Y%m%d')"
@@ -25,6 +27,12 @@ function new_failed() {
     echo "New workdir: ${WORKDIR}"
 }
 
+# Open a port-forward from the cluster SSH-jumpserver to a (constant) port on the local machine.
+# All SSH-traffic to the production MRX-boxes must jump through this server.
+# This opens a minimal door, that is secured via private/public encryption and bound to specific
+# SSH keys.
+#
+# param: VPP deployments: {agregio}
 function open_ssh_jumpserver() {
     local vpp="$1"
 
