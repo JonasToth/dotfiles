@@ -13,7 +13,7 @@ Plug 'autozimu/LanguageClient-neovim', {
 let g:LanguageClient_serverCommands = {
     \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
     \ 'python': ['~/.local/bin/pyls'],
-    \ 'cpp': ['clangd-13'],
+    \ 'cpp': ['clangd'],
     \ 'sh': ['bash-language-server', 'start'],
     \ }
 
@@ -48,9 +48,9 @@ Plug 'Shougo/neosnippet-snippets'
 
 " Color schemes {{{
 Plug 'NLKNguyen/papercolor-theme'
-" Plug 'dikiaap/minimalist'
-" Plug 'morhetz/gruvbox'
-" let g:gruvbox_contrast_dark = 'medium'
+Plug 'dikiaap/minimalist'
+Plug 'morhetz/gruvbox'
+let g:gruvbox_contrast_dark = 'medium'
 " }}}
 
 " Multiple Languages for Highlighting {{{
@@ -175,9 +175,9 @@ augroup END
 
 " Color Scheme Configuration {{{
 syntax enable
-colorscheme PaperColor
+" colorscheme PaperColor
 " colorscheme minimalist
-" colorscheme gruvbox
+colorscheme gruvbox
 set background=dark
 " colorscheme vombatidae
 set t_Co=256
