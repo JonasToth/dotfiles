@@ -3,7 +3,7 @@ configuration {
     lines: 12;
     font: "Source Sans Pro 12";
     show-icons: true;
-    theme: "gruvbox-dark";
     display-window: "Window";
     combi-modi: "window,drun,ssh";
 }
+@theme "gruvbox-dark"
