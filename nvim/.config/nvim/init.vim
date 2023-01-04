@@ -12,7 +12,7 @@ Plug 'autozimu/LanguageClient-neovim', {
 " Automatically start language servers.
 let g:LanguageClient_serverCommands = {
     \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
-    \ 'python': ['~/.local/bin/pyls'],
+    \ 'python': ['pylsp'],
     \ 'cpp': ['clangd'],
     \ 'sh': ['bash-language-server', 'start'],
     \ }
@@ -303,6 +303,8 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 set autoindent
+" Start scrolling if 8 lines towards edge
+set scrolloff=8
 
 " Display leader in the bottom to see fast macro input
 set showcmd
