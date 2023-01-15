@@ -25,13 +25,24 @@ set $term alacritty
 # on the original workspace that the command was run on.
 set $menu sirula
 
+# Start the notification daemon.
+# exec dbus-daemon --session --address=unix:path=$XDG_RUNTIME_DIR/bus
+exec mako
+
+set $gnome-schema org.gnome.desktop.interface
+exec_always {
+    gsettings set $gnome-schema cursor-theme 'Adwaita'
+    gsettings set $gnome-schema cursor-size 16
+}
+seat seat0 xcursor_theme Adwaita 16
+
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 output * bg ${HOME}/.config/sway/wallpaper_green_cube.png fill
 output DP-3 resolution 1920x1080@144Hz position 1920,0
-# output HDMI-A-1 disable
-output HDMI-A-1 resolution 1920x1080@60Hz position 0,0
+output HDMI-A-1 disable
+# output HDMI-A-1 resolution 1920x1080@60Hz position 0,0
 #
 # Example configuration:
 #
