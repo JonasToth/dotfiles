@@ -1,0 +1,144 @@
+@define-color bg1    #282828;
+@define-color ws_foc #e5e9f0;
+@define-color ws-clr #2e3440;
+@define-color font   #ffc94a;
+@define-color mpd    #fbf1c7;
+@define-color pipe   #7d818a;
+
+window#waybar {
+  /* background-color: rgba(0x11,0x11, 0x12, 0.6); */
+  /* background-color: #4c566a; */
+  background-color: #0b0c0d;
+}
+* {
+  min-height: 0px;
+  font-size: 11px;
+  font-family: Sans;
+  min-height: 0px;
+  font-weight: 600;
+  padding-bottom: 1px;
+  padding-top: 1px;
+}
+#window {
+    border-radius: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+/* center module */
+#clock {
+  margin: 2px 0px 2px 0px;
+  color: #a2bab1;
+  padding-left: 8px;
+  padding-right: 8px;
+  background-color: @bg1;
+  border-radius: 8px;
+}
+
+/* right module */
+#pulseaudio,
+#bluetooth,
+#network,
+#disk,
+#memory,
+#cpu,
+#backlight,
+#battery,
+#temperature {
+  color: @font;
+  margin: 2px 0px 2px 0px;
+  padding: 0px 8px 0px 8px;
+  background-color: @bg1;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+#tray,
+#custom-power {
+  color: @font;
+  margin: 2px 0px 2px 0px;
+  padding: 0px 2px 0px 2px;
+  background-color: @bg1;
+  color: #bf616a;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+#workspaces {
+  margin: 2px 2px 2px 2px;
+  padding: 0px 2px 0px 6px;
+  border-radius: 6px;
+  background-color: @bg1;
+}
+
+#workspaces button {
+  background: @bg1;
+  color: @font;
+  margin: 2px 3px 2px 3px;
+  padding: 0px;
+}
+
+#workspaces button.focused {
+  /* color: @ws-clr; */
+  /* background: @ws_foc; */
+  border-width: 2px;
+  border-color: #cc241d;
+  color: #ffd77a;
+  background-color: #504945;
+  border-radius: 3px;
+  border-style: none none outset none;
+}
+
+#workspaces button.urgent {
+}
+
+#custom-left_pad {
+  border-radius: 8px 0px 0px 8px;
+  padding: 0px 2px 0px 2px;
+  margin: 2px 0px 2px 2px;
+  background-color: @bg1;
+}
+
+#custom-right_pad {
+  border-radius: 0px 8px 8px 0px;
+  padding: 0px 2px 0px 2px;
+  margin: 2px 2px 2px 0px;
+  background-color: @bg1;
+}
+#custom-pipe {
+  margin-top: 2px;
+  margin-bottom: 2px;
+  font-size: 16px;
+  background-color: @bg1;
+  color: @pipe;
+}
+
+#mpd {
+  color: @mpd;
+}
+#pulseaudio {
+  color: #fb4934;
+}
+#bluetooth {
+  color: #fe8019;
+}
+#network {
+  color: #fabd2f;
+}
+#disk {
+  color: #ebdbb2;
+}
+#memory {
+  color: #b8bb26;
+}
+#cpu {
+  color: #8ec07c;
+}
+#backlight {
+  color: #83a598;
+}
+#battery {
+  color: #d3869b;
+}
+#custom-power {
+  color: #fb4934;
+}
+
