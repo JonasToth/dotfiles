@@ -1,7 +1,7 @@
 // vim:syntax=jsonc
 {
     "ipc" : true,
-    "modules-left": ["sway/workspaces", "mpd"],
+    "modules-left": ["sway/workspaces"],
     "modules-center": ["clock"],
     /* "modules-right": [ "pulseaudio", "custom/pipe", "bluetooth", "custom/pipe", "network", "custom/pipe", "disk", "custom/pipe", "memory", "custom/pipe", "cpu", "custom/pipe", "backlight", "custom/pipe", "battery", "tray","custom/power"], */
     "modules-right": [ "pulseaudio", "custom/pipe", "network", "custom/pipe", "disk", "custom/pipe", "memory", "custom/pipe", "cpu", "custom/pipe", "tray", "custom/pipe", "temperature", "custom/pipe", "custom/power"],
@@ -33,21 +33,37 @@
       "persistent_workspaces": {},
       "disable-markup": true,
       "format-icons": {
-        /* "1": "", */
-        "1": "❶",
-        /* "2": "", */
-        "2": "❷",
-        /* "3": "", */
-        "3": "❸",
-        "4": "❹",
-        /* "4": "", */
-        "5": "❺",
-        "6": "❻",
-        "7": "❼",
-        /* "8": "", */
-        "8": "❽",
-        "9": "❾",
-        /* "0": "", */
+        /* "1": "",
+           "2": "",
+           "3": "",
+           "4": "",
+           "5": "",
+           "6": "",
+           "7": "",
+           "8": "",
+           "9": "",
+           "0": "", */
+
+        /* "1": "❶",
+           "2": "❷",
+           "3": "❸",
+           "4": "❹",
+           "5": "❺",
+           "6": "❻",
+           "7": "❼",
+           "8": "❽",
+           "9": "❾", */
+
+        "1": "1",
+        "2": "2",
+        "3": "3",
+        "4": "4",
+        "5": "5",
+        "6": "6",
+        "7": "7",
+        "8": "8",
+        "9": "9",
+
         "focused": "",
         "urgent": "",
         "default": ""
@@ -57,18 +73,18 @@
     "tray": {
     },
     "clock": {
-        "format": "{:%I:%M %p}",
-        "format-alt": "{:%A, %B %d}",
+        "format": "{:%H:%M:%S | %A %d.%m.%Y}",
+        "interval": 1,
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
     },
     "cpu": {
-        "format": "{usage}% ",
+        "format": "{usage}% ",
         "on-click": "alacritty -e bpytop",
         "tooltip": false
     },
     "memory": {
-        "format": "{}% ",
-        "on-click": "alacritty -e htop"
+        "format": "{}% ",
+        "on-click": "alacritty -e bpytop"
     },
     "temperature": {
         "thermal-zone": 2,
@@ -110,18 +126,19 @@
         "bat": "BAT2"
     },
     "network": {
-        "format": "{ifname}",
+        "interface": "enp7s0",
+        "format": "{ifname} ({ipaddr})",
         "format-wifi": "{essid} ",
-        "format-ethernet": "{ifname} ",
+        "format-ethernet": "{ifname} ({ipaddr}) ",
         "format-disconnected": "⚠",
         "tooltip-format": "{ifname}",
         "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
         "tooltip-format-ethernet": "{ifname} ",
         "tooltip-format-disconnected": "Disconnected",
-        "max-length": 20
+        "max-length": 25
     },
     "pulseaudio": {
-        "scroll-step": 1, // %, can be a float
+        "scroll-step": 5, // %, can be a float
         "format": "{volume}% {icon}{format_source}",
         "format-bluetooth": "{volume}% {icon} {format_source}",
         "format-bluetooth-muted": " {icon} {format_source}",
@@ -139,14 +156,14 @@
             "car": "",
             "default": ["", "", ""]
         },
-        "on-click": "pavucontrol",
-        "on-scroll-up": "pamixer -ud 2 && pamixer --get-volume > $SWAYSOCK.wob",
-        "on-scroll-down": "pamixer -ui 2 && pamixer --get-volume > $SWAYSOCK.wob",
+        "on-click": "alacritty -e pulsemixer",
+        "on-scroll-up": "pulsemixer --change-volume 5 && pulsemixer --get-volume > $SWAYSOCK.wob",
+        "on-scroll-down": "pulsemixer --change-volume -5 && pulsemixer --get-volume > $SWAYSOCK.wob",
     },
     "disk": {
         "interval": 30,
-        "format": "{percentage_used}% ",
-        "format-alt": "{percentage_free}% ",
+        "format": "{percentage_used}% ",
+        "format-alt": "{percentage_free}% ",
         "format-alt-click": "click-right",
         "path": "/",
     },

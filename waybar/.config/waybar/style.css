@@ -74,6 +74,10 @@ window#waybar {
   color: @font;
   margin: 2px 3px 2px 3px;
   padding: 0px;
+  border-width: 2px;
+  border-color: @bg1;
+  border-radius: 3px;
+  border-style: none none outset none;
 }
 
 #workspaces button.focused {
