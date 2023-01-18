@@ -29,6 +29,10 @@ set $menu sirula
 # exec dbus-daemon --session --address=unix:path=$XDG_RUNTIME_DIR/bus
 exec mako
 
+# Start Pipewire for sound.
+# Ref: https://wiki.gentoo.org/wiki/PipeWire
+exec --no-startup-id gentoo-pipewire-launcher
+
 set $gnome-schema org.gnome.desktop.interface
 exec_always {
     gsettings set $gnome-schema cursor-theme 'Adwaita'
@@ -39,9 +43,12 @@ seat seat0 xcursor_theme Adwaita 16
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg ${HOME}/.config/sway/wallpaper_green_cube.png fill
-output DP-3 resolution 1920x1080@144Hz position 1920,0
-output HDMI-A-1 disable
+output "*" {
+    background $HOME/.config/sway/wallpaper_green_cube.png fill
+    resolution 1920x1080@144Hz position 1920,0
+}
+swaybg_command /home/jonas/.config/sway/start_dynamic_wallpaper.sh
+
 # output HDMI-A-1 resolution 1920x1080@60Hz position 0,0
 #
 # Example configuration:
