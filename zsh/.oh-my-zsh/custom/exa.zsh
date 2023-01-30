@@ -1,1 +1,1 @@
-alias el='exa -l --git --classify'
+alias el='exa -l --classify'
