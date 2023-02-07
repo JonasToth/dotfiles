@@ -108,6 +108,7 @@ setopt nosharehistory
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f ~/.personal_token ] && source ~/.personal_token
 
 # Start the SSH-Agent
 eval $(keychain --eval --agents ssh --quick --quiet)
