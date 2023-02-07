@@ -92,3 +92,9 @@ colors:
     # white:   '0xf3f4f5'
 
     # indexed_colors: []
+    #
+window:
+  padding:
+    x: 5
+    y: 5
+  opacity: 0.95

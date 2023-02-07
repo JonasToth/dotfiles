@@ -43,11 +43,11 @@ seat seat0 xcursor_theme Adwaita 16
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
+swaybg_command /home/jonas/.config/sway/start_dynamic_wallpaper.sh
 output "*" {
     background $HOME/.config/sway/wallpaper_green_cube.png fill
     resolution 1920x1080@144Hz position 1920,0
 }
-swaybg_command /home/jonas/.config/sway/start_dynamic_wallpaper.sh
 
 # output HDMI-A-1 resolution 1920x1080@60Hz position 0,0
 #

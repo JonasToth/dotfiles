@@ -109,11 +109,8 @@ setopt nosharehistory
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-. ~/.personal_token
-
 # Start the SSH-Agent
 eval $(keychain --eval --agents ssh --quick --quiet)
-
 
 # microsoft being microsoft ...
 export DOTNET_CLI_TELEMETRY_OPTOUT="1"
