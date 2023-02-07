@@ -1,0 +1,26 @@
+session_name: pdc
+windows:
+  - window_name: build
+    shell_command_before:
+      - cd ~/software/e2m.hydra.pandora.core/build
+    panes:
+      - shell_command:
+          - ninja
+  - window_name: impl
+    focus: true
+    shell_command_before:
+      - cd ~/software/e2m.hydra.pandora.core/PandoraCore
+    panes:
+      - shell_command:
+        - git fetch --all --prune --jobs=10
+        - git status
+  - window_name: unit
+    shell_command_before:
+      - cd ~/software/e2m.hydra.pandora.core/PandoraCore/UnitTests
+    panes:
+      - pane
+  - window_name: inte
+    shell_command_before:
+      - cd ~/software/e2m.hydra.pandora.core/PandoraCore/IntegrationTests
+    panes:
+      - pane

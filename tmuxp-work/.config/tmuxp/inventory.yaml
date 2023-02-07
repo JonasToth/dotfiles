@@ -1,0 +1,20 @@
+session_name: inv
+windows:
+  - window_name: executor
+    focus: true
+    shell_command_before:
+      - cd ~/software/inventory.vppger
+      - tmux select-pane -t "inv:1.1"
+      - tmux resize-pane -D 4
+    panes:
+      - shell_command:
+        - git fetch --all --prune --jobs=10
+        - git status
+        focus: true
+      - bpytop
+  - window_name: worker
+    shell_command_before:
+      - cd ~/software/inventory.vppger
+    panes:
+      - shell_command:
+        - exa -l

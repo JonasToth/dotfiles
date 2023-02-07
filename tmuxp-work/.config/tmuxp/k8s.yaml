@@ -1,0 +1,28 @@
+session_name: k8s
+windows:
+  - window_name: k9s
+    focus: true
+    shell_command_before:
+      - cd ~/software/operations.vpp_lem/
+    panes:
+      - shell_command:
+        - k9s
+  - window_name: seeding
+    shell_command_before:
+      - cd ~/software/operations.vpp_lem/seeding
+    panes:
+      - shell_command:
+        - git fetch --all --prune --jobs=10
+        - git status
+  - window_name: wiso depl
+    shell_command_before:
+      - cd ~/software/operations.vpp_lem/vpp-e2m/appDeployments
+    panes:
+      - shell_command:
+        - exa -l
+  - window_name: ctrl depl
+    shell_command_before:
+      - cd ~/software/operations.vpp_lem/vpp-e2m-balancingpower/appDeployments
+    panes:
+      - shell_command:
+        - exa -l
