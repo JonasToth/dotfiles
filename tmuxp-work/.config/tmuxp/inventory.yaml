@@ -1,9 +1,9 @@
 session_name: inv
+start_directory: ~/software/inventory.vppger
 windows:
   - window_name: executor
     focus: true
     shell_command_before:
-      - cd ~/software/inventory.vppger
       - tmux select-pane -t "inv:1.1"
       - tmux resize-pane -D 4
     panes:
@@ -13,8 +13,15 @@ windows:
         focus: true
       - bpytop
   - window_name: worker
-    shell_command_before:
-      - cd ~/software/inventory.vppger
+    panes:
+      - shell_command:
+        - exa -l
+  - window_name: devices
+    start_directory: devices
+    panes:
+      -
+  - window_name: artifacts
+    start_directory: artifacts
     panes:
       - shell_command:
         - exa -l
