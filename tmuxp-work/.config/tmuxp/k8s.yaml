@@ -10,7 +10,6 @@ windows:
     start_directory: seeding
     panes:
       - shell_command:
-        - git fetch --all --prune --jobs=10
         - git status
   - window_name: wiso depl
     start_directory: vpp-e2m/appDeployments

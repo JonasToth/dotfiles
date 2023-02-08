@@ -10,7 +10,6 @@ windows:
     focus: true
     panes:
       - shell_command:
-        - git fetch --all --prune --jobs=10
         - git status
   - window_name: unit
     start_directory: UnitTests

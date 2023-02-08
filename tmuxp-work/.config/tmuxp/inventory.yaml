@@ -8,7 +8,6 @@ windows:
       - tmux resize-pane -D 4
     panes:
       - shell_command:
-        - git fetch --all --prune --jobs=10
         - git status
         focus: true
       - bpytop
