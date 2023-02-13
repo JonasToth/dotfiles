@@ -24,3 +24,8 @@ windows:
     panes:
       - shell_command:
         - exa -l
+  - window_name: verification
+    start_directory: ~/Dokumente/Inventar/Deutschland/
+    panes:
+      - shell_command:
+        - exa -l

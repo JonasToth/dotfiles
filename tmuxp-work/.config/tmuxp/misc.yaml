@@ -1,0 +1,13 @@
+session_name: misc
+start_directory: ~/
+windows:
+  - window_name: dotfiles
+    focus: true
+    panes:
+      - shell_command:
+        - exa -l
+    start_directory: ~/dotfiles
+  - window_name: misc
+    panes:
+      - shell_command:
+        - exa -l

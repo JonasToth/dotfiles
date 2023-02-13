@@ -1,4 +1,4 @@
-session_name: k8s
+session_name: ops
 start_directory: ~/software/operations.vpp_lem/
 windows:
   - window_name: k9s

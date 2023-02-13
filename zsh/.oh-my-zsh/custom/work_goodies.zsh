@@ -5,7 +5,7 @@ alias txt="docker run --rm --entrypoint="/toxiproxy-cli" -it --net=host ghcr.io/
 alias txcr="docker run --rm --entrypoint="/toxiproxy-cli" -it --net=host ghcr.io/shopify/toxiproxy create"
 alias txde="docker run --rm --entrypoint="/toxiproxy-cli" -it --net=host ghcr.io/shopify/toxiproxy delete"
 
-alias work_setup="tmuxp load --yes inventory k8s pandora"
+alias work_setup="tmuxp load --yes misc inventory k8s pandora"
 
 # Create a new 'failed_devices' directory in the according structures.
 # The directory path is printed and exported as '$WORKDIR'.
