@@ -1,0 +1,140 @@
+k9s:
+  refreshRate: 2
+  maxConnRetry: 5
+  enableMouse: false
+  headless: false
+  logoless: true
+  crumbsless: false
+  readOnly: false
+  noExitOnCtrlC: false
+  noIcons: false
+  logger:
+    tail: 100
+    buffer: 5000
+    sinceSeconds: 60
+    fullScreenLogs: false
+    textWrap: false
+    showTime: false
+  currentContext: vpp-e2m-dev
+  currentCluster: vpp-e2m-dev
+  clusters:
+    agregio-stage:
+      namespace:
+        active: default
+        lockFavorites: false
+        favorites:
+        - all
+        - vpp-agregio
+      view:
+        active: pod
+      featureGates:
+        nodeShell: false
+      shellPod:
+        image: busybox:1.31
+        command: []
+        args: []
+        namespace: default
+        limits:
+          cpu: 100m
+          memory: 100Mi
+      portForwardAddress: localhost
+    e2m-dev:
+      namespace:
+        active: vpp-agregio
+        lockFavorites: false
+        favorites:
+        - default
+        - all
+        - vpp-agregio
+      view:
+        active: pod
+      featureGates:
+        nodeShell: false
+      shellPod:
+        image: busybox:1.31
+        command: []
+        args: []
+        namespace: default
+        limits:
+          cpu: 100m
+          memory: 100Mi
+      portForwardAddress: localhost
+    vpp-agregio:
+      namespace:
+        active: vpp-agregio
+        lockFavorites: false
+        favorites:
+        - default
+        - all
+        - vpp-agregio
+      view:
+        active: pod
+      featureGates:
+        nodeShell: false
+      shellPod:
+        image: busybox:1.31
+        command: []
+        args: []
+        namespace: default
+        limits:
+          cpu: 100m
+          memory: 100Mi
+      portForwardAddress: localhost
+    vpp-e2m-dev:
+      namespace:
+        active: vpp-balancingpower
+        lockFavorites: false
+        favorites:
+        - optimization
+        - vpp-balancingpower
+        - vpp-transfer
+        - vpp
+        - all
+        - default
+      view:
+        active: pods
+      featureGates:
+        nodeShell: false
+      shellPod:
+        image: busybox:1.31
+        command: []
+        args: []
+        namespace: default
+        limits:
+          cpu: 100m
+          memory: 100Mi
+      portForwardAddress: localhost
+    vpp-e2m-stage:
+      namespace:
+        active: optimization
+        lockFavorites: false
+        favorites:
+        - optimization
+        - vpp-balancingpower
+        - vpp-transfer
+        - monitoring
+        - vpp
+        - default
+        - all
+        - vpp-e2m
+      view:
+        active: pod
+      featureGates:
+        nodeShell: false
+      shellPod:
+        image: busybox:1.31
+        command: []
+        args: []
+        namespace: default
+        limits:
+          cpu: 100m
+          memory: 100Mi
+      portForwardAddress: localhost
+  thresholds:
+    cpu:
+      critical: 90
+      warn: 70
+    memory:
+      critical: 90
+      warn: 70
+  screenDumpDir: /tmp/k9s-screens-jonas
