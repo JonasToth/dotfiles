@@ -15,7 +15,14 @@ windows:
     start_directory: UnitTests
     panes:
       - pane
+  - window_name: search
+    panes:
+      - pane
   - window_name: inte
     start_directory: IntegrationTests
+    panes:
+      - pane
+  - window_name: bench
+    start_directory: Benchmarks
     panes:
       - pane
