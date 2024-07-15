@@ -26,6 +26,13 @@ vim.opt.hlsearch = true
 vim.opt.fileformat = "unix"
 vim.opt.encoding = "utf-8"
 
+-- No swap files and backups.
+vim.opt.swapfile = false
+vim.opt.backup = false
+
+-- good colors
+vim.opt.termguicolors = true
+
 -- Enable mode lines at the end of a file to configure vim display settings.
 vim.opt.modelines = 1
 
