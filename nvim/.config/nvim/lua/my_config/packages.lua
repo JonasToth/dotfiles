@@ -37,9 +37,17 @@ Plug("VonHeikemen/lsp-zero.nvim", {["branch"] = "v3.x"})
 Plug("williamboman/mason.nvim")
 Plug("williamboman/mason-lspconfig.nvim")
 
+-- DAP Settings
+Plug("mfussenegger/nvim-dap")
+Plug("jay-babu/mason-nvim-dap.nvim")
+Plug("nvim-neotest/nvim-nio")
+Plug("rcarriga/nvim-dap-ui")
+Plug("theHamsta/nvim-dap-virtual-text")
+
 -- Status line at bottom of screen, show buffers in the status line as well.
 Plug("vim-airline/vim-airline")
 Plug("vim-airline/vim-airline-themes")
 Plug("bling/vim-bufferline")
+Plug("ryanoasis/vim-devicons")
 
 vim.call("plug#end")

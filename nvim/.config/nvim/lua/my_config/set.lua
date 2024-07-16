@@ -20,7 +20,7 @@ vim.opt.showmatch = true
 
 -- Searching within a file, incremental and highlight the match.
 vim.opt.incsearch = true
-vim.opt.hlsearch = true
+vim.opt.hlsearch = false
 
 -- Set the file format to unix all the time
 vim.opt.fileformat = "unix"
