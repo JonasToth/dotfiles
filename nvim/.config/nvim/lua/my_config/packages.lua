@@ -24,6 +24,9 @@ Plug("nvim-treesitter/playground")
 -- File editing and undo-history
 Plug("mbbill/undotree")
 
+-- Faster Motions within a file
+Plug("smoka7/hop.nvim")
+
 -- Git Integration
 Plug("tpope/vim-fugitive")
 
