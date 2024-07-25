@@ -7,6 +7,8 @@ vim.call("plug#begin")
 Plug("NLKNguyen/papercolor-theme")
 Plug("dikiaap/minimalist")
 Plug("morhetz/gruvbox")
+Plug("catppuccin/nvim", { ["as"] = "catppuccin" })
+Plug("sainnhe/gruvbox-material")
 
 -- Fuzzy Finding and Searching
 Plug("nvim-telescope/telescope.nvim", { ["tag"] = "0.1.8" })
@@ -29,6 +31,9 @@ Plug("smoka7/hop.nvim")
 
 -- Git Integration
 Plug("tpope/vim-fugitive")
+Plug("NeogitOrg/neogit")
+Plug("sindrets/diffview.nvim")
+Plug("lewis6991/gitsigns.nvim")
 
 -- LSP Plugins and Configuration
 Plug("nvim-lua/plenary.nvim")
@@ -40,7 +45,7 @@ Plug("hrsh7th/nvim-cmp")
 Plug("hrsh7th/cmp-nvim-lsp")
 Plug("L3MON4D3/LuaSnip")
 -- Sane defaults for LSP configuration and management of language servers.
-Plug("VonHeikemen/lsp-zero.nvim", {["branch"] = "v3.x"})
+Plug("VonHeikemen/lsp-zero.nvim", { ["branch"] = "v3.x" })
 Plug("williamboman/mason.nvim")
 Plug("williamboman/mason-lspconfig.nvim")
 -- Diagnostics Handling
