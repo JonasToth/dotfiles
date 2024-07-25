@@ -22,7 +22,7 @@ vim.keymap.set("n", "N", "Nzzzv")
 vim.keymap.set("x", "<leader>p", "\"_dP")
 
 -- Quick-Fix navigation, diagnostics and keeping centered
-vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
-vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
+vim.keymap.set("n", "<C-j>", ":lua vim.diagnostic.get_next({ count = 1 })<CR>zz")
+vim.keymap.set("n", "<C-k>", ":lua vim.diagnostic.get_prev({ count = -1 })<CR>zz")
 vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
 vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
