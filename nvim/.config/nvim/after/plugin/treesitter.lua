@@ -59,5 +59,11 @@ require("nvim-treesitter.configs").setup({
 -- Dimming of Code Segments
 require("twilight").setup({
     dimming = { alpha = 0.5, },
+    context = 15,
+    expand = {
+        "function",
+        "method",
+        "table"
+    }
 })
 vim.keymap.set("n", "<leader>bt", ":Twilight<CR>")
