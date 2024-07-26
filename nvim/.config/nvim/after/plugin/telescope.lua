@@ -23,6 +23,9 @@ telescope.setup({
 })
 telescope.load_extension("ui-select")
 
+-- Show line numbers in file preview
+vim.cmd "autocmd User TelescopePreviewerLoaded setlocal number"
+
 local builtin = require("telescope.builtin")
 
 -- Project Files
