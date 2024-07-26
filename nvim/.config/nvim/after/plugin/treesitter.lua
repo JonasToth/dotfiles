@@ -1,4 +1,6 @@
 require("nvim-treesitter.configs").setup({
+    modules = {},
+    ignore_install = {},
     -- A list of parser names, or "all" (the listed parsers MUST always be installed)
     ensure_installed = {
         "bash",
@@ -42,4 +44,20 @@ require("nvim-treesitter.configs").setup({
         -- Instead of true it can also be a list of languages
         additional_vim_regex_highlighting = false,
     },
+
+    incremental_selection = {
+        enable = true,
+        keymaps = {
+            node_incremental = "v",
+            -- node_decremental = "V",
+            scope_incremental = "V",
+            -- scope_decremental = "V",
+        }
+    }
 })
+
+-- Dimming of Code Segments
+require("twilight").setup({
+    dimming = { alpha = 0.5, },
+})
+vim.keymap.set("n", "<leader>bt", ":Twilight<CR>")

@@ -23,6 +23,8 @@ Plug("ThePrimeagen/harpoon", { ["branch"] = "harpoon2", })
 -- Treesitter for Parsing languages
 Plug("nvim-treesitter/nvim-treesitter", { ["do"] = ":TSUpdate" })
 Plug("nvim-treesitter/playground")
+-- Dimming inactive parts of code can help focussing
+Plug("folke/twilight.nvim")
 
 -- File editing and undo-history
 Plug("mbbill/undotree")
