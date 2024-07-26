@@ -38,7 +38,7 @@ local dapui = require("dapui")
 dapui.setup()
 
 -- Setup Key Mappings to control the debug ui.
-vim.keymap.set("n", "<leader>b", dap.toggle_breakpoint)
+vim.keymap.set("n", "<leader>B", dap.toggle_breakpoint)
 vim.keymap.set("n", "<leader>gb", dap.run_to_cursor)
 vim.keymap.set("n", "<leader>?", function()
     require("dapui").eval(nil, { enter = true })

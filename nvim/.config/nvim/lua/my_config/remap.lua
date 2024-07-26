@@ -13,6 +13,8 @@ vim.keymap.set("n", "J", "mzJ`z")
 -- Page jumps, but staying in the middle. Keeps eyes focussed.
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
+vim.keymap.set({"i", "s"}, "<C-d>", "<C-d>zz")
+vim.keymap.set({"i", "s"}, "<C-u>", "<C-u>zz")
 
 -- Keeps search in the middle of the screen
 vim.keymap.set("n", "n", "nzzzv")
@@ -22,7 +24,7 @@ vim.keymap.set("n", "N", "Nzzzv")
 vim.keymap.set("x", "<leader>p", "\"_dP")
 
 -- Quick-Fix navigation, diagnostics and keeping centered
-vim.keymap.set("n", "<C-j>", ":lua vim.diagnostic.get_next({ count = 1 })<CR>zz")
-vim.keymap.set("n", "<C-k>", ":lua vim.diagnostic.get_prev({ count = -1 })<CR>zz")
+vim.keymap.set("n", "<leader>dj", ":lua vim.diagnostic.get_next({ count = 1 })<CR>zz")
+vim.keymap.set("n", "<leader>dk", ":lua vim.diagnostic.get_prev({ count = -1 })<CR>zz")
 vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
 vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")

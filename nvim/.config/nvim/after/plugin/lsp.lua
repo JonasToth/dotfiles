@@ -13,56 +13,76 @@ require("mason-lspconfig").setup({
     }
 })
 
+local lspconfig = require("lspconfig")
+lspconfig.lua_ls.setup {
+    settings = {
+        Lua = {
+            diagnostics = {
+                -- Get the language server to recognize the `vim` global
+                globals = {
+                    'vim',
+                    'require'
+                },
+            },
+            workspace = {
+                -- Make the server aware of Neovim runtime files
+                library = vim.api.nvim_get_runtime_file("", true),
+            },
+            -- Do not send telemetry data containing a randomized but unique identifier
+            telemetry = {
+                enable = false,
+            },
+        }
+    }
+}
+
 local cmp = require("cmp")
-local cmp_select = { behavior = cmp.SelectBehavior.Select, select = true, }
 local luasnip = require("luasnip")
 cmp.setup({
-    sources = { { name = "nvim_lsp" }, { name = 'luasnip' }, { name = "vim-dadbod-completion" } },
+    sources = {
+        { name = "nvim_lsp" },
+        { name = "path" },
+        { name = "luasnip" },
+    },
     mapping = {
-        ['<CR>'] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-                if luasnip.expandable() then
-                    luasnip.expand()
-                else
-                    cmp.confirm(cmp_select)
-                end
-            else
-                fallback()
-            end
-        end),
-
-        ["<Tab>"] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-                cmp.select_next_item()
-            elseif luasnip.locally_jumpable(1) then
-                luasnip.jump(1)
-            else
-                fallback()
-            end
-        end, { "i", "s" }),
-
-        ["<S-Tab>"] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-                cmp.select_prev_item()
-            elseif luasnip.locally_jumpable(-1) then
-                luasnip.jump(-1)
-            else
-                fallback()
-            end
-        end, { "i", "s" }),
+        ["<C-n>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Insert },
+        ["<C-p>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Insert },
+        ["<C-z>"] = cmp.mapping(
+            cmp.mapping.confirm {
+                behavior = cmp.ConfirmBehavior.Insert,
+                select = true,
+            },
+            { "i", "c" }),
     },
     snippet = {
         expand = function(args)
             require('luasnip').lsp_expand(args.body)
         end,
     },
-    completion = {
-        completeopt = "menu,menuone,noselect",
-    },
-    filetype = {
-        "sql"
-    }
+    completion = { completeopt = "menu,menuone,noselect", },
 })
+
+cmp.setup.filetype(
+    { "sql" }, {
+        sources = {
+            { name = "vim-dadbod-completion" },
+            { name = "buffer" },
+        },
+    })
+luasnip.config.set_config({
+    history = false,
+    updateevents = "TextChanged,TextChangedI",
+})
+vim.keymap.set({ "i", "s" }, "<C-k>", function()
+    if luasnip.expand_or_jumpable() then
+        luasnip.expand_or_jump()
+    end
+end, { silent = true })
+vim.keymap.set({ "i", "s" }, "<C-j>", function()
+    if luasnip.jumpable(-1) then
+        luasnip.jump(-1)
+    end
+end, { silent = true })
 
 lsp_zero.set_preferences({
     sign_icons = {}
@@ -71,21 +91,24 @@ lsp_zero.on_attach(function(client, bufnr)
     -- see :help lsp-zero-keybindings
     -- to learn the available actions
     local opts = { buffer = bufnr, remap = false }
+    local builtin = require("telescope.builtin")
 
     vim.keymap.set("n", "<leader>lr", function() vim.lsp.buf.rename() end, opts)
     vim.keymap.set("n", "<leader>lf", function() vim.lsp.buf.format() end, opts)
     vim.keymap.set("n", "<leader>le", function() vim.lsp.buf.code_action({ apply = true }) end, opts)
-    vim.keymap.set("n", "<leader>ld", function() vim.lsp.buf.definition() end, opts)
-    vim.keymap.set("n", "<leader>li", function() vim.lsp.buf.implementation() end, opts)
-    vim.keymap.set("n", "<leader>lt", function() vim.lsp.buf.type_definition() end, opts)
+    vim.keymap.set("n", "<leader>ld", builtin.lsp_definitions, opts)
+    vim.keymap.set("n", "<leader>li", builtin.lsp_implementations, opts)
+    vim.keymap.set("n", "<leader>lt", builtin.lsp_type_definitions, opts)
     vim.keymap.set("n", "<leader>ls", function() vim.cmd.ClangdSwitchSourceHeader() end, opts)
-    vim.keymap.set("n", "<leader>lx", function() vim.lsp.buf.references() end, opts)
+    vim.keymap.set("n", "<leader>lx", builtin.lsp_references, opts)
+    vim.keymap.set("n", "<leader>lo", builtin.lsp_outgoing_calls, opts)
+    vim.keymap.set("n", "<leader>lc", builtin.lsp_incoming_calls, opts)
+    vim.keymap.set("n", "<leader>lp", builtin.lsp_document_symbols, opts)
 
     vim.keymap.set("n", "<leader>lh", function() vim.lsp.buf.document_highlight() end, opts)
     vim.keymap.set("n", "<leader>lg", function() vim.lsp.buf.clear_references() end, opts)
 
     vim.keymap.set("n", "<leader>la", function() vim.lsp.buf.hover() end, opts)
-    vim.keymap.set("n", "<leader>lc", function() vim.lsp.buf.incoming_calls() end, opts)
 
     -- Configure signature help when multiple overloads are present.
     -- Guard against servers without the signatureHelper capability

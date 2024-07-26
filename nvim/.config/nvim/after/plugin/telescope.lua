@@ -1,19 +1,27 @@
-local actions = require("telescope.actions")
 local open_with_trouble = require("trouble.sources.telescope").open
 
 -- Use this to add more results without clearing the trouble list
-local add_to_trouble = require("trouble.sources.telescope").add
+local foo = require("trouble.sources.telescope").add
 
 local telescope = require("telescope")
-
 telescope.setup({
-  defaults = {
-    mappings = {
-      i = { ["<c-t>"] = open_with_trouble },
-      n = { ["<c-t>"] = open_with_trouble },
+    extensions = {
+        ["ui-select"] = { require("telescope.themes").get_dropdown {} }
     },
-  },
+    pickers = {
+        buffers = {
+            ignore_current_buffer = true,
+            sort_lastused = true,
+        },
+    },
+    defaults = {
+        mappings = {
+            i = { ["<c-t>"] = open_with_trouble },
+            n = { ["<c-t>"] = open_with_trouble },
+        },
+    },
 })
+telescope.load_extension("ui-select")
 
 local builtin = require("telescope.builtin")
 
@@ -23,9 +31,15 @@ vim.keymap.set("n", "<leader>pf", builtin.find_files, {})
 vim.keymap.set("n", "<leader>pg", builtin.git_files, {})
 -- Project Diagnostics
 vim.keymap.set("n", "<leader>pd", builtin.diagnostics, {})
--- Project Buffers
-vim.keymap.set("n", "<leader>pb", builtin.buffers, {})
 -- Project Search
-vim.keymap.set("n", "<leader>ps", function()
-	builtin.grep_string({ search = vim.fn.input("Grep > ") })
-end)
+vim.keymap.set("n", "<leader>ps", builtin.live_grep, {})
+
+-- Show git branches
+vim.keymap.set("n", "<leader>gb", builtin.git_branches, {})
+
+-- Show file markers
+vim.keymap.set("n", "<leader>bm", builtin.marks, {})
+-- List Open Buffers
+vim.keymap.set("n", "<leader>bl", builtin.buffers, {})
+-- Search in the current buffer with fuzzy find.
+vim.keymap.set("n", "<space>/", builtin.current_buffer_fuzzy_find)

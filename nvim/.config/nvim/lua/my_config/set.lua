@@ -13,7 +13,7 @@ vim.opt.smartindent = true
 vim.opt.cursorline = true
 
 -- Keep a distance to the top/bottom boundary by 4 lines.
-vim.opt.scrolloff = 4
+vim.opt.scrolloff = 8
 
 -- Highlight matching parentheses
 vim.opt.showmatch = true

@@ -12,6 +12,7 @@ Plug("sainnhe/gruvbox-material")
 
 -- Fuzzy Finding and Searching
 Plug("nvim-telescope/telescope.nvim", { ["tag"] = "0.1.8" })
+Plug("nvim-telescope/telescope-ui-select.nvim")
 Plug("BurntSushi/ripgrep")
 Plug("sharkdp/fd")
 Plug("junegunn/fzf", { ["dir"] = "~/.fzf", ["do"] = "./install --all" })
