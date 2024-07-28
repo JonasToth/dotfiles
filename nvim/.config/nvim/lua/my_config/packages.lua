@@ -42,6 +42,7 @@ Plug("lewis6991/gitsigns.nvim")
 Plug("nvim-lua/plenary.nvim")
 Plug("neovim/nvim-lspconfig")
 Plug("Issafalcon/lsp-overloads.nvim")
+Plug("p00f/clangd_extensions.nvim")
 -- Snippets and Autocompletion
 Plug("saadparwaiz1/cmp_luasnip")
 Plug("hrsh7th/nvim-cmp")
@@ -81,5 +82,11 @@ Plug("kristijanhusak/vim-dadbod-completion")
 -- Filesystem Viewer / Tree
 Plug("MunifTanjim/nui.nvim")
 Plug("nvim-neo-tree/neo-tree.nvim", { ["branch"] = "v3.x" })
+
+-- Execute build tasks from within nvim, try to integrate cmake well
+Plug("Shatur/neovim-tasks")
+Plug("akinsho/toggleterm.nvim")
+Plug("stevearc/overseer.nvim")
+Plug("Civitasv/cmake-tools.nvim")
 
 vim.call("plug#end")

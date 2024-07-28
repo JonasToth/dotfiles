@@ -35,6 +35,7 @@ lspconfig.lua_ls.setup {
         }
     }
 }
+require("clangd_extensions").setup({})
 
 local cmp = require("cmp")
 local luasnip = require("luasnip")
