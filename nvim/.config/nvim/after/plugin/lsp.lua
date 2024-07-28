@@ -103,7 +103,7 @@ lsp_zero.on_attach(function(client, bufnr)
     vim.keymap.set("n", "<leader>lx", builtin.lsp_references, opts)
     vim.keymap.set("n", "<leader>lo", builtin.lsp_outgoing_calls, opts)
     vim.keymap.set("n", "<leader>lc", builtin.lsp_incoming_calls, opts)
-    vim.keymap.set("n", "<leader>lp", builtin.lsp_document_symbols, opts)
+    vim.keymap.set("n", "<leader>lp", "<cmd>Neotree source=document_symbols position=right<CR>", opts)
 
     vim.keymap.set("n", "<leader>lh", function() vim.lsp.buf.document_highlight() end, opts)
     vim.keymap.set("n", "<leader>lg", function() vim.lsp.buf.clear_references() end, opts)

@@ -51,7 +51,7 @@ require("nvim-treesitter.configs").setup({
             node_incremental = "v",
             -- node_decremental = "<>",
             scope_incremental = "V",
-            scope_decremental = "<C-V>",
+            -- scope_decremental = "<C-V>",
         }
     }
 })

@@ -78,4 +78,8 @@ Plug("tpope/vim-dadbod")
 Plug("kristijanhusak/vim-dadbod-ui")
 Plug("kristijanhusak/vim-dadbod-completion")
 
+-- Filesystem Viewer / Tree
+Plug("MunifTanjim/nui.nvim")
+Plug("nvim-neo-tree/neo-tree.nvim", { ["branch"] = "v3.x" })
+
 vim.call("plug#end")
