@@ -5,7 +5,7 @@ require("neo-tree").setup({
     hijack_netrw_behavior = "open_default",
     window = {
         position = "right",
-        width = 80,
+        width = 60,
         mapping_options = {
             noremap = true,
             nowait = true,
