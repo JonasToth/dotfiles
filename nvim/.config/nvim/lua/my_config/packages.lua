@@ -89,4 +89,7 @@ Plug("akinsho/toggleterm.nvim")
 Plug("stevearc/overseer.nvim")
 Plug("Civitasv/cmake-tools.nvim")
 
+-- Make the quick-fix list editable, e.g. telescope results => C-q => big quickfix list
+Plug("itchyny/vim-qfedit")
+
 vim.call("plug#end")
