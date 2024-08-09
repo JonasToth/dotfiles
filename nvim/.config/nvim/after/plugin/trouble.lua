@@ -1,4 +1,5 @@
 require("trouble").setup({})
 
-vim.keymap.set("n", "<leader>dt", "<cmd>Trouble diagnostics toggle filter.buf=0<CR>")
-vim.keymap.set("n", "<leader>dT", "<cmd>Trouble diagnostics toggle<CR>")
+-- Add trouble integration into telescope
+local open_with_trouble = require("trouble.sources.telescope").open
+local foo = require("trouble.sources.telescope").add
