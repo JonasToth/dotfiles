@@ -63,10 +63,6 @@ vim.opt.linebreak = true
 vim.opt.list = false
 vim.opt.colorcolumn="100"
 
--- Project View opens file explorer
-vim.keymap.set("n", "<leader>pv", "<cmd>Neotree position=current<CR>")
-vim.keymap.set("n", "<leader>pt", "<cmd>Neotree source=filesystem reveal=true position=right<CR>")
-
 -- Move lines around in visual mode
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")

@@ -1,6 +1,7 @@
 return {
     {
         "folke/todo-comments.nvim",
+        event = { "VeryLazy" },
         dependencies = { "nvim-lua/plenary.nvim" },
         opts = {
             -- your configuration comes here
@@ -11,7 +12,9 @@ return {
     {
         -- Status line at bottom of screen, show buffers in the status line as well.
         "vim-airline/vim-airline",
-        dependencies = { "vim-airline/vim-airline-themes", "ryanoasis/vim-devicons" },
-    }
-
+        dependencies = {
+            "vim-airline/vim-airline-themes",
+            { "ryanoasis/vim-devicons", lazy = true }
+        },
+    },
 }
