@@ -52,12 +52,17 @@ return {
 
                 -- Configure signature help when multiple overloads are present.
                 -- Guard against servers without the signatureHelper capability
-                if client.server_capabilities.signatureHelpProvider then
+                --[[
+                if client.server_capabilities and client.server_capabilities.signatureHelpProvider then
+                    require("lsp-overloads").setup({
+                        display_automatically = false,
+                    })
                     vim.keymap.set("n", "<A-s>", "<cmd>LspOverloadsSignature<CR>",
                         { noremap = true, silent = true, buffer = bufnr })
                     vim.keymap.set("i", "<A-s>", "<cmd>LspOverloadsSignature<CR>",
                         { noremap = true, silent = true, buffer = bufnr })
                 end
+                --]]
             end
 
             lsp_zero.extend_lspconfig({
@@ -98,10 +103,6 @@ return {
     {
         "Issafalcon/lsp-overloads.nvim",
         lazy = true,
-        cmd = "LspOverloadsSignature",
-        opts = {
-            display_automatically = false,
-        }
     },
     {
         "p00f/clangd_extensions.nvim",

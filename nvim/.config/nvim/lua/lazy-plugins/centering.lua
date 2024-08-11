@@ -7,7 +7,13 @@ return {
         opts = {
             width = 110,
             buffers = {
-                blend = -0.2,
+                colors = { blend = -1, },
+                right = {
+                    enabled = false
+                },
+                left = {
+                    enabled = true,
+                },
             },
             integrations = {
                 NeoTree = {

@@ -11,8 +11,10 @@ return {
         { "junegunn/fzf", { dir = "~/.fzf", build = "./install --all" } },
         "junegunn/fzf.vim",
     },
+    event = "VeryLazy",
     keys = {
         { "<leader>pf", function() require("telescope.builtin").find_files() end,                desc = "Project Files" },
+        { "<leader>ph", function() require("telescope.builtin").help_tags() end,                 desc = "Nvim Help Tags" },
         { "<leader>pg", function() require("telescope.builtin").git_files() end,                 desc = "Project Git Files" },
         { "<leader>pd", function() require("telescope.builtin").diagnostics() end,               desc = "Project Diagnostics" },
         { "<leader>ps", function() require("telescope.builtin").live_grep() end,                 desc = "Project Search" },
@@ -25,7 +27,7 @@ return {
         local telescope = require("telescope")
         telescope.setup({
             extensions = {
-                ["ui-select"] = { require("telescope.themes").get_dropdown {} }
+                -- ["ui-select"] = { require("telescope.themes").get_dropdown {} }
             },
             pickers = {
                 buffers = {
@@ -34,7 +36,7 @@ return {
                 },
             },
         })
-        telescope.load_extension("ui-select")
+        -- telescope.load_extension("ui-select")
 
         -- Show line numbers in file preview
         vim.cmd "autocmd User TelescopePreviewerLoaded setlocal number"
