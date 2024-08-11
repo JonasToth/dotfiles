@@ -81,6 +81,9 @@ vim.keymap.set("n", "N", "Nzzzv")
 -- Don't overwrite the paste buffer when select + paste over a word.
 vim.keymap.set("x", "<leader>p", "\"_dP")
 
+-- Close the current tab
+vim.keymap.set("n", "<leader>tc", ":tabclose<CR>")
+
 -- Setup lazy.nvim
 require("lazy").setup({
   spec = {
