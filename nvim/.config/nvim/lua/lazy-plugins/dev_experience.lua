@@ -17,4 +17,8 @@ return {
             { "ryanoasis/vim-devicons", lazy = true }
         },
     },
+    {
+        "stevearc/dressing.nvim",
+        event = "VeryLazy",
+    },
 }
