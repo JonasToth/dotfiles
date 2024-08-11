@@ -5,6 +5,9 @@ return {
             { "<leader>tt", "<cmd>ToggleTerm direction=float<CR>", desc = "ToggleTerm" }
         },
         config = function()
+            require'toggleterm'.setup({
+                shade_terminals = false
+            })
             function _G.set_terminal_keymaps()
                 local opts = { buffer = 0 }
                 vim.keymap.set('t', '<esc>', [[<C-\><C-n>]], opts)
