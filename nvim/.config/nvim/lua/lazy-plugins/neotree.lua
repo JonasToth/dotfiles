@@ -8,7 +8,7 @@ return {
             { "<leader>pt", "<cmd>Neotree source=filesystem reveal=true position=right<CR>", desc = "FS Tree" },
         },
         dependencies = {
-            "MunifTanjim/nui.nvim",
+            { "MunifTanjim/nui.nvim", lazy = true, }
         },
         opts = {
             sources = { "filesystem", "document_symbols" },

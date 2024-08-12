@@ -1,8 +1,9 @@
 return {
     "nvim-neorg/neorg",
     version = "*", -- Pin Neorg to the latest stable release
+    lazy = true,
     dependencies = {
-        "nvim-lua/plenary.nvim",
+        { "nvim-lua/plenary.nvim", lazy = true, }
     },
     cmd = "Neorg",
     keys = {
