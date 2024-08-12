@@ -16,6 +16,7 @@ return {
                     { name = "luasnip" },
                     { name = "path" },
                     { name = "buffer" },
+                    { name = "neorg" },
                 },
                 mapping = {
                     ["<C-n>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Insert },

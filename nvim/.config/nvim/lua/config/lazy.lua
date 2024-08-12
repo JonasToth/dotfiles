@@ -17,7 +17,7 @@ vim.opt.rtp:prepend(lazypath)
 
 -- Make sure to setup `mapleader` and `maplocalleader` before
 vim.g.mapleader = " "
-vim.g.maplocalleader = "\\"
+vim.g.maplocalleader = ","
 
 -- Print line numbers relative to the current line. Only the current line is the absolute number.
 vim.opt.nu = true
@@ -83,6 +83,9 @@ vim.keymap.set("x", "<leader>p", "\"_dP")
 
 -- Close the current tab
 vim.keymap.set("n", "<leader>tc", ":tabclose<CR>")
+
+-- Open Lazy View
+vim.keymap.set("n", "<leader>L", ":Lazy<CR>")
 
 -- Setup lazy.nvim
 require("lazy").setup({
