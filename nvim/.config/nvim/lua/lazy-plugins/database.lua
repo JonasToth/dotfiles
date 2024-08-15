@@ -1,10 +1,15 @@
 return {
     {
-        "tpope/vim-dadbod",
-        cmd = "DB",
+        "kristijanhusak/vim-dadbod-ui",
+        cmd = {
+            'DBUI',
+            'DBUIToggle',
+            'DBUIAddConnection',
+            'DBUIFindBuffer',
+        },
         dependencies = {
-            "kristijanhusak/vim-dadbod-ui",
-            "kristijanhusak/vim-dadbod-completion",
+            { "tpope/vim-dadbod", lazy = true },
+            { "kristijanhusak/vim-dadbod-completion", ft = { 'sql', 'mysql', 'plsql' }, lazy = true },
         },
         config = function()
             vim.api.nvim_create_autocmd("FileType", {
@@ -13,6 +18,10 @@ return {
                     vim.wo.foldenable = false
                 end,
             })
+            vim.g.db_ui_use_nerd_fonts = 1
+            vim.g.db_ui_win_position = "right"
+            vim.g.db_ui_winwidth = 50
+            vim.g.db_ui_save_position = vim.fn.stdpath('data') .. "/dbui"
 
             require("cmp").setup.filetype(
                 { "sql" }, {

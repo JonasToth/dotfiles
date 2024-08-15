@@ -83,6 +83,8 @@ vim.keymap.set("x", "<leader>p", "\"_dP")
 
 -- Close the current tab
 vim.keymap.set("n", "<leader>tc", ":tabclose<CR>")
+vim.keymap.set("n", "<leader>tn", ":tabnext<CR>")
+vim.keymap.set("n", "<leader>tp", ":tabprev<CR>")
 
 -- Open Lazy View
 vim.keymap.set("n", "<leader>L", ":Lazy<CR>")
