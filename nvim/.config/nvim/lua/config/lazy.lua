@@ -104,6 +104,16 @@ end
 
 vim.keymap.set("n", "<leader>x", ":w<CR>:source %<CR>")
 
+-- Re-Source vim-rc
+vim.keymap.set("n", "<leader>sv", ":source $MYVIMRC<CR>")
+
+P = function (v)
+    print(vim.inspect(v))
+    return v
+end
+
+vim.keymap.set("n", "<leader>x", ":w<CR>:source %<CR>")
+
 -- Setup lazy.nvim
 require("lazy").setup({
     spec = {
