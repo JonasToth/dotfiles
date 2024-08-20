@@ -1,7 +1,13 @@
+local work_space_path
+if vim.uv.os_uname().sysname == "Linux" then
+    work_space_path = vim.fn.expand("~/Dokumente/neorg")
+else
+    work_space_path = "C:/Users/jto/OneDrive - IVU Traffic Technologies AG/Dokumente/norg"
+end
 return {
     "nvim-neorg/neorg",
     version = "*", -- Pin Neorg to the latest stable release
-    lazy = true,
+    lazy = false,
     dependencies = {
         { "nvim-lua/plenary.nvim", lazy = true, }
     },
@@ -14,10 +20,11 @@ return {
             load = {
                 ["core.defaults"] = {},
                 ["core.concealer"] = {},
+                ["core.summary"] = {},
                 ["core.dirman"] = {
                     config = {
                         workspaces = {
-                            work = "C:/Users/jto/OneDrive - IVU Traffic Technologies AG/Dokumente/norg",
+                            work = vim.fn.expand("~/Dokumente/neorg"),
                         },
                         default_workspace = "work",
                         index = "index.norg",
@@ -28,6 +35,8 @@ return {
                         engine = "nvim-cmp",
                     },
                 },
+                ["core.todo-introspector"] = {},
+                ["core.esupports.metagen"] = {},
             },
         })
     end,

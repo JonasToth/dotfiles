@@ -16,6 +16,7 @@ return {
         { "<leader>pf", function() require("telescope.builtin").find_files() end,                desc = "Project Files" },
         { "<leader>ph", function() require("telescope.builtin").help_tags() end,                 desc = "Nvim Help Tags" },
         { "<leader>pg", function() require("telescope.builtin").git_files() end,                 desc = "Project Git Files" },
+        { "<leader>bg", function() require("telescope.builtin").git_bcommits() end,              desc = "Buffer Git Commits" },
         { "<leader>pd", function() require("telescope.builtin").diagnostics() end,               desc = "Project Diagnostics" },
         { "<leader>ps", function() require("telescope.builtin").live_grep() end,                 desc = "Project Search" },
         { "<leader>gb", function() require("telescope.builtin").git_branches() end,              desc = "Git Branches" },

@@ -14,7 +14,7 @@ return {
         "vim-airline/vim-airline",
         dependencies = {
             "vim-airline/vim-airline-themes",
-            { "ryanoasis/vim-devicons", lazy = true }
+            { "ryanoasis/vim-devicons", lazy = false }
         },
     },
     {
@@ -25,7 +25,7 @@ return {
         "echasnovski/mini.nvim",
         event = "VeryLazy",
         config = function()
-            require("mini.surround").setup({})
+            -- require("mini.surround").setup({})
             require('mini.pairs').setup({})
         end,
     },

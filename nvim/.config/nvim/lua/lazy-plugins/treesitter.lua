@@ -2,7 +2,7 @@ return {
     {
         -- Parsing language and providing better highlighting.
         "nvim-treesitter/nvim-treesitter",
-        build = ":TSUpdate",
+        -- build = ":TSUpdate",
         event = "VeryLazy",
         config = function()
             require("nvim-treesitter.configs").setup({

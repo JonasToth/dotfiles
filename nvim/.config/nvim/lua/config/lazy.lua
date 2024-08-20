@@ -30,6 +30,11 @@ vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 vim.opt.smartindent = true
 
+-- Folding based on treesitter syntax.
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+vim.opt.foldlevel = 3
+
 -- Highlight the current line.
 vim.opt.cursorline = true
 
@@ -109,10 +114,5 @@ require("lazy").setup({
     -- colorscheme that will be used when installing plugins.
     install = { colorscheme = { "habamax" } },
     -- automatically check for plugin updates
-    checker = { enabled = true },
-    dev = {
-        ---@type string | fun(plugin: LazyPlugin): string directory where you store your local plugin projects
-        path = "~/software/nvim/",
-        fallback = false, -- Fallback to git when local plugin doesn't exist
-    },
+    checker = { enabled = false },
 })
