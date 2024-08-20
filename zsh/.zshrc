@@ -92,8 +92,8 @@ alias vim="nvim"
 alias nv="nvim"
 alias gs="git status"
 
-setopt noincappendhistory
-setopt nosharehistory
+# setopt noincappendhistory
+# setopt sharehistory
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
