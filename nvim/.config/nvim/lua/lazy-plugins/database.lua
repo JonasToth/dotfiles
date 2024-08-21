@@ -7,8 +7,11 @@ return {
             'DBUIAddConnection',
             'DBUIFindBuffer',
         },
+        keys = {
+            { "<leader>D", "<cmd>tabnew<CR><cmd>DBUIToggle<CR>", desc = "Open DBUI" },
+        },
         dependencies = {
-            { "tpope/vim-dadbod", lazy = true },
+            { "tpope/vim-dadbod",                     lazy = true },
             { "kristijanhusak/vim-dadbod-completion", ft = { 'sql', 'mysql', 'plsql' }, lazy = true },
         },
         config = function()
