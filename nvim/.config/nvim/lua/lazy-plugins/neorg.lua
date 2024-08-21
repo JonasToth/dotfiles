@@ -6,8 +6,6 @@ else
 end
 return {
     "nvim-neorg/neorg",
-    version = "*", -- Pin Neorg to the latest stable release
-    lazy = false,
     dependencies = {
         { "nvim-lua/plenary.nvim", lazy = true, }
     },
