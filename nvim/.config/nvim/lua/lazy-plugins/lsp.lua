@@ -106,6 +106,7 @@ return {
     },
     {
         "p00f/clangd_extensions.nvim",
-        cmd = { "ClangdSwitchSourceHeader" },
+        ft = { "cpp", "c" },
+        keys = { { "<leader>bh", "<cmd>ClangdToggleInlayHints<CR>" }, }
     },
 }
