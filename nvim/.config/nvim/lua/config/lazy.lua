@@ -33,7 +33,7 @@ vim.opt.smartindent = true
 -- Folding based on treesitter syntax.
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
-vim.opt.foldlevel = 3
+vim.opt.foldlevel = 99
 
 -- Highlight the current line.
 vim.opt.cursorline = true
