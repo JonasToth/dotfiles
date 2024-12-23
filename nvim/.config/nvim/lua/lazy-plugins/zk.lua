@@ -1,5 +1,6 @@
 return {
     "zk-org/zk-nvim",
+    event = "VeryLazy",
     config = function()
         require("zk").setup({
             -- can be "telescope", "fzf", "fzf_lua", "minipick", or "select" (`vim.ui.select`)
