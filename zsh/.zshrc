@@ -99,7 +99,7 @@ alias vim="nvim"
 alias vi="nvim"
 alias nv="nvim"
 
-export ZK_NOTEBOOK_DIR="~/.zk"
+export MANPAGER="bat -l man -p"
 
 source ~/.cargo/env
 
