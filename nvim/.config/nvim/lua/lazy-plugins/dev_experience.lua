@@ -10,12 +10,10 @@ return {
         }
     },
     {
-        -- Status line at bottom of screen, show buffers in the status line as well.
-        "vim-airline/vim-airline",
-        dependencies = {
-            "vim-airline/vim-airline-themes",
-            { "ryanoasis/vim-devicons", lazy = false }
-        },
+        'nvim-lualine/lualine.nvim',
+        event = "VeryLazy",
+        dependencies = { 'nvim-tree/nvim-web-devicons' },
+        opts = { theme = 'codedark' }
     },
     {
         "stevearc/dressing.nvim",
