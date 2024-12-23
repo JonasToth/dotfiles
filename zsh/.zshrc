@@ -99,6 +99,11 @@ alias vim="nvim"
 alias vi="nvim"
 alias nv="nvim"
 
+export ZK_NOTEBOOK_DIR="~/.zk"
+
 source ~/.cargo/env
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Created by `pipx` on 2024-11-01 22:03:46
+export PATH="$PATH:/home/jonas/.local/bin"

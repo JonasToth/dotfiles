@@ -17,6 +17,8 @@ return {
         formatters_by_ft = {
             json = { "jq" },
             yaml = { "prettier" },
+            c = { "clang-format" },
+            cpp = { "clang-format" },
         },
         format_on_save = false,
     },
