@@ -19,6 +19,7 @@ return {
             yaml = { "prettier" },
             c = { "clang-format" },
             cpp = { "clang-format" },
+            lua = { "stylua" },
         },
         format_on_save = false,
     },
