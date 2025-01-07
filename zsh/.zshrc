@@ -101,7 +101,7 @@ alias nv="nvim"
 
 export MANPAGER="bat -l man -p"
 
-source ~/.cargo/env
+[ -d ~/.cargo ] && source ~/.cargo/env
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
