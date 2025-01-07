@@ -27,6 +27,17 @@ return {
     config = function()
         local telescope = require("telescope")
         telescope.setup({
+            defaults = {
+                layout_strategy = 'vertical',
+                layout_config = {
+                    vertical = {
+                        width = 0.9,
+                        height = 0.95,
+                        prompt_position = 'bottom',
+                        preview_cutoff = 0,
+                    },
+                },
+            },
             extensions = {
                 -- ["ui-select"] = { require("telescope.themes").get_dropdown {} }
             },
