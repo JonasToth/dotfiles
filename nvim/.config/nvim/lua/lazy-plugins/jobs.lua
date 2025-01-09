@@ -1,5 +1,6 @@
 return {
     {
+        -- Allow a terminal floating window to be toggled.
         "akinsho/toggleterm.nvim",
         keys = {
             { "<leader>tt", "<cmd>ToggleTerm direction=float<CR>", desc = "ToggleTerm" }

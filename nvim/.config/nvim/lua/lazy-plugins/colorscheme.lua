@@ -14,8 +14,8 @@ return {
 		-- "morhetz/gruvbox"
 		-- "catppuccin/nvim", { ["as"] = "catppuccin" },
 	},
-	-- Dimming inactive parts of the code to get higher focus.
 	{
+		-- Dimming inactive parts of the code to get higher focus.
 		"folke/twilight.nvim",
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter",
@@ -33,8 +33,8 @@ return {
 			{ "<leader>bt", ":Twilight<CR>", desc = "Highlight only Context" },
 		},
 	},
-	-- Highlight Parentheses in different colors to disambiguate them.
 	{
+		-- Highlight Parentheses in different colors to disambiguate them.
 		"hiphish/rainbow-delimiters.nvim",
 		config = function()
 			local rainbow_delimiters = require("rainbow-delimiters")
@@ -62,5 +62,17 @@ return {
 				},
 			})
 		end,
+	},
+	{
+		-- Current line changes color for modes and modifiers.
+		"rasulomaroff/reactive.nvim",
+		event = "VeryLazy",
+		opts = {
+			builtin = {
+				cursorline = true,
+				cursor = false,
+				modemsg = false,
+			},
+		},
 	},
 }
