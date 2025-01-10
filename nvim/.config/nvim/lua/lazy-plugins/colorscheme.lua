@@ -36,6 +36,7 @@ return {
 	{
 		-- Highlight Parentheses in different colors to disambiguate them.
 		"hiphish/rainbow-delimiters.nvim",
+		event = "BufEnter",
 		config = function()
 			local rainbow_delimiters = require("rainbow-delimiters")
 			require("rainbow-delimiters.setup").setup({

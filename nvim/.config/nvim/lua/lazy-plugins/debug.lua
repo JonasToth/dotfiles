@@ -1,7 +1,7 @@
 return {
     {
         "mfussenegger/nvim-dap",
-        event = "VeryLazy",
+        ft = "cpp",
         config = function()
             require("mason")
             require("mason-nvim-dap").setup({
