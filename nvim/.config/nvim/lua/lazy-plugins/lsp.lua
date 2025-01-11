@@ -65,20 +65,6 @@ return {
 				vim.keymap.set("n", "<leader>la", function()
 					vim.lsp.buf.hover()
 				end, opts)
-
-				-- Configure signature help when multiple overloads are present.
-				-- Guard against servers without the signatureHelper capability
-				--[[
-                if client.server_capabilities and client.server_capabilities.signatureHelpProvider then
-                    require("lsp-overloads").setup({
-                        display_automatically = false,
-                    })
-                    vim.keymap.set("n", "<A-s>", "<cmd>LspOverloadsSignature<CR>",
-                        { noremap = true, silent = true, buffer = bufnr })
-                    vim.keymap.set("i", "<A-s>", "<cmd>LspOverloadsSignature<CR>",
-                        { noremap = true, silent = true, buffer = bufnr })
-                end
-                --]]
 			end
 
 			lsp_zero.extend_lspconfig({
@@ -130,7 +116,7 @@ return {
 		event = "VeryLazy",
 		priority = 1000, -- needs to be loaded in first
         opts = {
-            preset = "classic",
+            preset = "modern",
         },
 	},
 }

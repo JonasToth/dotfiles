@@ -54,9 +54,9 @@ return {
             },
         },
     },
-    --[[    {
+    {
         "rcarriga/nvim-dap-ui",
-        event = "VeryLazy",
+        ft = "cpp",
         dependencies = {
             { "nvim-neotest/nvim-nio", lazy = true },
         },
