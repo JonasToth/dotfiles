@@ -102,17 +102,20 @@ P = function (v)
     return v
 end
 
+-- Save and source the current file.
 vim.keymap.set("n", "<leader>x", ":w<CR>:source %<CR>")
 
 -- Re-Source vim-rc
 vim.keymap.set("n", "<leader>sv", ":source $MYVIMRC<CR>")
 
+-- Don't display all diagnostics as virtual text.
+-- Enables a separate LSP plugin to render nice diagnostics.
+vim.diagnostic.config({ virtual_text = false })
+
 P = function (v)
     print(vim.inspect(v))
     return v
 end
-
-vim.keymap.set("n", "<leader>x", ":w<CR>:source %<CR>")
 
 -- Setup lazy.nvim
 require("lazy").setup({

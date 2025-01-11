@@ -21,8 +21,7 @@ return {
 	},
 	{
 		"neovim/nvim-lspconfig",
-		cmd = "LspInfo",
-		lazy = true,
+        event = "BufEnter",
 		dependencies = {
 			{ "hrsh7th/cmp-nvim-lsp" },
 		},
@@ -124,5 +123,14 @@ return {
 		"p00f/clangd_extensions.nvim",
 		ft = { "cpp", "c" },
 		keys = { { "<leader>bh", "<cmd>ClangdToggleInlayHints<CR>" } },
+	},
+	{
+		-- Improved LSP diagnostic display with modern UI style.
+		"rachartier/tiny-inline-diagnostic.nvim",
+		event = "VeryLazy",
+		priority = 1000, -- needs to be loaded in first
+        opts = {
+            preset = "classic",
+        },
 	},
 }
