@@ -1,8 +1,6 @@
 return {
 	"zk-org/zk-nvim",
-	enabled = function()
-		return not vim.loop.os_uname().sysname == "Windows_NT"
-	end,
+	enabled = true,
 	config = function()
 		require("zk").setup({
 			-- can be "telescope", "fzf", "fzf_lua", "minipick", or "select" (`vim.ui.select`)

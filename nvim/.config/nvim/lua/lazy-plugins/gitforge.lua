@@ -1,5 +1,5 @@
 return {
-    enabled = function() vim.fn.isdirectory("~/software/nvim") end,
+    enabled = function() return vim.fn.isdirectory("~/software/nvim") end,
     dir = "~/software/nvim/gitforge.nvim",
     dev = true,
     event = "VeryLazy",
