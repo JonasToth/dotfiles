@@ -65,7 +65,7 @@ return {
 		event = "InsertEnter",
 		build = "make install_jsregexp",
 		enabled = function()
-			return not vim.loop.os_uname().sysname == "Windows_NT"
+			return vim.uv.os_uname().sysname == "Linux"
 		end,
 		config = function()
 			local luasnip = require("luasnip")
