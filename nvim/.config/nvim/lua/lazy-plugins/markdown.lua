@@ -1,14 +1,16 @@
 return {
     {
-        "MeanderingProgrammer/render-markdown.nvim",
-        opts = {
-            render_modes = true,
-            anti_conceal = { enabled = false },
-        },
-        ft = {"md", "markdown"},
+        "OXY2DEV/markview.nvim",
+        lazy = false, -- Recommended
+        -- ft = {"md", "latex", "tex"},
         dependencies = {
             "nvim-treesitter/nvim-treesitter",
-            "echasnovski/mini.nvim"
+            "nvim-tree/nvim-web-devicons"
         },
+        opts = {},
     },
+    {
+        "OXY2DEV/foldtext.nvim",
+        lazy = false
+    }
 }
