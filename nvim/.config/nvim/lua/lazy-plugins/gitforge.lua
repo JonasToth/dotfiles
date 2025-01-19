@@ -39,7 +39,7 @@ return {
             issue_keys = {
                 description = "d",
             },
-            default_issue_provider = "gitforge.gh.issue",
+            default_issue_provider = "gh",
         },
     },
 }

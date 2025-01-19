@@ -21,5 +21,16 @@ return {
                 },
             },
         })
+        vim.keymap.set("n", "<leader>zn",
+            function()
+                vim.ui.input({}, function(input)
+                    if input == nil or #input == 0 then
+                        return
+                    end
+                    require("zk").new({ title = input })
+                end)
+            end, { desc = "Create a new Zettelkasten Note" })
+        vim.keymap.set("n", "<leader>zt", "<cmd>ZkTags<cr>", { desc = "Show Tag of Zettelkasten" })
+        vim.keymap.set("n", "<leader>zl", "<cmd>ZkNotes<cr>", { desc = "Show Notes-Picker of Zettelkasten" })
     end,
 }
