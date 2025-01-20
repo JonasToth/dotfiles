@@ -6,13 +6,15 @@ return {
         dev = true,
         dependencies = {
             { "nvim-telescope/telescope.nvim" },
+            { "pysan3/pathlib.nvim" },
         },
-        cmd = { "GForgeViewIssue", "GForgeListIssues", "GForgeCachedIssues", "GForgeCreateIssue" },
+        cmd = { "GForgeViewIssue", "GForgeListIssues", "GForgeOpenedIssues", "GForgePinnedIssues", "GForgeCreateIssue" },
         keys = {
-            { "<leader>gv", "<cmd>GForgeViewIssue<CR>",    desc = "View an issue" },
-            { "<leader>gn", "<cmd>GForgeCreateIssue<CR>",  desc = "Create a new issue" },
-            { "<leader>gg", "<cmd>GForgeOpenedIssues<CR>", desc = "List opened issue" },
-            { "<leader>gh", "<cmd>GForgeListIssues<CR>",   desc = "List all issue" },
+            { "<leader>gv",  "<cmd>GForgeViewIssue<CR>",    desc = "View an issue" },
+            { "<leader>gn",  "<cmd>GForgeCreateIssue<CR>",  desc = "Create a new issue" },
+            { "<leader>ggo", "<cmd>GForgeOpenedIssues<CR>", desc = "List opened issues" },
+            { "<leader>gh",  "<cmd>GForgeListIssues<CR>",   desc = "List all issues" },
+            { "<leader>ggp", "<cmd>GForgePinnedIssues<CR>", desc = "List pinned issues" },
             {
                 "<leader>gio",
                 function() require(ia).list_issues({ state = "open", limit = 100, }) end,
@@ -35,9 +37,13 @@ return {
             },
         },
         opts = {
-            timeout = 2000,
-            issue_keys = {
-                description = "d",
+            timeout = 3000,
+            list_max_title_length = 90,
+            projects = {
+                { path = "~/software/drone-observer",     issue_provider = "glab", project = "gitlab.lan/basedness/drone-observer" },
+                { path = "~/software/glab",               issue_provider = "glab", project = "gitlab.com/gitlab-org/cli" },
+                { path = "~/software/nvim/gitforge.nvim", issue_provider = "gh" },
+                { path = "~/software/llvm-project",       issue_provider = "gh",   project = "github.com/JonasToth/llvm-project" },
             },
             default_issue_provider = "gh",
         },
