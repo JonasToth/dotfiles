@@ -40,10 +40,9 @@ return {
             timeout = 3000,
             list_max_title_length = 90,
             projects = {
-                { path = "~/software/drone-observer",     issue_provider = "glab", project = "gitlab.lan/basedness/drone-observer" },
-                { path = "~/software/glab",               issue_provider = "glab", project = "gitlab.com/gitlab-org/cli" },
-                { path = "~/software/nvim/gitforge.nvim", issue_provider = "gh" },
-                { path = "~/software/llvm-project",       issue_provider = "gh",   project = "github.com/JonasToth/llvm-project" },
+                { path = "~/software/drone-observer", issue_provider = "glab" },
+                { path = "~/software/glab",           issue_provider = "glab", project = "gitlab.com/gitlab-org/cli" },
+                { path = "~/software/llvm-project",   issue_provider = "gh",   project = "github.com/JonasToth/llvm-project" },
             },
             default_issue_provider = "gh",
         },
