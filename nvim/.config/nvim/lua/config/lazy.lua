@@ -96,6 +96,10 @@ vim.keymap.set("n", "<leader>tp", ":tabprev<CR>")
 vim.keymap.set("n", "]q", ":cnext<CR>")
 vim.keymap.set("n", "[q", ":cprev<CR>")
 
+-- Diagnostic navigation
+vim.keymap.set("n", "]e", ":lua vim.diagnostic.goto_next({severity=vim.diagnostic.severity.ERROR, wrap=true})<CR>")
+vim.keymap.set("n", "[e", ":lua vim.diagnostic.goto_prev({severity=vim.diagnostic.severity.ERROR, wrap=true})<CR>")
+
 -- Open Lazy View
 vim.keymap.set("n", "<leader>L", ":Lazy<CR>")
 
