@@ -35,6 +35,7 @@ return {
 		-- Improved UI-input widget.
 		"folke/snacks.nvim",
 		event = "VeryLazy",
+        version = "*",
 		---@type snacks.Config
 		opts = {
             notifier = { enabled = true },
