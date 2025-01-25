@@ -58,6 +58,7 @@ vim.opt.backup = false
 
 -- good colors
 vim.opt.termguicolors = true
+vim.opt.background = "dark"
 
 -- Enable mode lines at the end of a file to configure vim display settings.
 vim.opt.modelines = 1

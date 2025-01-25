@@ -31,6 +31,7 @@ return {
                     "rust",
                     "tmux",
                     "toml",
+                    "typst",
                     "vimdoc",
                     "xml",
                 },

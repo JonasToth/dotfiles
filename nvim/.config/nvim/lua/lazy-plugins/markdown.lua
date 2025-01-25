@@ -2,11 +2,28 @@ return {
     {
         "OXY2DEV/markview.nvim",
         lazy = false,
+        priority = 100,
         dependencies = {
             "nvim-treesitter/nvim-treesitter",
             "nvim-tree/nvim-web-devicons"
         },
-        opts = {},
+        config = function()
+            local presets = require("markview.presets")
+            require("markview").setup({
+                checkboxes = presets.checkboxes.nerd,
+                preview = {
+                    filetypes = { "markdown", "typst", "yaml", },
+                    hybrid_mode = false,
+                    linewise_hybrid_mode = false,
+                },
+                markdown = {
+                    -- headings = presets.headings.marker,
+                    horizontal_rules = presets.arrowed,
+                    tables = presets.double,
+                },
+            })
+            require("markview.extras.checkboxes").setup()
+        end,
     },
     {
         "OXY2DEV/foldtext.nvim",
