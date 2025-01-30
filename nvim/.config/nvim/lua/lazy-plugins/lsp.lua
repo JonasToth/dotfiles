@@ -65,6 +65,10 @@ return {
                 vim.keymap.set("n", "<leader>la", function()
                     vim.lsp.buf.hover()
                 end, opts)
+
+                vim.keymap.set("n", "<leader>bh", function()
+                     vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+                end, opts)
             end
 
             lsp_zero.extend_lspconfig({
@@ -116,7 +120,6 @@ return {
     {
         "p00f/clangd_extensions.nvim",
         ft = { "cpp", "c" },
-        keys = { { "<leader>bh", "<cmd>ClangdToggleInlayHints<CR>" } },
     },
     {
         -- Improved LSP diagnostic display with modern UI style.
