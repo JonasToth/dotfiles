@@ -67,14 +67,14 @@ vim.opt.modelines = 1
 vim.opt.wrap = true
 vim.opt.linebreak = true
 vim.opt.list = false
-vim.opt.colorcolumn = "100"
+vim.opt.colorcolumn = "90"
 
 -- Move lines around in visual mode
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
 -- Append the next line to the current but keep the cursor in place.
-vim.keymap.set("n", "J", "mzJ`z")
+-- vim.keymap.set("n", "J", "mzJ`z")
 
 -- Page jumps, but staying in the middle. Keeps eyes focussed.
 vim.keymap.set("n", "<C-d>", "<C-d>zz")

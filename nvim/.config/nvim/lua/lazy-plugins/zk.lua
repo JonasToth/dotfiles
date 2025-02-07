@@ -23,7 +23,7 @@ return {
         })
         vim.keymap.set("n", "<leader>zn",
             function()
-                vim.ui.input({}, function(input)
+                vim.ui.input({prompt = "Title of new Zettel"}, function(input)
                     if input == nil or #input == 0 then
                         return
                     end

@@ -1,47 +1,47 @@
 return {
-    -- {
-    --     "sainnhe/sonokai",
-    --     priority = 1000,
-    --     lazy = false,
-    --     config = function()
-    --         vim.g.sonokai_enable_italic = true
-    --         vim.g.sonokai_better_performance = false
-    --         -- require('sonokai').setup({})
-    --         vim.cmd("colorscheme sonokai")
-    --     end,
-    -- },
     {
-        "dgox16/oldworld.nvim",
-        lazy = false,
-        version = "*",
+        "sainnhe/sonokai",
         priority = 1000,
+        lazy = false,
         config = function()
-            require("oldworld").setup({
-                integrations = { -- You can disable/enable integrations
-                    alpha = true,
-                    cmp = true,
-                    flash = true,
-                    gitsigns = true,
-                    hop = true,
-                    indent_blankline = true,
-                    lazy = true,
-                    lsp = true,
-                    markdown = true,
-                    mason = true,
-                    navic = false,
-                    neo_tree = true,
-                    neogit = true,
-                    neorg = true,
-                    noice = false,
-                    notify = true,
-                    rainbow_delimiters = true,
-                    telescope = true,
-                    treesitter = true,
-                },
-            })
-            vim.cmd("colorscheme oldworld")
+            vim.g.sonokai_enable_italic = true
+            vim.g.sonokai_better_performance = false
+            -- require('sonokai').setup({})
+            vim.cmd("colorscheme sonokai")
         end,
     },
+    -- {
+    --     "dgox16/oldworld.nvim",
+    --     lazy = false,
+    --     version = "*",
+    --     priority = 1000,
+    --     config = function()
+    --         require("oldworld").setup({
+    --             integrations = { -- You can disable/enable integrations
+    --                 alpha = true,
+    --                 cmp = true,
+    --                 flash = true,
+    --                 gitsigns = true,
+    --                 hop = true,
+    --                 indent_blankline = true,
+    --                 lazy = true,
+    --                 lsp = true,
+    --                 markdown = true,
+    --                 mason = true,
+    --                 navic = false,
+    --                 neo_tree = true,
+    --                 neogit = true,
+    --                 neorg = true,
+    --                 noice = false,
+    --                 notify = true,
+    --                 rainbow_delimiters = true,
+    --                 telescope = true,
+    --                 treesitter = true,
+    --             },
+    --         })
+    --         vim.cmd("colorscheme oldworld")
+    --     end,
+    -- },
     -- {
     --     "vague2k/vague.nvim",
     --     config = function()
