@@ -13,6 +13,7 @@ return {
     {
         "dgox16/oldworld.nvim",
         lazy = false,
+        version = "*",
         priority = 1000,
         config = function()
             require("oldworld").setup({
@@ -114,5 +115,8 @@ return {
         },
     },
     {
+        "OXY2DEV/helpview.nvim",
+        version = "*",
+        lazy = false
     },
 }

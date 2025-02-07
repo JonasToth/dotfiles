@@ -40,6 +40,7 @@ return {
         opts = {
             notifier = { enabled = true },
             quickfile = { enabled = true },
+            bigfile = { enabled = true },
             input = {
                 enabled = true,
                 backdrop = false,
