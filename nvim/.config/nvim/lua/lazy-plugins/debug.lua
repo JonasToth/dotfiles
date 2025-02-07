@@ -84,5 +84,29 @@ return {
             vim.keymap.set("n", "<leader>?", function() require("dapui").eval(nil, { enter = true }) end)
         end,
     },
---]]
+    {
+        "CLRN/gdb-disasm.nvim",
+        config = function()
+            local disasm = require "gdbdisasm"
+            disasm.setup {}
+
+            local status, cmake = pcall(require, "cmake-tools")
+            if not status then
+                return
+            end
+
+            local target = cmake.get_build_target()
+            if target then
+                disasm.set_binary_path(cmake.get_build_target_path(target))
+            end
+
+            vim.keymap.set("n", "<leader>dai", disasm.toggle_inline_disasm, { desc = "Toggle disassembly" })
+            vim.keymap.set("n", "<leader>das", disasm.save_current_state, { desc = "Save current session state" })
+            vim.keymap.set("n", "<leader>dal", disasm.load_saved_state, { desc = "Load saved session" })
+            vim.keymap.set("n", "<leader>dar", disasm.remove_saved_state, { desc = "Remove saved session" })
+            vim.keymap.set("n", "<leader>dac", disasm.resolve_calls_under_the_cursor, { desc = "Jump to a call" })
+            vim.keymap.set("n", "<leader>daw", disasm.new_window_disasm, { desc = "Disassemble to new window" })
+            vim.keymap.set("n", "<leader>daq", disasm.stop, { desc = "Clean disassembly and quit GDB" })
+        end,
+    },
 }
