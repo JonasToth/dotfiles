@@ -14,7 +14,7 @@ return {
 		},
 		config = function()
 			local cmp = require("cmp")
-			my_sources = {
+			local my_sources = {
 				{ name = "nvim_lsp" },
 				{ name = "nvim_lsp_signature_help" },
 			}
@@ -25,7 +25,7 @@ return {
 			table.insert(my_sources, { name = "buffer" })
 			table.insert(my_sources, { name = "neorg" })
 
-			my_snippets = {}
+			local my_snippets = {}
 			if not vim.loop.os_uname().sysname == "Windows_NT" then
 				my_snippets = {
 					expand = function(args)
@@ -46,7 +46,7 @@ return {
 						}),
 						{ "i", "c" }
 					),
-					["<CR>"] = cmp.mapping.confirm({ select = true }),
+					-- ["<CR>"] = cmp.mapping.confirm({ select = true }),
 				},
 				snippet = my_snippets,
 				completion = { completeopt = "menu,menuone,noselect" },
