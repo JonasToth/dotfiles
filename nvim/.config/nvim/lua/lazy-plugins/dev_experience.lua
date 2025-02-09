@@ -74,6 +74,14 @@ return {
         end,
     },
     {
+        "danymat/neogen",
+        config = true,
+        version = "*",
+        opts = {
+            snippet_engine = "luasnip",
+        },
+    },
+    {
         -- Improved UI-input widget.
         "folke/snacks.nvim",
         event = "VeryLazy",
@@ -120,4 +128,11 @@ return {
             },
         },
     },
+    {
+        -- Improve vim command hygiene.
+        "m4xshen/hardtime.nvim",
+        dependencies = { "MunifTanjim/nui.nvim" },
+        version = "*",
+        event = "VeryLazy",
+    }
 }

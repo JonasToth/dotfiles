@@ -47,4 +47,12 @@ return {
             default_issue_provider = "gh",
         },
     },
+    {
+        "trevorhauter/gitportal.nvim",
+        event = "VeryLazy",
+        cmd = "GitPortal",
+        keys = {
+            { "<leader>gO", function() require("gitportal").open_file_in_browser() end, desc = "View file in Browser" },
+        },
+    },
 }

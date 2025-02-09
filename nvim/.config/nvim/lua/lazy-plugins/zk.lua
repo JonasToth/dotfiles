@@ -32,5 +32,6 @@ return {
             end, { desc = "Create a new Zettelkasten Note" })
         vim.keymap.set("n", "<leader>zt", "<cmd>ZkTags<cr>", { desc = "Show Tag of Zettelkasten" })
         vim.keymap.set("n", "<leader>zl", "<cmd>ZkNotes<cr>", { desc = "Show Notes-Picker of Zettelkasten" })
+        vim.keymap.set("n", "<leader>zb", "<cmd>ZkBacklinks<cr>", { desc = "Show Backlinks of the Note" })
     end,
 }
