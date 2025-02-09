@@ -88,7 +88,7 @@ return {
         "CLRN/gdb-disasm.nvim",
 		ft = {"c", "cpp"},
 		event = "VeryLazy",
-		enabled = false,
+		enabled = true,
         config = function()
             local status, cmake = pcall(require, "cmake-tools")
             if not status then
