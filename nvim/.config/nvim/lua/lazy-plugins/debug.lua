@@ -86,14 +86,16 @@ return {
     },
     {
         "CLRN/gdb-disasm.nvim",
+		ft = {"c", "cpp"},
+		event = "VeryLazy",
+		enabled = false,
         config = function()
-            local disasm = require "gdbdisasm"
-            disasm.setup {}
-
             local status, cmake = pcall(require, "cmake-tools")
             if not status then
                 return
             end
+			local disasm = require "gdbdisasm"
+            disasm.setup {}
 
             local target = cmake.get_build_target()
             if target then
