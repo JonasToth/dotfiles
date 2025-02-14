@@ -29,7 +29,49 @@ return {
         "kylechui/nvim-surround",
         version = "*", -- Use for stability; omit to use `main` branch for the latest features
         event = "VeryLazy",
-        opts = {},
+        config = function()
+            local surround = require("nvim-surround")
+            local surround_config = require("nvim-surround.config")
+            surround.setup({
+            surrounds = {
+                ["F"] = {
+                    add = function()
+                        local result = surround_config.get_input("Enter the constructor name: ")
+
+                        if result then
+                            return { { result .. "{" }, { "}" } }
+                        end
+                    end,
+                    find = function()
+                        -- TODO: I don't know enough about treesitter to properly query
+                        --       here.
+                        -- if vim.g.loaded_nvim_treesitter then
+                        --     local selection = surround_config.get_selection({
+                        --         query = {
+                        --             capture = "@call.outer",
+                        --             type = "textobjects",
+                        --         },
+                        --     })
+                        --     if selection then
+                        --         return selection
+                        --     end
+                        -- end
+                        return surround_config.get_selection({ pattern = "[^=%s{}]+%b{}" })
+                    end,
+                    delete = "^(.-%{)().-(%})()$",
+                    change = {
+                        target = "^.-([%w_]+)()%{.-%}()()$",
+                        replacement = function()
+                            local result = surround_config.get_input("Enter the constructor name: ")
+                            if result then
+                                return { { result }, { "" } }
+                            end
+                        end,
+                    },
+                },
+            },
+        })
+        end,
     },
     {
         -- Improved UI-input widget.
