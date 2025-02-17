@@ -30,16 +30,21 @@ return {
         "sindrets/diffview.nvim",
         cmd = {"DiffviewOpen", "DiffviewToggleFiles", "DiffviewFocusFiles", "DiffviewRefresh", "DiffviewFileHistory", },
         keys = {
-            { "<leader>gh", "<cmd>DiffviewFileHistory<CR>", desc = "FileHistory Diff" },
-            { "<leader>gd", "<cmd>DiffviewOpen<CR>",        desc = "DiffView Open" },
-            { "<leader>gq", "<cmd>DiffviewClose<CR>",       desc = "DiffView Close" },
+            { "<leader>gh", "<cmd>DiffviewFileHistory<CR>",   desc = "FileHistory Diff" },
+            { "<leader>gH", "<cmd>DiffviewFileHistory %<CR>", desc = "FileHistory Diff Current File" },
+            { "<leader>gd", "<cmd>DiffviewOpen<CR>",          desc = "DiffView Open" },
+            { "<leader>gq", "<cmd>DiffviewClose<CR>",         desc = "DiffView Close" },
         },
         opts = {
             view = {
                 default = {
                     layout = "diff2_vertical",
                     disable_diagnostics = true,
-                }
+                },
+                merge_tool = {
+                    layout = "diff3_mixed",
+                    disable_diagnostics = false,
+                },
             },
             file_panel = {
                 win_config = {
