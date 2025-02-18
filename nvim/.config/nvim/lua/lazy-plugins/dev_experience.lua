@@ -151,4 +151,19 @@ return {
 			},
 		},
 	},
+    {
+        "danymat/neogen",
+        config = true,
+        version = "*",
+        opts = {
+            snippet_engine = "luasnip",
+        },
+    },
+    {
+        -- Improve vim command hygiene.
+        "m4xshen/hardtime.nvim",
+        dependencies = { "MunifTanjim/nui.nvim" },
+        version = "*",
+        event = "VeryLazy",
+    }
 }
