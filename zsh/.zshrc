@@ -109,4 +109,4 @@ fi
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Created by `pipx` on 2024-11-01 22:03:46
-export PATH="$PATH:/home/jonas/.local/bin"
+export PATH="$PATH:${HOME}/.local/bin"
