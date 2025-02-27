@@ -5,7 +5,7 @@ return {
         config = function()
             require("mason")
             require("mason-nvim-dap").setup({
-                ensure_installed = { "codelldb" },
+                ensure_installed = { "codelldb", "debugpy" },
             })
             local dap = require("dap")
             dap.adapters.codelldb = {
@@ -21,6 +21,16 @@ return {
                     args = { "--port", "13000" },
                 }
             }
+            require("dap-python").setup("python3")
+            table.insert(dap.configurations.python, {
+                type = "python",
+                request = "launch",
+                name = "Start 'traverse_pom.py' in repository",
+                cwd = "/mnt/code/repos/wt/jto/cmake-adjusments/mb2cpp",
+                program = "/mnt/code/repos/wt/jto/cmake-adjusments/mb2cpp/tools/cmake/traverse_pom.py",
+                args = {"."},
+                stopOnEntry = true,
+            })
             dap.configurations.cpp = {
                 {
                     name = "Launch file",
@@ -36,8 +46,15 @@ return {
                     stopOnEntry = false,
                 },
             }
-            vim.keymap.set("n", "<leader>B", function() dap.toggle_breakpoint() end)
-            vim.keymap.set("n", "<leader>gb", function() dap.run_to_cursor() end)
+            vim.keymap.set("n", "<leader>Bb", function() dap.toggle_breakpoint() end)
+            vim.keymap.set("n", "<leader>Bc", function()
+                vim.ui.input({ prompt = "Condition: " } , function(input)
+                    if input ~= nil then
+                        dap.toggle_breakpoint(input)
+                    end
+                end)
+            end)
+            vim.keymap.set("n", "<leader>Brc", function() dap.run_to_cursor() end)
             vim.keymap.set("n", "<F1>", function() dap.continue() end)
             vim.keymap.set("n", "<F2>", function() dap.step_into() end)
             vim.keymap.set("n", "<F3>", function() dap.step_over() end)
@@ -52,11 +69,12 @@ return {
                 lazy = true,
                 opts = false,
             },
+            {  "mfussenegger/nvim-dap-python" },
         },
     },
     {
         "rcarriga/nvim-dap-ui",
-        ft = "cpp",
+        ft = {"cpp", "python"},
         dependencies = {
             { "nvim-neotest/nvim-nio", lazy = true },
         },
