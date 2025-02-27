@@ -1,0 +1,8 @@
+session_name: conan
+start_directory: /mnt/code/repos/conan-center-index/recipes
+windows:
+  - window_name: root
+    panes:
+      - shell_command:
+        - pwd
+

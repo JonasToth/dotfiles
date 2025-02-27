@@ -1,0 +1,7 @@
+session_name: ivu-plan
+start_directory: /mnt/code/repos/wt/jto/
+windows:
+  - window_name: misc
+    panes:
+      - shell_command:
+        - pwd
