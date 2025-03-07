@@ -11,6 +11,7 @@ return {
 			"hrsh7th/cmp-cmdline",
 			"hrsh7th/cmp-nvim-lsp-document-symbol", -- Search for LSP Symbols
 			"L3MON4D3/LuaSnip",
+            "rcarriga/cmp-dap",
 		},
 		config = function()
 			local cmp = require("cmp")
@@ -58,6 +59,9 @@ return {
 					{ name = "buffer" },
 				}),
 			})
+            cmp.setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
+                sources = { { name = "dap" }, },
+            })
 		end,
 	},
 	{

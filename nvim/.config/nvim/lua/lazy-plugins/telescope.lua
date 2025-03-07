@@ -9,8 +9,9 @@ return {
         "kkharji/sqlite.lua",
         "BurntSushi/ripgrep",
         "sharkdp/fd",
-        { "junegunn/fzf", { dir = "~/.fzf", build = "./install.ps1 --all" } },
+        { "junegunn/fzf", { dir = "~/.fzf", build = "./install --all" } },
         "junegunn/fzf.vim",
+        "nvim-telescope/telescope-dap.nvim",
     },
     event = "VeryLazy",
     keys = {
@@ -50,6 +51,7 @@ return {
             },
         })
         -- telescope.load_extension("ui-select")
+        telescope.load_extension('dap')
 
         -- Show line numbers in file preview
         vim.cmd("autocmd User TelescopePreviewerLoaded setlocal number")

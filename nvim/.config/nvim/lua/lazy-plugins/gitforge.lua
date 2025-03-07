@@ -1,9 +1,10 @@
 local ia = "gitforge.issue_actions"
 return {
     {
-        enabled = function() return vim.fn.isdirectory("~/software/nvim") end,
-        dir = "~/software/nvim/gitforge.nvim",
-        dev = true,
+        -- enabled = function() return vim.fn.isdirectory("~/software/nvim") end,
+        -- dir = "~/software/nvim/gitforge.nvim",
+        -- dev = true,
+        "JonasToth/gitforge.nvim",
         dependencies = {
             { "nvim-telescope/telescope.nvim" },
             { "pysan3/pathlib.nvim" },

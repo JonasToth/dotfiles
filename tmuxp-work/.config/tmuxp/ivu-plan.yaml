@@ -1,7 +1,8 @@
 session_name: ivu-plan
 start_directory: /mnt/code/repos/wt/jto/
 windows:
-  - window_name: misc
+  - window_name: master
     panes:
       - shell_command:
         - pwd
+        start_directory: /mnt/code/repos/ivu-plan-source/mb2cpp
