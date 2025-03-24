@@ -1,3 +1,4 @@
 command script import "/home/jto@ivu-ag.com/software/llef/llef.py"
 settings set stop-disassembly-display never
 settings set target.x86-disassembly-flavor intel
+settings set symbols.load-on-demand true
