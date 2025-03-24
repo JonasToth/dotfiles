@@ -1,2 +1,3 @@
 set history save on
 source ~/.gef-2025.01.py
+set auto-solib-add off
