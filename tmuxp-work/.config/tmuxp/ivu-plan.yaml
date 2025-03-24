@@ -1,8 +1,14 @@
 session_name: ivu-plan
-start_directory: /mnt/code/repos/wt/jto/
+start_directory: /mnt/code/repos/ivu-plan-source/mb2cpp
 windows:
   - window_name: master
     panes:
       - shell_command:
         - pwd
         start_directory: /mnt/code/repos/ivu-plan-source/mb2cpp
+  - window_name: build-master
+    panes:
+      - shell_command:
+        - pwd
+        - source generators/conanbuild.sh
+        start_directory: /mnt/code/repos/ivu-plan-source/mb2cpp/.bin/gcc/RelWithDebInfo
