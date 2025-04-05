@@ -32,25 +32,52 @@ return {
             })
             dap.configurations.cpp = {
                 {
-                    name = "Debug Crash on Start of UnitTest",
-                    type = "codelldb",
-                    request = "launch",
-                    program =
-                    "/mnt/code/repos/ivu-plan-source/mb2cpp/.bin/gcc/RelWithDebInfo/bin64/ds_comp_DutyComposing_testremote_UnitTests",
-                    args = {},
-                    cwd = "/mnt/code/repos/ivu-plan-source/mb2cpp/ds/comp/DutyComposing/testremote/UnitTests",
-                    stopOnEntry = false,
-                },
-                {
-                    name = "Launch file",
+                    name = "Debug UtcTimepoint",
                     type = "codelldb",
                     request = "launch",
                     program = function()
-                        return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+                        return vim.fn.getcwd() .. "/.bin/gcc/Debug/bin64/common_lib_util_UnitTests"
                     end,
                     args = function()
-                        return { vim.fn.input("Arguments: ") }
+                        return { "--gtest_filter=TestUtcTimepoint.*", "--gtest_brief=1" }
                     end,
+                    envFile = "${workspaceFolder}/.bin/gcc/Debug/generators/conanrunenv.env",
+                    initCommands = { "command source '${workspaceFolder}/tools/lldb/visualizers.lldb'" },
+                    preRunCommands = { "breakpoint name configure --disable cpp_exception" },
+                    cwd = "${workspaceFolder}",
+                    stopOnEntry = true,
+                },
+                {
+                    name = "Launch Test Debug",
+                    type = "codelldb",
+                    request = "launch",
+                    program = function()
+                        return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/.bin/gcc/Debug/bin64/",
+                            "file")
+                    end,
+                    args = function()
+                        local arguments = vim.split(vim.fn.input("Arguments: "), " ")
+                        return arguments
+                    end,
+                    envFile = "${workspaceFolder}/.bin/gcc/Debug/generators/conanrunenv.env",
+                    initCommands = { "command source '${workspaceFolder}/tools/lldb/visualizers.lldb'" },
+                    cwd = "${workspaceFolder}",
+                    stopOnEntry = false,
+                },
+                {
+                    name = "Launch Test RelWithDebInfo",
+                    type = "codelldb",
+                    request = "launch",
+                    program = function()
+                        return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/.bin/gcc/RelWithDebInfo/bin64/",
+                            "file")
+                    end,
+                    args = function()
+                        local arguments = vim.split(vim.fn.input("Arguments: "), " ")
+                        return arguments
+                    end,
+                    envFile = "${workspaceFolder}/.bin/gcc/RelWithDebInfo/generators/conanrunenv.env",
+                    initCommands = { "command source '${workspaceFolder}/tools/lldb/visualizers.lldb'" },
                     cwd = "${workspaceFolder}",
                     stopOnEntry = false,
                 },
@@ -63,7 +90,7 @@ return {
                     end
                 end)
             end)
-            vim.keymap.set("n", "<leader>Brc", function() dap.run_to_cursor() end)
+            vim.keymap.set("n", "<leader>Br", function() dap.run_to_cursor() end)
             vim.keymap.set("n", "<F1>", function() dap.continue() end)
             vim.keymap.set("n", "<F2>", function() dap.step_into() end)
             vim.keymap.set("n", "<F3>", function() dap.step_over() end)
@@ -83,6 +110,11 @@ return {
             },
             { "mfussenegger/nvim-dap-python" },
         },
+    },
+    {
+        "theHamsta/nvim-dap-virtual-text",
+        ft = { "cpp", "python" },
+        opts = {},
     },
     {
         "rcarriga/nvim-dap-ui",
@@ -126,21 +158,26 @@ return {
                         expanded = ""
                     },
                     layouts = { {
-                        elements = { {
-                            id = "scopes",
-                            size = 0.25
-                        }, {
-                            id = "breakpoints",
-                            size = 0.25
-                        }, {
-                            id = "stacks",
-                            size = 0.25
-                        }, {
-                            id = "watches",
-                            size = 0.25
-                        } },
+                        elements = {
+                            {
+                                id = "watches",
+                                size = 0.05
+                            },
+                            {
+                                id = "breakpoints",
+                                size = 0.1
+                            },
+                            {
+                                id = "stacks",
+                                size = 0.3
+                            },
+                            {
+                                id = "scopes",
+                                size = 0.55
+                            },
+                        },
                         position = "left",
-                        size = 80
+                        size = 65
                     }, {
                         elements = { {
                             id = "repl",
@@ -154,7 +191,7 @@ return {
                     } },
                     mappings = {
                         edit = "e",
-                        expand = { "<CR>", "<2-LeftMouse>" },
+                        expand = { "x", "<2-LeftMouse>" },
                         open = "o",
                         remove = "d",
                         repl = "r",
@@ -198,10 +235,10 @@ return {
             local disasm = require "gdbdisasm"
             disasm.setup {}
 
-            local target = cmake.get_build_target()
-            if target then
-                disasm.set_binary_path(cmake.get_build_target_path(target))
-            end
+            -- local target = cmake.get_build_target()
+            -- if target then
+            --     disasm.set_binary_path(cmake.get_build_target_path(target))
+            -- end
 
             vim.keymap.set("n", "<leader>dai", disasm.toggle_inline_disasm, { desc = "Toggle disassembly" })
             vim.keymap.set("n", "<leader>das", disasm.save_current_state, { desc = "Save current session state" })
