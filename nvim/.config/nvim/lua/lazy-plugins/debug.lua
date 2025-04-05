@@ -1,3 +1,35 @@
+local remove_sos = function(exec)
+    -- Filter out shared libraries
+    return not exec:match('%.so([.0-9]*)')
+end
+
+---Appends environment variables to @c envTable if they are present in envFile but aren't
+---in envTable.
+---@param envFile string Path to a file containing environment variables.
+---@param envTable table Mapping of environment variable name and its values.
+---@return table enrichedEnvironment
+local appendEnvFileToEnv = function(envFile, envTable)
+    if envFile == nil then
+        return envTable
+    end
+    local file = io.open(envFile, "rb")
+    if not file then return envTable end
+    local content = file:read("*a")
+    file:close()
+    local lines = vim.split(content, "\n")
+    for _, line in ipairs(lines) do
+        local assignment_idx = string.find(line, "=", 1, true)
+        if assignment_idx ~= nil then
+            local key = string.sub(line, 1, assignment_idx - 1)
+            local value = string.sub(line, assignment_idx + 1)
+            if envTable.key == nil then
+                envTable[key] = value
+            end
+        end
+    end
+    return envTable
+end
+
 return {
     {
         "mfussenegger/nvim-dap",
@@ -5,6 +37,7 @@ return {
         config = function()
             require("mason")
             require("mason-nvim-dap").setup({
+                automatic_installation = true,
                 ensure_installed = { "codelldb", "debugpy" },
             })
             local dap = require("dap")
@@ -19,6 +52,18 @@ return {
                     command = codelldb_cmd,
                     args = { "--port", "13000" },
                 }
+            }
+            dap.adapters.gdb = {
+                id = 'gdb',
+                type = 'executable',
+                command = '/mnt/code/repos/gdb-static/gdb',
+                args = { '--quiet', '--interpreter=dap' },
+                enrich_config = function(config, on_config)
+                    local final_config = vim.deepcopy(config)
+                    local env = appendEnvFileToEnv(final_config.envFile, final_config.env or {})
+                    final_config.env = env
+                    on_config(final_config)
+                end,
             }
             require("dap-python").setup("python3")
             table.insert(dap.configurations.python, {
@@ -48,12 +93,32 @@ return {
                     stopOnEntry = true,
                 },
                 {
+                    name = "Debug UtcTimepoint (gdb)",
+                    type = "gdb",
+                    request = "launch",
+                    program = function()
+                        return "common_lib_util_UnitTests"
+                    end,
+                    args = function()
+                        return { "--gtest_filter=TestUtcTimepoint.*", "--gtest_brief=1" }
+                    end,
+                    envFile = "${workspaceFolder}/.bin/gcc/Debug/generators/conanrunenv.env",
+                    cwd = "${workspaceFolder}/.bin/gcc/Debug/bin64",
+                    stopAtBeginningOfMainSubprogram = true,
+                    stopOnEntry = true,
+                },
+                {
                     name = "Launch Test Debug",
                     type = "codelldb",
                     request = "launch",
                     program = function()
-                        return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/.bin/gcc/Debug/bin64/",
-                            "file")
+                        local path = vim.fn.getcwd() .. "/.bin/gcc/Debug/bin64"
+                        local exec_opts = {
+                            path = path,
+                            executables = true,
+                            filter = remove_sos,
+                        }
+                        return require('dap.utils').pick_file(exec_opts)
                     end,
                     args = function()
                         local arguments = vim.split(vim.fn.input("Arguments: "), " ")
@@ -61,6 +126,7 @@ return {
                     end,
                     envFile = "${workspaceFolder}/.bin/gcc/Debug/generators/conanrunenv.env",
                     initCommands = { "command source '${workspaceFolder}/tools/lldb/visualizers.lldb'" },
+                    preRunCommands = { "breakpoint name configure --disable cpp_exception" },
                     cwd = "${workspaceFolder}",
                     stopOnEntry = false,
                 },
@@ -78,8 +144,21 @@ return {
                     end,
                     envFile = "${workspaceFolder}/.bin/gcc/RelWithDebInfo/generators/conanrunenv.env",
                     initCommands = { "command source '${workspaceFolder}/tools/lldb/visualizers.lldb'" },
+                    preRunCommands = { "breakpoint name configure --disable cpp_exception" },
                     cwd = "${workspaceFolder}",
                     stopOnEntry = false,
+                },
+                {
+                    name = 'Attach to process (lldb)',
+                    type = 'codelldb',
+                    request = 'attach',
+                    pid = require('dap.utils').pick_process,
+                },
+                {
+                    name = 'Attach to process (gdb)',
+                    type = 'gdb',
+                    request = 'attach',
+                    pid = require('dap.utils').pick_process,
                 },
             }
             vim.keymap.set("n", "<leader>Bb", function() dap.toggle_breakpoint() end)
@@ -96,6 +175,7 @@ return {
             vim.keymap.set("n", "<F3>", function() dap.step_over() end)
             vim.keymap.set("n", "<F4>", function() dap.step_out() end)
             vim.keymap.set("n", "<F5>", function() dap.step_back() end)
+            vim.keymap.set("n", "<F9>", function() dap.run_last() end)
             vim.keymap.set("n", "<F10>", function() dap.terminate() end)
             vim.keymap.set("n", "<F12>", function() dap.restart() end)
             vim.keymap.set("n", "<leader><leader>u", function() dap.up() end)
@@ -114,7 +194,9 @@ return {
     {
         "theHamsta/nvim-dap-virtual-text",
         ft = { "cpp", "python" },
-        opts = {},
+        opts = {
+            virt_text_pos = "eol",
+        },
     },
     {
         "rcarriga/nvim-dap-ui",
