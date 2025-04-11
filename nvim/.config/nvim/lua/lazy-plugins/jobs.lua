@@ -25,6 +25,9 @@ return {
     },
     -- Provide CMake Integration.
     {
+        "stevearc/overseer.nvim",
+    },
+    {
         "Civitasv/cmake-tools.nvim",
         dependencies = {
             "akinsho/toggleterm.nvim",
@@ -64,7 +67,7 @@ return {
         opts = {
             cmake_command = "cmake",                                                     -- this is used to specify cmake command path
             ctest_command = "ctest",
-            cmake_regenerate_on_save = true,                                             -- auto generate when save CMakeLists.txt
+            cmake_regenerate_on_save = false,                                            -- auto generate when save CMakeLists.txt
             cmake_generate_options = { "-GNinja", "-DCMAKE_EXPORT_COMPILE_COMMANDS=1" }, -- this will be passed when invoke `CMakeGenerate`
             cmake_build_options = {},                                                    -- this will be passed when invoke `CMakeBuild`
             cmake_build_directory = "out/${variant:buildType}",                          -- this is used to specify generate directory for cmake
@@ -83,11 +86,11 @@ return {
                 console = "integratedTerminal",
             },
             cmake_executor = {                   -- executor to use
-                name = "overseer",               -- name of the executor
+                name = "quickfix",               -- name of the executor
                 opts = {},                       -- the options the executor will get, possible values depend on the executor type. See `default_opts` for possible values.
                 default_opts = {                 -- a list of default and possible values for executors
                     quickfix = {
-                        show = "only_on_error",  -- "always", "only_on_error"
+                        show = "always",  -- "always", "only_on_error"
                         position = "belowright", -- "bottom", "top"
                         size = 10,
                     },
@@ -100,7 +103,7 @@ return {
                         new_task_opts = {
                             strategy = {
                                 "toggleterm",
-                                direction = "float",
+                                direction = "horizontal",
                                 autos_croll = true,
                                 quit_on_exit = "success"
                             }

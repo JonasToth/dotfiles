@@ -82,12 +82,13 @@ return {
                     request = "launch",
                     program = function()
                         return vim.fn.getcwd() .. "/.bin/gcc/Debug/bin64/common_lib_util_UnitTests"
+                        -- return vim.fn.getcwd() .. "/.bin/clang/Debug/bin64/common_lib_util_UnitTests"
                     end,
                     args = function()
                         return { "--gtest_filter=TestUtcTimepoint.*", "--gtest_brief=1" }
                     end,
                     envFile = "${workspaceFolder}/.bin/gcc/Debug/generators/conanrunenv.env",
-                    initCommands = { "command source '${workspaceFolder}/tools/lldb/visualizers.lldb'" },
+                    -- initCommands = { "command source '${workspaceFolder}/tools/lldb/visualizers.lldb'" },
                     preRunCommands = { "breakpoint name configure --disable cpp_exception" },
                     cwd = "${workspaceFolder}",
                     stopOnEntry = true,
