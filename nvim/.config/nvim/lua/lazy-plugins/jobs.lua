@@ -6,7 +6,7 @@ return {
             { "<leader>tt", "<cmd>ToggleTerm direction=float<CR>", desc = "ToggleTerm" }
         },
         config = function()
-            require'toggleterm'.setup({
+            require 'toggleterm'.setup({
                 shade_terminals = false
             })
             function _G.set_terminal_keymaps()
@@ -28,10 +28,21 @@ return {
         "stevearc/overseer.nvim",
     },
     {
-        "Civitasv/cmake-tools.nvim",
+        "JonasToth/cmake-tools.nvim",
+        branch = "feature/test-presets",
         dependencies = {
             "akinsho/toggleterm.nvim",
             "stevearc/overseer.nvim",
+            "rcarriga/nvim-dap-ui",
+        },
+        keys = {
+            { "<leader>cC", ":CMakeSelectConfigurePreset<CR>", desc = "Select Configure Preset" },
+            { "<leader>cB", ":CMakeSelectBuildPreset<CR>",     desc = "Select Build Preset" },
+            { "<leader>cT", ":CMakeSelectTestPreset<CR>",      desc = "Select Test Preset" },
+            { "<leader>cb", ":CMakeBuild<CR>",                 desc = "Perform Build" },
+            { "<leader>ct", ":CMakeRunTest<CR>",               desc = "Execute Tests" },
+            { "<leader>cS", ":CMakeStopExecutor<CR>",          desc = "Stop Build" },
+            { "<leader>cA", ":CMakeStopRunner<CR>",            desc = "Stop Tests" },
         },
         cmd = {
             "CMakeGenerate",
@@ -39,30 +50,24 @@ return {
             "CMakeBuildCurrentFile",
             "CMakeRun",
             "CMakeRunCurrentFile",
-            "CMakeDebug",
-            "CMakeDebugCurrentFile",
+            "CMakeDebug",            -- does not work as expected
+            "CMakeDebugCurrentFile", -- does not work as expected
             "CMakeRunTest",
             "CMakeLaunchArgs",
-            "CMakeSelectBuildType",
             "CMakeSelectBuildTarget",
             "CMakeSelectLaunchTarget",
-            "CMakeSelectKit",
             "CMakeSelectConfigurePreset",
             "CMakeSelectBuildPreset",
-            "CMakeSelectCwd",
-            "CMakeSelectBuildDir",
+            "CMakeSelectTestPreset",
             "CMakeOpen",
             "CMakeClose",
             "CMakeInstall",
             "CMakeClean",
-            "CMakeStop",
             "CMakeQuickBuild",
             "CMakeQuickRun",
             "CMakeQuickDebug",
             "CMakeShowTargetFiles",
             "CMakeQuickStart",
-            "CMakeSettings",
-            "CMakeTargetSettings",
         },
         opts = {
             cmake_command = "cmake",                                                     -- this is used to specify cmake command path
@@ -72,25 +77,27 @@ return {
             cmake_build_options = {},                                                    -- this will be passed when invoke `CMakeBuild`
             cmake_build_directory = "out/${variant:buildType}",                          -- this is used to specify generate directory for cmake
             cmake_soft_link_compile_commands = true,                                     -- this will automatically make a soft link from compile commands file to project root dir
-            cmake_compile_commands_from_lsp = false,                                     -- this will automatically set compile commands file location using lsp, to use it, please set `cmake_soft_link_compile_commands` to false
+            cmake_compile_commands_from_lsp = false,                                     -- this will automatically set compile commands file location using lsp,
+            -- to use it, please set `cmake_soft_link_compile_commands` to false
             cmake_variants_message = {
-                short = { show = true },                                                 -- whether to show short message
-                long = { show = true, max_length = 40 },                                 -- whether to show long message
+                short = { show = true },                 -- whether to show short message
+                long = { show = true, max_length = 40 }, -- whether to show long message
             },
-            cmake_dap_configuration = {                                                  -- debug settings for cmake
+            cmake_dap_configuration = {                  -- debug settings for cmake
                 name = "cpp",
                 type = "codelldb",
                 request = "launch",
-                stopOnEntry = false,
+                stopOnEntry = true,
                 runInTerminal = true,
                 console = "integratedTerminal",
+                envFile = "${workspaceFolder}/.bin/clang/Debug/generators/conanrunenv.env",
             },
             cmake_executor = {                   -- executor to use
                 name = "quickfix",               -- name of the executor
                 opts = {},                       -- the options the executor will get, possible values depend on the executor type. See `default_opts` for possible values.
                 default_opts = {                 -- a list of default and possible values for executors
                     quickfix = {
-                        show = "always",  -- "always", "only_on_error"
+                        show = "always",         -- "always", "only_on_error"
                         position = "belowright", -- "bottom", "top"
                         size = 10,
                     },

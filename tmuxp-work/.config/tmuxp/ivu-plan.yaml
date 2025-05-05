@@ -9,16 +9,11 @@ windows:
   - window_name: build-master
     panes:
       - shell_command:
+        - source .bin/clang/MinSizeRel/generators/conanbuild.sh
         - pwd
-        - source generators/conanbuild.sh
-        start_directory: /mnt/code/repos/ivu-plan-source/mb2cpp/.bin/gcc/RelWithDebInfo
+        start_directory: /mnt/code/repos/ivu-plan-source/mb2cpp/
   - window_name: test-master
     panes:
       - shell_command:
         - pwd
-        - echo "Run 'ctest --preset ci-text-linux' to test master in RelWithDebInfo"
-        start_directory: /mnt/code/repos/ivu-plan-source/mb2cpp/
-      - shell_command:
-        - pwd
-        - echo "Run 'ctest --preset ci-text-linux-debug' to test master in Debug"
         start_directory: /mnt/code/repos/ivu-plan-source/mb2cpp/

@@ -51,7 +51,16 @@ return {
                 executable = {
                     command = codelldb_cmd,
                     args = { "--port", "13000" },
-                }
+                },
+                -- enrich_config = function(config, on_config)
+                --     local final_config = vim.deepcopy(config)
+                --     local env = final_config.env or {}
+                --     if string.find(final_config.program, "intf_worker") ~= nil then
+                --         env["DATABASE_BENUTZER_SCHEMA_PASSWORD"] = "mb$admin"
+                --     end
+                --     final_config.env = env
+                --     on_config(final_config)
+                -- end,
             }
             dap.adapters.gdb = {
                 id = 'gdb',
@@ -77,6 +86,30 @@ return {
             })
             dap.configurations.cpp = {
                 {
+                    name = "Debug DC Visualizer",
+                    type = "codelldb",
+                    request = "launch",
+                    program = function()
+                        return vim.fn.getcwd() .. "/.bin/clang/Debug/bin64/vd_comp_DepotManagement_testserver_IntegrationTests"
+                        -- return vim.fn.getcwd() .. "/.bin/clang/Debug/bin64/common_lib_util_UnitTests"
+                    end,
+                    args = function()
+                        return { "--gtest_filter=TestVehicleChargingDataHandling.*", "--gtest_brief=1", "--private" }
+                    end,
+                    envFile = "${workspaceFolder}/.bin/clang/Debug/generators/conanrunenv.env",
+                    initCommands = {
+                        "command source '${workspaceFolder}/tools/lldb/debug_config.lldb'",
+                        "command script import '${workspaceFolder}/tools/lldb/complex_visualizers.py'",
+                        "command source '${workspaceFolder}/tools/lldb/visualizers.lldb'",
+                    },
+                    preRunCommands = {
+                        "breakpoint name configure --disable cpp_exception",
+                        "breakpoint set -f VCTestVehicleChargingDataHandling.cpp -l 354",
+                    },
+                    cwd = "${workspaceFolder}",
+                    stopOnEntry = false,
+                },
+                {
                     name = "Debug UtcTimepoint",
                     type = "codelldb",
                     request = "launch",
@@ -88,7 +121,7 @@ return {
                         return { "--gtest_filter=TestUtcTimepoint.*", "--gtest_brief=1" }
                     end,
                     envFile = "${workspaceFolder}/.bin/gcc/Debug/generators/conanrunenv.env",
-                    -- initCommands = { "command source '${workspaceFolder}/tools/lldb/visualizers.lldb'" },
+                    initCommands = { "command source '${workspaceFolder}/tools/lldb/visualizers.lldb'" },
                     preRunCommands = { "breakpoint name configure --disable cpp_exception" },
                     cwd = "${workspaceFolder}",
                     stopOnEntry = true,
@@ -148,6 +181,25 @@ return {
                     preRunCommands = { "breakpoint name configure --disable cpp_exception" },
                     cwd = "${workspaceFolder}",
                     stopOnEntry = false,
+                },
+                {
+                    name = "Launch intf-worker",
+                    type = "codelldb",
+                    request = "launch",
+                    program = "${workspaceFolder}/.bin/clang/Debug/bin64/intf_worker",
+                    args = {
+                        "--database", "(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=D1PSE20QSDB11.ivu-ag.com)(PORT=1521)))(CONNECT_DATA=(SID=s4356)))",
+                        "--company", "RAIL",
+                        "--schema", "MB",
+                        "--IvuPlanConfigFile", "/home/jto@ivu-ag.com/connection_setup/mb.ini"
+                    },
+                    envFile = "${workspaceFolder}/.bin/clang/Debug/generators/conanrunenv.env",
+                    initCommands = {
+                        "command source '${workspaceFolder}/tools/lldb/visualizers.lldb'"
+                    },
+                    -- preRunCommands = { "breakpoint name configure --disable cpp_exception" },
+                    cwd = "${workspaceFolder}",
+                    stopOnEntry = true,
                 },
                 {
                     name = 'Attach to process (lldb)',
