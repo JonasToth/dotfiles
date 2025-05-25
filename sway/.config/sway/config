@@ -142,6 +142,20 @@ input * xkb_layout "de,us"
     bindsym $mod+Shift+Up move up
     bindsym $mod+Shift+Right move right
 #
+# Screenshots:
+#
+    set $ps1 Print
+    set $ps2 Control+Print
+    set $ps3 Alt+Print
+    set $ps4 Alt+Control+Print
+    set $psf $(xdg-user-dir PICTURES)/ps_$(date +"%Y%m%d%H%M%S").png
+     
+    bindsym $ps1 exec grim - | wl-copy
+    bindsym $ps2 exec grim -g "$(slurp)" - | wl-copy
+    bindsym $ps3 exec grim $psf
+    bindsym $ps4 exec grim -g "$(slurp)" $psf
+
+#
 # Workspaces:
 #
     # Switch to workspace
