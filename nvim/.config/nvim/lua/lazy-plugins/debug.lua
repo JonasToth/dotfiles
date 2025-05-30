@@ -44,12 +44,12 @@ return {
             local mason_registry = require('mason-registry')
             -- note that this will error if you provide a non-existent package name
             local codelldb = mason_registry.get_package("codelldb")
-            local codelldb_cmd = vim.fs.joinpath(codelldb:get_install_path(), "codelldb")
+            -- local codelldb_cmd = vim.fs.joinpath(codelldb:get_install_path(), "codelldb")
             dap.adapters.codelldb = {
                 type = "server",
                 port = "13000",
                 executable = {
-                    command = codelldb_cmd,
+                    command = "codelldb",
                     args = { "--port", "13000" },
                 },
                 -- enrich_config = function(config, on_config)
