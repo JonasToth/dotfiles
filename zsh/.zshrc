@@ -103,6 +103,7 @@ export MANPAGER="bat -l man -p"
 if [ -d ~/knowledge-base ] ; then 
     export ZK_NOTEBOOK_DIR="${HOME}/knowledge-base"
 fi
+source <(fzf --zsh)
 
 [ -d ~/.cargo ] && [ -f ~/.cargo/env ] && source ~/.cargo/env
 

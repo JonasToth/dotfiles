@@ -1,12 +1,11 @@
 // vim:syntax=jsonc
 {
     "ipc" : true,
-    "modules-left": ["sway/workspaces"],
+    "modules-left": ["hyprland/workspaces"],
     "modules-center": ["clock"],
-    /* "modules-right": [ "pulseaudio", "custom/pipe", "bluetooth", "custom/pipe", "network", "custom/pipe", "disk", "custom/pipe", "memory", "custom/pipe", "cpu", "custom/pipe", "backlight", "custom/pipe", "battery", "tray","custom/power"], */
     "modules-right": [ "pulseaudio", "custom/pipe", "network", "custom/pipe", "disk", "custom/pipe", "memory", "custom/pipe", "cpu", "custom/pipe", "tray", "custom/pipe", "temperature", "custom/pipe", "custom/power"],
 
-    "wlr/workspaces": {
+    "hyprland/workspaces": {
       "format": "{icon}",
       "on-click": "activate",
       "sort-by-number": true,
@@ -95,12 +94,12 @@
     },
     "cpu": {
         "format": "{usage}% ",
-        "on-click": "alacritty -e bpytop",
+        "on-click": "alacritty -e btop",
         "tooltip": false
     },
     "memory": {
         "format": "{}% ",
-        "on-click": "alacritty -e bpytop"
+        "on-click": "alacritty -e btop"
     },
     "temperature": {
         "thermal-zone": 2,

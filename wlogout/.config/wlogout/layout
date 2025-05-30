@@ -1,6 +1,6 @@
 {
     "label" : "lock",
-    "action" : "swaylock",
+    "action" : "hyprlock",
     "text" : "Lock",
     "keybind" : "l",
 }
@@ -12,13 +12,13 @@
 }
 {
     "label" : "shutdown",
-    "action" : "loginctl poweroff",
+    "action" : "systemctl poweroff",
     "text" : "Shutdown",
     "keybind" : "s"
 }
 {
     "label" : "reboot",
-    "action" : "loginctl reboot",
+    "action" : "systemctl reboot",
     "text" : "Reboot",
     "keybind" : "r"
 }
