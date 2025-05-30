@@ -1,4 +1,4 @@
-@define-color bg0        rgba(11, 12, 13, 0.3);
+@define-color bg0        rgba(11, 12, 13, 0.5);
 @define-color bg1        #282828;
 @define-color ws_foc     #504945;
 @define-color font       #ffc94a;
@@ -33,12 +33,11 @@ window#waybar.empty #window {
 }
 /* center module */
 #clock {
-  margin: 2px 0px 2px 0px;
-  color: @clock-font;
-  padding-left: 8px;
-  padding-right: 8px;
   background-color: @bg1;
-  border-radius: 8px;
+  color: @clock-font;
+  margin: 0px;
+  padding: 10px 10px 10px 30px;
+  border-radius: 0px 8px 8px 0px;
 }
 
 /* right module */
@@ -60,6 +59,7 @@ window#waybar.empty #window {
 }
 #pulseaudio {
   border-radius: 8px 0px 0px 8px;
+  padding-left: 10px;
 }
 #tray,
 #custom-power {
@@ -73,9 +73,8 @@ window#waybar.empty #window {
 }
 
 #workspaces {
-  border-radius: 0px 3px 3px 0px;
-  padding-left: 15px;
-  padding-right: 3px;
+  border-radius: 20px;
+  padding: 1px 25px 1px 25px;
   font-family: Sans;
   font-weight: 600;
   color: @clock-font;
@@ -83,22 +82,26 @@ window#waybar.empty #window {
 }
 
 #workspaces button {
-  background: @bg1;
+  background: #407479;
   color: @clock-font;
-  padding: 2px 5px;
+  padding: 0px 8px;
+  margin: 2px 3px;
   border-width: 2px;
   border-color: @bg1;
-  border-radius: 3px;
-  border-style: none none outset none;
+  border-radius: 20px;
+  border-style: none none none none;
+  opacity: 0.5;
 }
 
 #workspaces button.active {
+  background: #254979;
   border-width: 2px;
   border-color: #cc241d;
+  padding: 3px 15px 3px 15px;
   color: @clock-font;
-  background-color: @ws_foc;
-  border-radius: 3px;
+  border-radius: 20px;
   border-style: none none outset none;
+  opacity: 1.0;
 }
 
 #workspaces button.urgent {
@@ -155,4 +158,6 @@ window#waybar.empty #window {
 #custom-power {
   color: #fb4934;
 }
-
+#temperature {
+    padding-right: 25px;
+}
