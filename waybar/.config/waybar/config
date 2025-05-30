@@ -1,92 +1,32 @@
 // vim:syntax=jsonc
 {
     "ipc" : true,
-    "modules-left": ["hyprland/workspaces"],
+    "modules-left": ["hyprland/workspaces", "hyprland/window"],
     "modules-center": ["clock"],
-    "modules-right": [ "pulseaudio", "custom/pipe", "network", "custom/pipe", "disk", "custom/pipe", "memory", "custom/pipe", "cpu", "custom/pipe", "tray", "custom/pipe", "temperature", "custom/pipe", "custom/power"],
+    "modules-right": [ "pulseaudio", "custom/pipe", "network", "custom/pipe", "disk", "custom/pipe", "memory", "custom/pipe", "cpu", "custom/pipe", "temperature"],
 
     "hyprland/workspaces": {
       "format": "{icon}",
       "on-click": "activate",
       "sort-by-number": true,
       "format-icons": {
-      /*
-        "1": "",
-        "2": "",
-        "3": "",
-        "4": "",
+        "1": "❶",
+        "2": "❷",
+        "3": "❸",
+        "4": "❹",
         "5": "❺",
         "6": "❻",
         "7": "❼",
-        "8": "",
+        "8": "❽",
         "9": "❾",
-        "0": "",
-        "focused": "",
-        "urgent": "",
-        "default": ""
-        */
-
-        "1": "1",
-        "2": "2",
-        "3": "3",
-        "4": "4",
-        "5": "5",
-        "6": "6",
-        "7": "7",
-        "8": "8",
-        "9": "9",
 
         "focused": "",
         "urgent": "",
         "default": ""
       }
     },
-    "sway/workspaces": {
-      "disable-scroll": false,
-      "all-outputs": true,
-      "format": "{value}",
-      "persistent_workspaces": {},
-      "disable-markup": true,
-      "format-icons": {
-        /* "1": "",
-           "2": "",
-           "3": "",
-           "4": "",
-           "5": "",
-           "6": "",
-           "7": "",
-           "8": "",
-           "9": "",
-           "0": "", */
-
-        /* "1": "❶",
-           "2": "❷",
-           "3": "❸",
-           "4": "❹",
-           "5": "❺",
-           "6": "❻",
-           "7": "❼",
-           "8": "❽",
-           "9": "❾", */
-
-        "1": "1",
-        "2": "2",
-        "3": "3",
-        "4": "4",
-        "5": "5",
-        "6": "6",
-        "7": "7",
-        "8": "8",
-        "9": "9",
-
-        "focused": "",
-        "urgent": "",
-        "default": ""
-      }
-    },
-    "hyprland/window": { "format": "👉 {}", "separate-outputs": false },
-    "tray": {
-    },
+    "hyprland/window": { "format": "{}", "separate-outputs": false, "icon": true },
+    "tray": {},
     "clock": {
         "format": "{:%H:%M:%S | %A %d.%m.%Y}",
         "interval": 1,

@@ -1,33 +1,40 @@
-@define-color bg1    #282828;
-@define-color ws_foc #e5e9f0;
-@define-color ws-clr #2e3440;
-@define-color font   #ffc94a;
-@define-color mpd    #fbf1c7;
-@define-color pipe   #7d818a;
+@define-color bg0        rgba(11, 12, 13, 0.3);
+@define-color bg1        #282828;
+@define-color ws_foc     #504945;
+@define-color font       #ffc94a;
+@define-color clock-font #a2bab1;
+@define-color mpd        #fbf1c7;
+@define-color pipe       #7d818a;
 
 window#waybar {
-  /* background-color: rgba(0x11,0x11, 0x12, 0.6); */
-  /* background-color: #4c566a; */
-  background-color: #0b0c0d;
+  background-color: @bg0;
 }
 * {
   min-height: 0px;
-  font-size: 11px;
+  font-size: 14px;
   font-family: Sans;
-  min-height: 0px;
   font-weight: 600;
-  padding-bottom: 1px;
-  padding-top: 1px;
+  padding-bottom: 2px;
+  padding-top: 2px;
 }
 #window {
-    border-radius: 20px;
-    padding-left: 10px;
-    padding-right: 10px;
+  border-radius: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-left: 20px;
+  font-family: Sans;
+  font-weight: 600;
+  color: @clock-font;
+  background-color: @bg1;
+  border-radius: 8px;
+}
+window#waybar.empty #window {
+  background-color: @bg0;
 }
 /* center module */
 #clock {
   margin: 2px 0px 2px 0px;
-  color: #a2bab1;
+  color: @clock-font;
   padding-left: 8px;
   padding-right: 8px;
   background-color: @bg1;
@@ -51,6 +58,9 @@ window#waybar {
   padding-top: 2px;
   padding-bottom: 2px;
 }
+#pulseaudio {
+  border-radius: 8px 0px 0px 8px;
+}
 #tray,
 #custom-power {
   color: @font;
@@ -63,17 +73,19 @@ window#waybar {
 }
 
 #workspaces {
-  margin: 2px 2px 2px 2px;
-  padding: 0px 2px 0px 6px;
-  border-radius: 6px;
+  border-radius: 0px 3px 3px 0px;
+  padding-left: 15px;
+  padding-right: 3px;
+  font-family: Sans;
+  font-weight: 600;
+  color: @clock-font;
   background-color: @bg1;
 }
 
 #workspaces button {
   background: @bg1;
-  color: @font;
-  margin: 2px 3px 2px 3px;
-  padding: 0px;
+  color: @clock-font;
+  padding: 2px 5px;
   border-width: 2px;
   border-color: @bg1;
   border-radius: 3px;
@@ -81,12 +93,10 @@ window#waybar {
 }
 
 #workspaces button.active {
-  /* color: @ws-clr; */
-  /* background: @ws_foc; */
   border-width: 2px;
   border-color: #cc241d;
-  color: #ffd77a;
-  background-color: #504945;
+  color: @clock-font;
+  background-color: @ws_foc;
   border-radius: 3px;
   border-style: none none outset none;
 }
@@ -102,7 +112,7 @@ window#waybar {
 }
 
 #custom-right_pad {
-  border-radius: 0px 8px 8px 0px;
+  border-radius: 8px 8px 8px 8px;
   padding: 0px 2px 0px 2px;
   margin: 2px 2px 2px 0px;
   background-color: @bg1;
