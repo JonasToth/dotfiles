@@ -11,10 +11,22 @@
     "keybind" : "e"
 }
 {
+    "label" : "suspend",
+    "action" : "hyprlock& disown && systemctl suspend",
+    "text" : "Suspend",
+    "keybind" : "u"
+}
+{
     "label" : "shutdown",
     "action" : "systemctl poweroff",
     "text" : "Shutdown",
     "keybind" : "s"
+}
+{
+    "label": "hibernate",
+    "action": "systemctl hibernate",
+    "text": "Hibernate",
+    "keybind": "h"
 }
 {
     "label" : "reboot",

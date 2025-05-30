@@ -1,40 +1,120 @@
 * {
 	background-image: none;
+    font-size: 30px;
 }
+
+@define-color bar-bg rgba(0, 0, 0, 0);
+
+@define-color main-bg rgba(0,0,0, 0.7);
+@define-color main-fg #ffffff;
+
+@define-color wb-act-bg rgba(0,0,0, 0.8);
+@define-color wb-act-fg #313244;
+
+@define-color wb-hvr-bg rgba(0,0,0, 0.95);
+@define-color wb-hvr-fg #313244;
+
 window {
-	background-color: rgba(12, 12, 12, 0.8);
+	background-color: @bar-bg;
 }
+
 button {
-    color: #FFFFFF;
-	background-color: #1E1E1E;
-	border-style: solid;
-	border-width: 2px;
-	background-repeat: no-repeat;
-	background-position: center;
-	background-size: 20%;
+    color: @main-fg;
+    background-color: @main-bg;
+    outline-style: none;
+    border: none;
+    border-width: 0px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 20%;
+    border-radius: 0px;
+    box-shadow: none;
+    text-shadow: none;
+    animation: gradient_f 20s ease-in infinite;
 }
 
-button:focus, button:active, button:hover {
-	background-color: #3700B3;
-	outline-style: none;
+button:focus {
+    background-color: @wb-act-bg;
+    background-size: 50%;
 }
 
+button:hover {
+    background-color: @wb-hvr-bg;
+    background-size: 35%;
+    border-radius: 50px;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.3s cubic-bezier(.55,0.0,.28,1.682);
+}
+
+button:hover#lock {
+    border-radius: 50px;
+    margin : -35px 0px -35px 5px;
+}
+button:hover#logout,
+button:hover#suspend,
+button:hover#shutdown,
+button:hover#hibernate {
+    border-radius: 50px;
+    margin : -35px 0px -35px 0px;
+}
+button:hover#reboot {
+    border-radius: 50px;
+    margin : -35px 5px -35px 0px;
+}
+
+button:focus#lock {
+    border-radius: 20px;
+    margin : -10px 0px -10px 5px;
+}
+button:focus#logout,
+button:focus#suspend,
+button:focus#shutdown,
+button:focus#hibernate {
+    border-radius: 20px;
+    margin : -10px 0px -10px 0px;
+}
+button:focus#reboot {
+    border-radius: 20px;
+    margin : -10px 5px -10px 0px;
+}
 #lock {
     background-image: image(url("/usr/share/wlogout/icons/lock.png"),
                             url("/usr/local/share/wlogout/icons/lock.png"));
+    border-radius: 50px 0px 0px 50px;
+    margin : 5px 0px 5px 5px;
 }
 
 #logout {
     background-image: image(url("/usr/share/wlogout/icons/logout.png"),
                             url("/usr/local/share/wlogout/icons/logout.png"));
+    border-radius: 0px 0px 0px 0px;
+    margin : 5px 0px 5px 0px;
+}
+
+#suspend {
+    background-image: image(url("/usr/share/wlogout/icons/suspend.png"),
+                            url("/usr/local/share/wlogout/icons/suspend.png"));
+    border-radius: 0px 0px 0px 0px;
+    margin : 5px 0px 5px 0px;
 }
 
 #shutdown {
     background-image: image(url("/usr/share/wlogout/icons/shutdown.png"),
                             url("/usr/local/share/wlogout/icons/shutdown.png"));
+    border-radius: 0px 0px 0px 0px;
+    margin : 5px 0px 5px 0px;
+}
+
+#hibernate {
+    background-image: image(url("/usr/share/wlogout/icons/hibernate.png"),
+                            url("/usr/local/share/wlogout/icons/hibernate.png"));
+    border-radius: 0px 0px 0px 0px;
+    margin : 5px 0px 5px 0px;
 }
 
 #reboot {
     background-image: image(url("/usr/share/wlogout/icons/reboot.png"),
                             url("/usr/local/share/wlogout/icons/reboot.png"));
+    border-radius: 0px 50px 50px 0px;
+    margin : 5px 5px 5px 0px;
 }
