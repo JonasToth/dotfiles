@@ -16,7 +16,7 @@ return {
         "williamboman/mason-lspconfig.nvim",
         lazy = true,
         opts = {
-            ensure_installed = { "clangd", "lua_ls", "neocmake", "pylsp", "tinymist", "marksman" },
+            ensure_installed = { "clangd", "lua_ls", "neocmake", "pylsp", "tinymist", "marksman", "zk" },
         },
     },
     {
