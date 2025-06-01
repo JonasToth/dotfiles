@@ -7,6 +7,7 @@
 
     "hyprland/workspaces": {
       "format": "{icon}",
+      "cursor": false,
       "on-click": "activate",
       "sort-by-number": true,
       "persistent-workspaces": {
@@ -52,11 +53,13 @@
     },
     "cpu": {
         "format": "{usage}% ",
+        "cursor": false,
         "on-click": "alacritty -e btop",
         "tooltip": false
     },
     "memory": {
         "format": "{}% ",
+        "cursor": false,
         "on-click": "alacritty -e btop"
     },
     "temperature": {
@@ -128,6 +131,7 @@
             "car": "",
             "default": ["", "", ""]
         },
+        "cursor": false,
         "on-click": "alacritty -e pulsemixer",
         "on-scroll-up": "pulsemixer --change-volume 5 && pulsemixer --get-volume > $SWAYSOCK.wob",
         "on-scroll-down": "pulsemixer --change-volume -5 && pulsemixer --get-volume > $SWAYSOCK.wob",
@@ -149,6 +153,7 @@
         "format": "{percentage_used}% ",
         "format-alt": "{percentage_free}% ",
         "format-alt-click": "click-right",
+        "cursor": false,
         "path": "/home",
     },
     "custom/pipe": {
