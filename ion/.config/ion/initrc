@@ -1,5 +1,0 @@
-fn PROMPT
-  echo "$(tput bold)($(date +%R)) $(tput setaf 1)$(hostname): $(tput setaf 4)$(pwd)$(tput sgr0)"
-  echo -n "$ "
-end
-
