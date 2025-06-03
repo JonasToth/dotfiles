@@ -43,8 +43,6 @@ return {
             local dap = require("dap")
             local mason_registry = require('mason-registry')
             -- note that this will error if you provide a non-existent package name
-            local codelldb = mason_registry.get_package("codelldb")
-            -- local codelldb_cmd = vim.fs.joinpath(codelldb:get_install_path(), "codelldb")
             dap.adapters.codelldb = {
                 type = "server",
                 port = "13000",
@@ -57,6 +55,8 @@ return {
                 --     local env = final_config.env or {}
                 --     if string.find(final_config.program, "intf_worker") ~= nil then
                 --         env["DATABASE_BENUTZER_SCHEMA_PASSWORD"] = "mb$admin"
+                --         env["APPLICATION_SERVER_URL_BASE"] = "https://qsfarm14-qs250b-rail.qs.ep.ivu.systems:443"
+                --         env["OTEL_RESOURCE_ATTRIBUTES"] = "service.name=intf-worker"
                 --     end
                 --     final_config.env = env
                 --     on_config(final_config)
@@ -78,10 +78,10 @@ return {
             table.insert(dap.configurations.python, {
                 type = "python",
                 request = "launch",
-                name = "Start 'traverse_pom.py' in repository",
-                cwd = "/mnt/code/repos/wt/jto/cmake-adjusments/mb2cpp",
-                program = "/mnt/code/repos/wt/jto/cmake-adjusments/mb2cpp/tools/cmake/traverse_pom.py",
-                args = { "." },
+                name = "Debug Test for Macro Transformation",
+                cwd = "/mnt/code/repos/ivu-plan-source/mb2cpp/tools/cmake/",
+                program = "test_self_registration_to_functions.py",
+                args = { "TestContextInsertionPoints.test_file_with_simple_registerServices" },
                 stopOnEntry = true,
             })
             dap.configurations.cpp = {
@@ -110,21 +110,26 @@ return {
                     stopOnEntry = false,
                 },
                 {
-                    name = "Debug UtcTimepoint",
+                    name = "Debug Depot Tests",
                     type = "codelldb",
                     request = "launch",
                     program = function()
-                        return vim.fn.getcwd() .. "/.bin/gcc/Debug/bin64/common_lib_util_UnitTests"
-                        -- return vim.fn.getcwd() .. "/.bin/clang/Debug/bin64/common_lib_util_UnitTests"
+                        return vim.fn.getcwd() .. "/.bin/clang/Debug/bin64/ttp_comp_OperationalTripEditing_testserver_IntegrationTests"
                     end,
                     args = function()
-                        return { "--gtest_filter=TestUtcTimepoint.*", "--gtest_brief=1" }
+                        return { "--gtest_filter=*testNotTrainIntegratedEditingOfTripWithLoopAndSameEndTimesAfterLoop*", "--gtest_brief=0", "--private" }
                     end,
-                    envFile = "${workspaceFolder}/.bin/gcc/Debug/generators/conanrunenv.env",
-                    initCommands = { "command source '${workspaceFolder}/tools/lldb/visualizers.lldb'" },
-                    preRunCommands = { "breakpoint name configure --disable cpp_exception" },
+                    envFile = "${workspaceFolder}/.bin/clang/Debug/generators/conanrunenv.env",
+                    initCommands = {
+                        "command source '${workspaceFolder}/tools/lldb/debug_config.lldb'",
+                        "command script import '${workspaceFolder}/tools/lldb/complex_visualizers.py'",
+                        "command source '${workspaceFolder}/tools/lldb/visualizers.lldb'",
+                    },
+                    preRunCommands = {
+                        "breakpoint name configure --disable cpp_exception",
+                    },
                     cwd = "${workspaceFolder}",
-                    stopOnEntry = true,
+                    stopOnEntry = false,
                 },
                 {
                     name = "Debug UtcTimepoint (gdb)",
@@ -158,7 +163,7 @@ return {
                         local arguments = vim.split(vim.fn.input("Arguments: "), " ")
                         return arguments
                     end,
-                    envFile = "${workspaceFolder}/.bin/gcc/Debug/generators/conanrunenv.env",
+                    envFile = "${workspaceFolder}/.bin/clang/Debug/generators/conanrunenv.env",
                     initCommands = { "command source '${workspaceFolder}/tools/lldb/visualizers.lldb'" },
                     preRunCommands = { "breakpoint name configure --disable cpp_exception" },
                     cwd = "${workspaceFolder}",
@@ -176,7 +181,7 @@ return {
                         local arguments = vim.split(vim.fn.input("Arguments: "), " ")
                         return arguments
                     end,
-                    envFile = "${workspaceFolder}/.bin/gcc/RelWithDebInfo/generators/conanrunenv.env",
+                    envFile = "${workspaceFolder}/.bin/clang/RelWithDebInfo/generators/conanrunenv.env",
                     initCommands = { "command source '${workspaceFolder}/tools/lldb/visualizers.lldb'" },
                     preRunCommands = { "breakpoint name configure --disable cpp_exception" },
                     cwd = "${workspaceFolder}",
@@ -188,9 +193,9 @@ return {
                     request = "launch",
                     program = "${workspaceFolder}/.bin/clang/Debug/bin64/intf_worker",
                     args = {
-                        "--database", "(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=D1PSE20QSDB11.ivu-ag.com)(PORT=1521)))(CONNECT_DATA=(SID=s4356)))",
-                        "--company", "RAIL",
-                        "--schema", "MB",
+                        "--database", "(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=D1PSE20QSDB14.ivu-ag.com)(PORT=1521)))(CONNECT_DATA=(SID=qs250b)))",
+                        "--company", "rail",
+                        "--schema", "rail",
                         "--IvuPlanConfigFile", "/home/jto@ivu-ag.com/connection_setup/mb.ini"
                     },
                     envFile = "${workspaceFolder}/.bin/clang/Debug/generators/conanrunenv.env",

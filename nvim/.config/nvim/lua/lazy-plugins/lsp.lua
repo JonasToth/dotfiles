@@ -7,13 +7,13 @@ return {
         config = false,
     },
     {
-        "williamboman/mason.nvim",
+        "mason-org/mason.nvim",
         config = function()
             require("mason").setup()
         end,
     },
     {
-        "williamboman/mason-lspconfig.nvim",
+        "mason-org/mason-lspconfig.nvim",
         lazy = true,
         opts = {
             ensure_installed = { "clangd", "lua_ls", "neocmake", "pylsp", "tinymist", "marksman", "zk" },
