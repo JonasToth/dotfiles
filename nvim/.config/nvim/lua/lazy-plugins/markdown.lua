@@ -19,6 +19,9 @@ return {
                     horizontal_rules = presets.arrowed,
                     tables = presets.double,
                 },
+                experimental = {
+                    check_rtp = false,
+                }
             })
             require("markview.extras.checkboxes").setup()
         end,
