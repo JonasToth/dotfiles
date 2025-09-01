@@ -7,6 +7,9 @@
 [core]
     pager = delta
 
+[pager]
+    blame = delta
+
 [interactive]
     diffFilter = delta --color-only
 
