@@ -20,6 +20,7 @@ return {
                     "git_config",
                     "git_rebase",
                     "gnuplot",
+                    "groovy",
                     "html",
                     "htmldjango",
                     "lua",
@@ -62,6 +63,17 @@ return {
                         -- scope_decremental = "<C-V>",
                     }
                 }
+            })
+            vim.filetype.add({
+                extension = {
+                    gotmpl = 'gotmpl',
+                },
+                pattern = {
+                    [".*/templates/.*%.tpl"] = "helm",
+                    [".*/templates/.*%.ya?ml"] = "helm",
+                    ["helmfile.*%.ya?ml"] = "helm",
+                    ["Jenkinsfile.*"] = "groovy",
+                },
             })
         end,
     },

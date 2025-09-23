@@ -67,7 +67,7 @@ return {
                 end, opts)
 
                 vim.keymap.set("n", "<leader>bh", function()
-                     vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+                    vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
                 end, opts)
             end
 
@@ -78,8 +78,7 @@ return {
                 sign_text = true,
             })
 
-            local lspconfig = require("lspconfig")
-            lspconfig.lua_ls.setup({
+            vim.lsp.config.lua_ls = {
                 settings = {
                     Lua = {
                         diagnostics = {
@@ -99,18 +98,21 @@ return {
                         },
                     },
                 },
-            })
-            lspconfig.clangd.setup({})
-            lspconfig.neocmake.setup({})
-            lspconfig.pylsp.setup({})
-            lspconfig.tinymist.setup({
+            }
+            vim.lsp.config.clangd = {
+                root_markers = { '.clangd', 'compile_commands.json' },
+                filetypes = { 'c', 'cpp' },
+            }
+            vim.lsp.config.neocmake = {}
+            vim.lsp.config.pylsp = {}
+            vim.lsp.config.tinymist = {
                 settings = {
                     formatterMode = "typstyle",
                     exportPdf = "onType",
                     semanticTokens = "disable"
                 }
-            })
-            lspconfig.marksman.setup({})
+            }
+            vim.lsp.config.marksman = {}
         end,
     },
     {
