@@ -16,7 +16,7 @@ return {
         "mason-org/mason-lspconfig.nvim",
         lazy = true,
         opts = {
-            ensure_installed = { "clangd", "lua_ls", "neocmake", "pylsp", "tinymist", "marksman", "zk" },
+            ensure_installed = { "clangd", "lua_ls", "neocmake", "pyrefly", "tinymist", "marksman", "zk" },
         },
     },
     {
@@ -104,7 +104,7 @@ return {
                 filetypes = { 'c', 'cpp' },
             }
             vim.lsp.config.neocmake = {}
-            vim.lsp.config.pylsp = {}
+            vim.lsp.config.pyrefly = {}
             vim.lsp.config.tinymist = {
                 settings = {
                     formatterMode = "typstyle",
