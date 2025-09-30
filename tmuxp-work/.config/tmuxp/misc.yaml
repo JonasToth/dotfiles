@@ -12,6 +12,11 @@ windows:
       - shell_command:
         - exa -l
     start_directory: ~/.ssh
+  - window_name: knowledge
+    panes:
+      - shell_command:
+        - exa -l
+    start_directory: ~/knowledge-base
   - window_name: misc
     panes:
       - shell_command:
