@@ -1,0 +1,18 @@
+session_name: build
+start_directory: /mnt/code/repos/build
+windows:
+  - window_name: jenklib
+    panes:
+      - shell_command:
+        - pwd
+        start_directory: /mnt/code/repos/build/library-build
+  - window_name: podlib
+    panes:
+      - shell_command:
+        - pwd
+        start_directory: /mnt/code/repos/build/library-pod-definition
+  - window_name: prlib
+    panes:
+      - shell_command:
+        - pwd
+        start_directory: /mnt/code/repos/build/library-pr-ci
