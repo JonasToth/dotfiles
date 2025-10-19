@@ -28,25 +28,25 @@ TERM = "screen-256color"
 [font]
 size = 12.0
 
+[font.normal]
+family = "Jetbrains Mono"
+style = "Regular"
+
+[font.italic]
+family = "Jetbrains Mono"
+style = "Italic"
+
 [font.bold]
-family = "SourceCodePro"
+family = "Jetbrains Mono"
 style = "Bold"
 
 [font.bold_italic]
-family = "SourceCodePro"
+family = "Jetbrains Mono"
 style = "Bold Italic"
 
 [font.glyph_offset]
 x = 0
 y = 0
-
-[font.italic]
-family = "SourceCodePro"
-style = "Italic"
-
-[font.normal]
-family = "SourceCodePro"
-style = "Regular"
 
 [font.offset]
 x = 0
