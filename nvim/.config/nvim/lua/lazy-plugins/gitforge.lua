@@ -14,7 +14,7 @@ return {
             { "<leader>gv",  "<cmd>GForgeViewIssue<CR>",    desc = "View an issue" },
             { "<leader>gn",  "<cmd>GForgeCreateIssue<CR>",  desc = "Create a new issue" },
             { "<leader>ggo", "<cmd>GForgeOpenedIssues<CR>", desc = "List opened issues" },
-            { "<leader>gh",  "<cmd>GForgeListIssues<CR>",   desc = "List all issues" },
+            { "<leader>ggh", "<cmd>GForgeListIssues<CR>",   desc = "List all issues" },
             { "<leader>ggp", "<cmd>GForgePinnedIssues<CR>", desc = "List pinned issues" },
             {
                 "<leader>gio",

@@ -58,8 +58,8 @@ return {
         "lewis6991/gitsigns.nvim",
         event = "VeryLazy",
         keys = {
-            { "]c", function() require("gitsigns").nav_hunk("next") end,      desc = "Jump to next git hunk" },
-            { "[c", function() require("gitsigns").nav_hunk("prev") end,  desc = "Jump to previous git hunk" },
+            { "]C", function() require("gitsigns").nav_hunk("next", { target = 'all' }) end, desc = "Jump to next git hunk" },
+            { "[C", function() require("gitsigns").nav_hunk("prev", { target = 'all' }) end, desc = "Jump to previous git hunk" },
         },
         config = function()
             require("gitsigns").setup()
