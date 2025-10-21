@@ -24,3 +24,5 @@
     file-decoration-style = none
 [pull]
 	ff = only
+[maintenance]
+	repo = /mnt/code/repos/ivu-plan-source

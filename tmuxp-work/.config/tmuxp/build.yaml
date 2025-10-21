@@ -1,6 +1,10 @@
 session_name: build
 start_directory: /mnt/code/repos/build
 windows:
+  - window_name: k9s
+    panes:
+      - shell_command:
+        - k9s
   - window_name: jenklib
     panes:
       - shell_command:
@@ -16,3 +20,8 @@ windows:
       - shell_command:
         - pwd
         start_directory: /mnt/code/repos/build/library-pr-ci
+  - window_name: sharedlib
+    panes:
+      - shell_command:
+        - pwd
+        start_directory: /mnt/code/repos/build/library-shared
