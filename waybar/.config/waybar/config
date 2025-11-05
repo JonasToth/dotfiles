@@ -110,7 +110,8 @@
         "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
         "tooltip-format-ethernet": "{ifname} ",
         "tooltip-format-disconnected": "Disconnected",
-        "max-length": 25
+        "max-length": 25,
+        "on-click": "alacritty --class=TUI.float -e gazelle"
     },
     "pulseaudio": {
         "scroll-step": 5, // %, can be a float
