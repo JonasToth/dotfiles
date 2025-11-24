@@ -10,7 +10,7 @@ return {
             require("markview").setup({
                 checkboxes = presets.checkboxes.nerd,
                 preview = {
-                    filetypes = { "markdown", "typst", "yaml", },
+                    filetypes = { "markdown", "typst", },
                     hybrid_mode = false,
                     linewise_hybrid_mode = false,
                 },
