@@ -5,11 +5,6 @@ windows:
     panes:
       - shell_command:
         - k9s
-  - window_name: jenklib
-    panes:
-      - shell_command:
-        - pwd
-        start_directory: /mnt/code/repos/build/library-build
   - window_name: podlib
     panes:
       - shell_command:
@@ -25,3 +20,13 @@ windows:
       - shell_command:
         - pwd
         start_directory: /mnt/code/repos/build/library-shared
+  - window_name: buildlib
+    panes:
+      - shell_command:
+        - pwd
+        start_directory: /mnt/code/repos/build/library-build
+  - window_name: k8s-comp
+    panes:
+      - shell_command:
+        - pwd
+        start_directory: /mnt/code/repos/build/k8s-components
