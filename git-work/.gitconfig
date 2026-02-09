@@ -26,3 +26,5 @@
 	ff = only
 [maintenance]
 	repo = /mnt/code/repos/ivu-plan-source
+[rebase]
+	updateRefs = true
