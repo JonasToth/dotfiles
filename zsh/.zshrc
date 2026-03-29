@@ -99,15 +99,16 @@ alias vim="nvim"
 alias vi="nvim"
 alias nv="nvim"
 
-export MANPAGER="bat -l man -p"
+# export MANPAGER="bat -l man -p"
 if [ -d ~/knowledge-base ] ; then 
     export ZK_NOTEBOOK_DIR="${HOME}/knowledge-base"
 fi
 source <(fzf --zsh)
+eval "$(~/.cargo/bin/zsh-patina activate)"
 
 [ -d ~/.cargo ] && [ -f ~/.cargo/env ] && source ~/.cargo/env
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Created by `pipx` on 2024-11-01 22:03:46
-export PATH="$PATH:${HOME}/.local/bin"
+export PATH="$PATH:${HOME}/.local/bin:${HOME}/.cargo/bin"
