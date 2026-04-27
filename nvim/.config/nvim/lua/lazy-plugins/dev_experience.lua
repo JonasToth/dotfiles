@@ -165,5 +165,12 @@ return {
         dependencies = { "MunifTanjim/nui.nvim" },
         version = "*",
         event = "VeryLazy",
+    },
+    {
+        "lukas-reineke/indent-blankline.nvim",
+        main = "ibl",
+        ---@module "ibl"
+        ---@type ibl.config
+        opts = {},
     }
 }
