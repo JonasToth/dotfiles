@@ -7,16 +7,21 @@ return {
         config = false,
     },
     {
-        "mason-org/mason.nvim",
-        config = function()
-            require("mason").setup()
-        end,
-    },
-    {
         "mason-org/mason-lspconfig.nvim",
         lazy = true,
+        dependencies = {
+            { "mason-org/mason.nvim", opts = {} },
+            "neovim/nvim-lspconfig",
+        },
         opts = {
-            ensure_installed = { "clangd", "lua_ls", "neocmake", "pyrefly", "tinymist", "marksman", "zk" },
+            ensure_installed = {
+                "lua_ls",
+                "neocmake",
+                "pyrefly",
+                "tinymist",
+                "marksman",
+                "zk"
+            },
         },
     },
     {
@@ -100,6 +105,7 @@ return {
                 },
             }
             vim.lsp.config.clangd = {
+                cmd = { 'clangd', '--experimental-modules-support', },
                 root_markers = { '.clangd', 'compile_commands.json' },
                 filetypes = { 'c', 'cpp' },
             }
