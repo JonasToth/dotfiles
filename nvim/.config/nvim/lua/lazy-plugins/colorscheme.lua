@@ -1,13 +1,20 @@
 return {
+    -- {
+    --     "sainnhe/sonokai",
+    --     priority = 1000,
+    --     lazy = false,
+    --     config = function()
+    --         vim.g.sonokai_enable_italic = true
+    --         vim.g.sonokai_better_performance = false
+    --         -- require('sonokai').setup({})
+    --         vim.cmd("colorscheme sonokai")
+    --     end,
+    -- },
     {
-        "sainnhe/sonokai",
-        priority = 1000,
-        lazy = false,
-        config = function()
-            vim.g.sonokai_enable_italic = true
-            vim.g.sonokai_better_performance = false
-            -- require('sonokai').setup({})
-            vim.cmd("colorscheme sonokai")
+        "olimorris/onedarkpro.nvim",
+        priority = 1000, -- Ensure it loads first
+        config = function() 
+            vim.cmd("colorscheme onedark")
         end,
     },
     -- {
