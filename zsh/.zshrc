@@ -104,6 +104,7 @@ if [ -d ~/knowledge-base ] ; then
     export ZK_NOTEBOOK_DIR="${HOME}/knowledge-base"
 fi
 source <(fzf --zsh)
+# source <(tea completion zsh)
 eval "$(~/.cargo/bin/zsh-patina activate)"
 
 [ -d ~/.cargo ] && [ -f ~/.cargo/env ] && source ~/.cargo/env
