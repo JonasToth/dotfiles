@@ -160,17 +160,13 @@ return {
         },
     },
     {
-        -- Improve vim command hygiene.
-        "m4xshen/hardtime.nvim",
-        dependencies = { "MunifTanjim/nui.nvim" },
-        version = "*",
-        event = "VeryLazy",
-    },
-    {
         "lukas-reineke/indent-blankline.nvim",
         main = "ibl",
         ---@module "ibl"
         ---@type ibl.config
         opts = {},
+    },
+    {
+        "godlygeek/tabular",
     }
 }
