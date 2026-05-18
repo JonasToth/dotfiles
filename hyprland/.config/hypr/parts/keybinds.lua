@@ -8,26 +8,35 @@ local V = require("parts.global_vars")
 local mainMod = "SUPER"
 
 hl.bind(mainMod .. " + return", hl.dsp.exec_cmd(V.terminal))
-hl.bind(mainMod .. " + SHIFT + q", hl.dsp.window.close())
+hl.bind(mainMod .. " + d", hl.dsp.exec_cmd(V.menu))
 hl.bind(mainMod .. " + SHIFT + e", hl.dsp.exec_cmd(V.sessionManager))
 hl.bind(mainMod .. " + CTRL + l", hl.dsp.exec_cmd("hyprlock"))
-hl.bind(mainMod .. " + f", hl.dsp.window.fullscreen({ action = "toggle" }))
 hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("hyprshutdown"))
+hl.bind(mainMod .. " + SHIFT + q", hl.dsp.window.close())
+
+-- Layout Changes
+hl.bind(mainMod .. " + f", hl.dsp.window.fullscreen({ action = "toggle" }))
 hl.bind(mainMod .. " + c", hl.dsp.window.float({ action = "toggle" }))
-
+-- Switch Layout to dwindle.
+hl.bind(mainMod .. " + SHIFT + p", function()
+  hl.config({
+    general = {
+      layout = "dwindle",
+    }
+  })
+end)
+hl.bind(mainMod .. " + SHIFT + o", function()
+  hl.config({
+    general = {
+      layout = "master",
+    }
+  })
+end)
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))    -- dwindle only
-
 -- Switch the master and set focus on the new master.
-hl.bind(mainMod .. " + e", function()
-  hl.dsp.layout("cycleprev loop")
-  hl.dsp.layout("swapwithmaster master")
-end)
+hl.bind(mainMod .. " + e", hl.dsp.layout("rollprev"))
 -- Switch the master and set focus on the new master.
-hl.bind(mainMod .. " + w", function()
-  hl.dsp.layout("cyclenext loop")
-  hl.dsp.layout("swapwithmaster master")
-end)
-hl.bind(mainMod .. " + d", hl.dsp.exec_cmd(V.menu))
+hl.bind(mainMod .. " + w", hl.dsp.layout("rollnext"))
 
 -- Move focus and windows with mainMod + arrow keys
 hl.bind(mainMod .. " + h"             , hl.dsp.focus({ direction = "left" }))
@@ -47,31 +56,28 @@ hl.bind(mainMod .. " + SHIFT + right" , hl.dsp.window.move({ direction = "right"
 hl.bind(mainMod .. " + SHIFT + up"    , hl.dsp.window.move({ direction = "up" }))
 hl.bind(mainMod .. " + SHIFT + down"  , hl.dsp.window.move({ direction = "down" }))
 
--- TODO: Window Resizing
--- # Window Resizing
--- bind = $mainMod, R, submap, resize
---
--- # will start a submap called "resize"
--- submap = resize
---
--- $sizeIncrement = 20
---
--- # sets repeatable binds for resizing the active window
--- binde = , l, resizeactive, $sizeIncrement 0
--- binde = , h, resizeactive, -$sizeIncrement 0
--- binde = , k, resizeactive, 0 -$sizeIncrement
--- binde = , j, resizeactive, 0 $sizeIncrement
--- binde = , right, resizeactive, $sizeIncrement 0
--- binde = , left, resizeactive, -$sizeIncrement 0
--- binde = , up, resizeactive, 0 -$sizeIncrement
--- binde = , down, resizeactive, 0 $sizeIncrement
---
--- # use reset to go back to the global submap
--- bind = , escape, submap, reset
--- bind = , return, submap, reset
---
--- # will reset the submap, which will return to the global submap
--- submap = reset
+-- Switch to a submap called `resize`.
+hl.bind(mainMod .. " + R", hl.dsp.submap("resize"))
+
+-- Start a submap called "resize".
+hl.define_submap("resize", function()
+    local increment = 20
+
+    -- Set repeating binds for resizing the active window.
+    hl.bind("right" , hl.dsp.window.resize({ x = increment  , y = 0          , relative = true}) , { repeating = true })
+    hl.bind("left"  , hl.dsp.window.resize({ x = -increment , y = 0          , relative = true}) , { repeating = true })
+    hl.bind("up"    , hl.dsp.window.resize({ x = 0          , y = increment  , relative = true}) , { repeating = true })
+    hl.bind("down"  , hl.dsp.window.resize({ x = 0          , y = -increment , relative = true}) , { repeating = true })
+    hl.bind("l"     , hl.dsp.window.resize({ x = increment  , y = 0          , relative = true}) , { repeating = true })
+    hl.bind("h"     , hl.dsp.window.resize({ x = -increment , y = 0          , relative = true}) , { repeating = true })
+    hl.bind("k"     , hl.dsp.window.resize({ x = 0          , y = increment  , relative = true}) , { repeating = true })
+    hl.bind("j"     , hl.dsp.window.resize({ x = 0          , y = -increment , relative = true}) , { repeating = true })
+
+    -- Use `reset` to go back to the global submap
+    hl.bind("escape", hl.dsp.submap("reset"))
+    hl.bind("return", hl.dsp.submap("reset"))
+end)
+
 
 -- Switch workspaces with mainMod + [0-9]
 -- Move active window to a workspace with mainMod + SHIFT + [0-9]

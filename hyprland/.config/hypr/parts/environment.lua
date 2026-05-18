@@ -9,6 +9,7 @@ hl.env("XDG_CURRENT_DESKTOP", "Hyprland")
 hl.env("XDG_SESSION_TYPE", "wayland")
 hl.env("XDG_SESSION_DESKTOP", "Hyprland")
 hl.env("XDG_PICTURES_DIR", V.home .. "/Pictures")
+
 hl.env("HYPRSHOT_DIR", V.home .. "/Screenshots")
 hl.env("SSH_AUTH_SOCK", os.getenv("XDG_RUNTIME_DIR") .. "/ssh-agent.socket")
 

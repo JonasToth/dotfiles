@@ -8,7 +8,7 @@ hl.config({
 -- See https://wiki.hypr.land/Configuring/Layouts/Master-Layout/ for more
 hl.config({
     master = {
-        new_status                    = "master",
+        new_status                    = "slave",
         always_keep_position          = true,
         allow_small_split             = true,
         orientation                   = "center",
@@ -16,6 +16,7 @@ hl.config({
         slave_count_for_center_master = 0,
         new_on_top                    = true,
         drop_at_cursor                = false,
+        -- focus_master_on_close         = true,
     },
 })
 
