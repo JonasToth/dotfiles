@@ -9,6 +9,8 @@ return {
     dependencies = {
         { "nvim-lua/plenary.nvim", lazy = true, }
     },
+    lazy = false,
+    version = "*",
     cmd = "Neorg",
     keys = {
         { "<leader>N",   ":Neorg<CR>",                    desc = "Open Neorg Menu" },
@@ -30,7 +32,7 @@ return {
                 ["core.dirman"] = {
                     config = {
                         workspaces = {
-                            work = vim.fn.expand("~/Dokumente/neorg"),
+                            work = work_space_path,
                         },
                         default_workspace = "work",
                         index = "index.norg",

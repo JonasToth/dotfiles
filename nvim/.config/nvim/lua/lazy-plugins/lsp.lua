@@ -17,10 +17,10 @@ return {
             ensure_installed = {
                 "lua_ls",
                 "neocmake",
-                "pyrefly",
                 "tinymist",
                 "marksman",
-                "zk"
+                "zk",
+                "zuban",
             },
         },
     },
@@ -110,7 +110,7 @@ return {
                 filetypes = { 'c', 'cpp' },
             }
             vim.lsp.config.neocmake = {}
-            vim.lsp.config.pyrefly = {}
+            vim.lsp.config.zuban = {}
             vim.lsp.config.tinymist = {
                 settings = {
                     formatterMode = "typstyle",
@@ -119,6 +119,8 @@ return {
                 }
             }
             vim.lsp.config.marksman = {}
+
+            vim.lsp.enable({'clangd', 'neocmake', 'lua_ls', 'zuban'})
         end,
     },
     {
