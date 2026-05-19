@@ -90,7 +90,7 @@ return {
                 stopOnEntry = true,
                 runInTerminal = true,
                 console = "integratedTerminal",
-                envFile = "${workspaceFolder}/.bin/clang/Debug/generators/conanrunenv.env",
+                -- envFile = "${workspaceFolder}/.bin/clang/Debug/generators/conanrunenv.env",
             },
             cmake_executor = {                   -- executor to use
                 name = "quickfix",               -- name of the executor

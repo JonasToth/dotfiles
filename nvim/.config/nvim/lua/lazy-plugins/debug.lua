@@ -207,6 +207,19 @@ return {
                     stopOnEntry = true,
                 },
                 {
+                    name = 'Start Process (lldb)',
+                    type = 'codelldb',
+                    request = 'launch',
+                    program = function()
+                        return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+                    end,
+                    args = function()
+                        local string_input = vim.fn.input("Arguments to executable: ")
+                        return vim.split(string_input, " ")
+                    end,
+                    stopOnEntry = true,
+                },
+                {
                     name = 'Attach to process (lldb)',
                     type = 'codelldb',
                     request = 'attach',
@@ -254,6 +267,35 @@ return {
         ft = { "cpp", "python" },
         opts = {
             virt_text_pos = "eol",
+        },
+    },
+    {
+        "https://codeberg.org/Jorenar/nvim-dap-disasm.git",
+        dependencies = "igorlfs/nvim-dap-view",
+        config = true,
+    },
+    {
+        "igorlfs/nvim-dap-view",
+        -- let the plugin lazy load itself
+        lazy = false,
+        version = "1.*",
+        ---@module 'dap-view'
+        ---@type dapview.Config
+        opts = {
+            winbar = {
+                sections = {
+                    "watches",
+                    "scopes",
+                    "exceptions",
+                    "breakpoints",
+                    "threads",
+                    "repl",
+                    "disassembly",
+                },
+                controls = {
+                    enabled = true,
+                },
+            },
         },
     },
     {
@@ -371,6 +413,8 @@ return {
             "SplitAsmConfig",
             "SplitAsmToggleSync",
         },
-        opts = {},
+        opts = {
+            auto_sync = false,
+        },
     },
 }
