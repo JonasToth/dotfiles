@@ -1,19 +1,19 @@
 session_name: ivu-plan
-start_directory: /mnt/code/repos/ivu-plan-source/mb2cpp
+start_directory: /mnt/code/repos/ivu-plan-source/src/mb2cpp
 windows:
   - window_name: master
     panes:
       - shell_command:
         - pwd
-        start_directory: /mnt/code/repos/ivu-plan-source/mb2cpp
+        start_directory: /mnt/code/repos/ivu-plan-source/src/mb2cpp
   - window_name: build-master
     panes:
       - shell_command:
-        - source .bin/clang/MinSizeRel/generators/conanbuild.sh
+        - source .bin/gcc/MinSizeRel/generators/conanbuild.sh
         - pwd
-        start_directory: /mnt/code/repos/ivu-plan-source/mb2cpp/
+        start_directory: /mnt/code/repos/ivu-plan-source/src/mb2cpp/
   - window_name: test-master
     panes:
       - shell_command:
         - pwd
-        start_directory: /mnt/code/repos/ivu-plan-source/mb2cpp/
+        start_directory: /mnt/code/repos/ivu-plan-source/src/mb2cpp/
