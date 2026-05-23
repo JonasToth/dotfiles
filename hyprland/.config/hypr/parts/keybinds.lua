@@ -7,16 +7,16 @@ local V = require("parts.global_vars")
 -- Example binds, see https://wiki.hypr.land/Configuring/Basics/Binds/ for more
 local mainMod = "SUPER"
 
-hl.bind(mainMod .. " + return", hl.dsp.exec_cmd(V.terminal))
-hl.bind(mainMod .. " + d", hl.dsp.exec_cmd(V.menu))
+hl.bind(mainMod .. " + return"   , hl.dsp.exec_cmd(V.terminal))
+hl.bind(mainMod .. " + d"        , hl.dsp.exec_cmd(V.menu))
 hl.bind(mainMod .. " + SHIFT + e", hl.dsp.exec_cmd(V.sessionManager))
-hl.bind(mainMod .. " + CTRL + l", hl.dsp.exec_cmd("hyprlock"))
-hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("hyprshutdown"))
+hl.bind(mainMod .. " + CTRL + l" , hl.dsp.exec_cmd("hyprlock"))
+hl.bind(mainMod .. " + M"        , hl.dsp.exec_cmd("hyprshutdown"))
 hl.bind(mainMod .. " + SHIFT + q", hl.dsp.window.close())
 
 -- Layout Changes
-hl.bind(mainMod .. " + f", hl.dsp.window.fullscreen({ action = "toggle" }))
-hl.bind(mainMod .. " + c", hl.dsp.window.float({ action = "toggle" }))
+hl.bind(mainMod .. " + f"        , hl.dsp.window.fullscreen({ action = "toggle" }))
+hl.bind(mainMod .. " + c"        , hl.dsp.window.float({ action = "toggle" }))
 -- Switch Layout to dwindle.
 hl.bind(mainMod .. " + SHIFT + p", function()
   hl.config({
@@ -97,12 +97,12 @@ hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(),   { mouse = true })
 hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 
 -- Laptop multimedia keys for volume and LCD brightness
-hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"), { locked = true, repeating = true })
-hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"),      { locked = true, repeating = true })
-hl.bind("XF86AudioMute",        hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"),     { locked = true, repeating = true })
-hl.bind("XF86AudioMicMute",     hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"),   { locked = true, repeating = true })
-hl.bind("XF86MonBrightnessUp",  hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%+"),                  { locked = true, repeating = true })
-hl.bind("XF86MonBrightnessDown",hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%-"),                  { locked = true, repeating = true })
+hl.bind("XF86AudioRaiseVolume",  hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"), { locked = true, repeating = true })
+hl.bind("XF86AudioLowerVolume",  hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"),      { locked = true, repeating = true })
+hl.bind("XF86AudioMute",         hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"),     { locked = true, repeating = true })
+hl.bind("XF86AudioMicMute",      hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"),   { locked = true, repeating = true })
+hl.bind("XF86MonBrightnessUp",   hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%+"),                  { locked = true, repeating = true })
+hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%-"),                  { locked = true, repeating = true })
 
 -- Requires playerctl
 hl.bind("XF86AudioNext",  hl.dsp.exec_cmd("playerctl next"),       { locked = true })
@@ -111,10 +111,10 @@ hl.bind("XF86AudioPlay",  hl.dsp.exec_cmd("playerctl play-pause"), { locked = tr
 hl.bind("XF86AudioPrev",  hl.dsp.exec_cmd("playerctl previous"),   { locked = true })
 
 -- Screenshot a monitor
-hl.bind("PRINT", hl.dsp.exec_cmd("hyprshot -m output"))
+hl.bind("PRINT"                                                   , hl.dsp.exec_cmd("hyprshot -m output"))
 -- Screenshot a window
-hl.bind(mainMod .. " + PRINT", hl.dsp.exec_cmd("hyprshot -m window"))
+hl.bind(mainMod .. " + PRINT"                                     , hl.dsp.exec_cmd("hyprshot -m window"))
 -- Screenshot a region
-hl.bind(mainMod .. " + SHIFT + PRINT", hl.dsp.exec_cmd("hyprshot -m region"))
+hl.bind(mainMod .. " + SHIFT + PRINT"                             , hl.dsp.exec_cmd("hyprshot -m region"))
 -- Pick a color. The order of the button presses does not matter.
-hl.bind(mainMod .. " + CTRL + SHIFT + p", hl.dsp.exec_cmd("hyprpicker -a"))
+hl.bind(mainMod .. " + CTRL + SHIFT + p"                          , hl.dsp.exec_cmd("hyprpicker -a"))
