@@ -417,4 +417,11 @@ return {
             auto_sync = false,
         },
     },
+    {
+        "jontheburger/nvim-elf-file",
+        dependencies = { "nvim-lua/plenary.nvim" },
+        ---@type nvim-elf-file.UserOptions
+        opts = {},
+        cmd = { "ElfFile" },
+    },
 }

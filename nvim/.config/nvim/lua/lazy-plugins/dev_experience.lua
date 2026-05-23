@@ -168,5 +168,18 @@ return {
     },
     {
         "godlygeek/tabular",
+    },
+    {
+        "sQVe/sort.nvim",
+        ---@module "sort"
+        opts = {
+            mappings = {
+                operator = "<leader>s",
+            },
+            motion = {
+                next_delimiter = ']o',
+                prev_delimiter = '[o',
+            },
+        }
     }
 }
