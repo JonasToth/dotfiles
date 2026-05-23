@@ -20,11 +20,6 @@ hl.on("hyprland.start", function ()
   hl.exec_cmd("waybar&")    -- toolbar
   hl.exec_cmd("fnott&")     -- notification daemon
 
-  -- Audio Setup
-  hl.exec_cmd("pipewire")
-  hl.exec_cmd("wireplumber")
-  hl.exec_cmd("pipewire-pulse")
-
   -- Automatically start my desired programs on proper workspaces.
   hl.exec_cmd(V.terminal, { workspace = 1 })
   hl.exec_cmd(V.terminal, { workspace = 2 })
