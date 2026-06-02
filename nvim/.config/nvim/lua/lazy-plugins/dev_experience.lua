@@ -181,5 +181,13 @@ return {
                 prev_delimiter = '[o',
             },
         }
+    },
+    {
+        'madskjeldgaard/cppman.nvim',
+        dependencies = { 'MunifTanjim/nui.nvim' },
+        keys = {
+            { "<leader>cm", function() require("cppman").open_cppman_for(vim.fn.expand("<cword>")) end, desc = "Open CPPMan for current word" },
+            { "<leader>cc", function() require("cppman").input() end, desc = "Search on CPPMan" },
+        }
     }
 }
