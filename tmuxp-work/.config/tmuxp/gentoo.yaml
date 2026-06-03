@@ -1,0 +1,8 @@
+session_name: gccentoo
+start_directory: /mnt
+windows:
+  - window_name: gentoo
+    panes:
+      - shell_command:
+        - gentoo
+
