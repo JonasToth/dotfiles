@@ -1,0 +1,8 @@
+session_name: llvmentoo
+start_directory: /mnt
+windows:
+  - window_name: llvmentoo
+    panes:
+      - shell_command:
+        - llvmentoo
+
