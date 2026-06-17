@@ -58,7 +58,7 @@ k9s:
       addColor: *cyan
       errorColor: *red
       highlightColor: *orange
-      killColor: *comment
+      killColor: *red
       completedColor: *comment
       pendingColor: *yellow
     title:
