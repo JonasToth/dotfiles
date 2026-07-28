@@ -25,6 +25,21 @@
 [pull]
 	ff = only
 [maintenance]
-	repo = /mnt/code/repos/ivu-plan-source
+	repo = /mnt/code/repos/ivu-plan-source/src
 [rebase]
 	updateRefs = true
+[scalar]
+	repo = /mnt/code/repos/ivu-plan-source/src
+[rerere]
+	enabled = true
+[merge]
+	conflictStyle = diff3
+[merge "mergiraf"]
+	name = mergiraf
+	driver = mergiraf merge --git %O %A %B -s %S -x %X -y %Y -p %P -l %L
+[alias]
+    # Difftastic aliases, so `git dlog -p` is `git log -p`
+    # with difftastic and likewise for the other subcommands.
+    dl = -c diff.external=difft log --ext-diff
+    ds = -c diff.external=difft show --ext-diff
+    dd = -c diff.external=difft diff
