@@ -86,119 +86,18 @@ return {
             })
             dap.configurations.cpp = {
                 {
-                    name = "Debug DC Visualizer",
-                    type = "codelldb",
-                    request = "launch",
-                    program = function()
-                        return vim.fn.getcwd() .. "/.bin/clang/Debug/bin64/vd_comp_DepotManagement_testserver_IntegrationTests"
-                        -- return vim.fn.getcwd() .. "/.bin/clang/Debug/bin64/common_lib_util_UnitTests"
-                    end,
-                    args = function()
-                        return { "--gtest_filter=TestVehicleChargingDataHandling.*", "--gtest_brief=1", "--private" }
-                    end,
-                    envFile = "${workspaceFolder}/.bin/clang/Debug/generators/conanrunenv.env",
-                    initCommands = {
-                        "command source '${workspaceFolder}/tools/lldb/debug_config.lldb'",
-                        "command script import '${workspaceFolder}/tools/lldb/complex_visualizers.py'",
-                        "command source '${workspaceFolder}/tools/lldb/visualizers.lldb'",
-                    },
-                    preRunCommands = {
-                        "breakpoint name configure --disable cpp_exception",
-                        "breakpoint set -f VCTestVehicleChargingDataHandling.cpp -l 354",
-                    },
-                    cwd = "${workspaceFolder}",
-                    stopOnEntry = false,
-                },
-                {
-                    name = "Debug Depot Tests",
-                    type = "codelldb",
-                    request = "launch",
-                    program = function()
-                        return vim.fn.getcwd() .. "/.bin/clang/Debug/bin64/ttp_comp_OperationalTripEditing_testserver_IntegrationTests"
-                    end,
-                    args = function()
-                        return { "--gtest_filter=*testNotTrainIntegratedEditingOfTripWithLoopAndSameEndTimesAfterLoop*", "--gtest_brief=0", "--private" }
-                    end,
-                    envFile = "${workspaceFolder}/.bin/clang/Debug/generators/conanrunenv.env",
-                    initCommands = {
-                        "command source '${workspaceFolder}/tools/lldb/debug_config.lldb'",
-                        "command script import '${workspaceFolder}/tools/lldb/complex_visualizers.py'",
-                        "command source '${workspaceFolder}/tools/lldb/visualizers.lldb'",
-                    },
-                    preRunCommands = {
-                        "breakpoint name configure --disable cpp_exception",
-                    },
-                    cwd = "${workspaceFolder}",
-                    stopOnEntry = false,
-                },
-                {
-                    name = "Debug UtcTimepoint (gdb)",
-                    type = "gdb",
-                    request = "launch",
-                    program = function()
-                        return "common_lib_util_UnitTests"
-                    end,
-                    args = function()
-                        return { "--gtest_filter=TestUtcTimepoint.*", "--gtest_brief=1" }
-                    end,
-                    envFile = "${workspaceFolder}/.bin/gcc/Debug/generators/conanrunenv.env",
-                    cwd = "${workspaceFolder}/.bin/gcc/Debug/bin64",
-                    stopAtBeginningOfMainSubprogram = true,
-                    stopOnEntry = true,
-                },
-                {
-                    name = "Launch Test Debug",
-                    type = "codelldb",
-                    request = "launch",
-                    program = function()
-                        local path = vim.fn.getcwd() .. "/.bin/gcc/Debug/bin64"
-                        local exec_opts = {
-                            path = path,
-                            executables = true,
-                            filter = remove_sos,
-                        }
-                        return require('dap.utils').pick_file(exec_opts)
-                    end,
-                    args = function()
-                        local arguments = vim.split(vim.fn.input("Arguments: "), " ")
-                        return arguments
-                    end,
-                    envFile = "${workspaceFolder}/.bin/clang/Debug/generators/conanrunenv.env",
-                    initCommands = { "command source '${workspaceFolder}/tools/lldb/visualizers.lldb'" },
-                    preRunCommands = { "breakpoint name configure --disable cpp_exception" },
-                    cwd = "${workspaceFolder}",
-                    stopOnEntry = false,
-                },
-                {
-                    name = "Launch Test RelWithDebInfo",
-                    type = "codelldb",
-                    request = "launch",
-                    program = function()
-                        return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/.bin/gcc/RelWithDebInfo/bin64/",
-                            "file")
-                    end,
-                    args = function()
-                        local arguments = vim.split(vim.fn.input("Arguments: "), " ")
-                        return arguments
-                    end,
-                    envFile = "${workspaceFolder}/.bin/clang/RelWithDebInfo/generators/conanrunenv.env",
-                    initCommands = { "command source '${workspaceFolder}/tools/lldb/visualizers.lldb'" },
-                    preRunCommands = { "breakpoint name configure --disable cpp_exception" },
-                    cwd = "${workspaceFolder}",
-                    stopOnEntry = false,
-                },
-                {
                     name = "Launch intf-worker",
                     type = "codelldb",
                     request = "launch",
-                    program = "${workspaceFolder}/.bin/clang/Debug/bin64/intf_worker",
+                    program = "${workspaceFolder}/.bin/gcc/RelWithDebInfo/bin64/intf_worker",
                     args = {
-                        "--database", "(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=D1PSE20QSDB14.ivu-ag.com)(PORT=1521)))(CONNECT_DATA=(SID=qs250b)))",
-                        "--company", "rail",
-                        "--schema", "rail",
-                        "--IvuPlanConfigFile", "/home/jto@ivu-ag.com/connection_setup/mb.ini"
+                        "--database", "(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=D1PSE20QSDB14.ivu-ag.com)(PORT=1521)))(CONNECT_DATA=(SID=qs260r)))",
+                        "--company", "IVU2GO",
+                        "--schema", "IVU2GO",
+                        "--IvuPlanConfigFile", "/home/jto@ivu-ag.com/connection_setup/mb.ini",
+                        "--Language", "en_US",
                     },
-                    envFile = "${workspaceFolder}/.bin/clang/Debug/generators/conanrunenv.env",
+                    envFile = "${workspaceFolder}/.bin/gcc/RelWithDebInfo/generators/conanrunenv.env",
                     initCommands = {
                         "command source '${workspaceFolder}/tools/lldb/visualizers.lldb'"
                     },
