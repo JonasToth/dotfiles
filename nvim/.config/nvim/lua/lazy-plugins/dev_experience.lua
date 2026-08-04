@@ -183,6 +183,10 @@ return {
         }
     },
     {
+        "elentok/togglr.nvim",
+        opts = {}
+    },
+    {
         'madskjeldgaard/cppman.nvim',
         dependencies = { 'MunifTanjim/nui.nvim' },
         keys = {
