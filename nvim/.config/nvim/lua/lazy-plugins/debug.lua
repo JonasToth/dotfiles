@@ -91,17 +91,16 @@ return {
                     request = "launch",
                     program = "${workspaceFolder}/.bin/gcc/RelWithDebInfo/bin64/intf_worker",
                     args = {
-                        "--database", "(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=D1PSE20QSDB14.ivu-ag.com)(PORT=1521)))(CONNECT_DATA=(SID=qs260r)))",
-                        "--company", "IVU2GO",
-                        "--schema", "IVU2GO",
-                        "--IvuPlanConfigFile", "/home/jto@ivu-ag.com/connection_setup/mb.ini",
-                        "--Language", "en_US",
+                        "--database", "(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=d1pse20qsdb14.ivu-ag.com)(PORT=1521)))(CONNECT_DATA=(SERVER=DEDICATED)(SID=qs261esw)))",
+                        "--company", "ESWE",
+                        "--schema", "ESWE",
+                        "--IvuPlanConfigFile", "${workspaceFolder}/.bin/gcc/RelWithDebInfo/mb.ini",
                     },
                     envFile = "${workspaceFolder}/.bin/gcc/RelWithDebInfo/generators/conanrunenv.env",
                     initCommands = {
                         "command source '${workspaceFolder}/tools/lldb/visualizers.lldb'"
                     },
-                    -- preRunCommands = { "breakpoint name configure --disable cpp_exception" },
+                    preRunCommands = { "breakpoint name configure --disable cpp_exception" },
                     cwd = "${workspaceFolder}",
                     stopOnEntry = true,
                 },
