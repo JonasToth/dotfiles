@@ -5,7 +5,7 @@ return {
         branch = "harpoon2",
         keys = {
             {
-                "<leader>g",
+                "<leader>G",
                 function()
                     harpoon:list():add()
                 end,

@@ -61,7 +61,8 @@ vim.opt.termguicolors = true
 vim.opt.background = "dark"
 
 -- Enable mode lines at the end of a file to configure vim display settings.
-vim.opt.modelines = 1
+vim.opt.modeline = true
+vim.opt.modelines = 4
 
 -- Not exactly sure tbh.
 vim.opt.wrap = true
