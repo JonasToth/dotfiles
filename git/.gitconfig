@@ -21,6 +21,7 @@
     commit-decoration-style = bold yellow box ul
     file-style = bold yellow ul
     file-decoration-style = none
+
 [rerere]
 	enabled = true
 [merge]
@@ -34,3 +35,8 @@
     dl = -c diff.external=difft log --ext-diff
     ds = -c diff.external=difft show --ext-diff
     dd = -c diff.external=difft diff
+
+[maintenance]
+	repo = /home/jonas/software/llvm-project.git
+	repo = /home/jonas/software/mirror-llvm-project
+	repo = /home/jonas/software/mirror-llvm-project-docker
