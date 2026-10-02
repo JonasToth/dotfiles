@@ -4,7 +4,14 @@ return {
 
     --- @type agentic.PartialUserConfig
     opts = {
-      provider = "claude-agent-acp",
+      provider = "omp-acp",
+      acp_providers = {
+        ["omp-acp"] = {
+          name = "Oh My Pi",
+          command = "omp",
+          args = { "acp" },
+        },
+      },
     },
     keys = {
       {
